@@ -1,0 +1,44 @@
+
+Legal Info
+==========
+
+Hiero™ Python API Guide. Copyright © 2013 The Foundry Visionmongers Ltd. All Rights Reserved. Use of this Python API Guide and the Hiero software is subject to an End User Licensing Agreement (the “EULA”), the terms of which are incorporated herein by reference. This Python API Guide and the Hiero software may be used or copied only in accordance with the terms of the EULA. This Python API Guide, the Hiero software and all intellectual property rights relating thereto are and shall remain the sole property of The Foundry Visionmongers Ltd. (“The Foundry”) and/or The Foundry's licencors.
+
+The EULA is available in the appendices of the Hiero User Guide.
+
+The Foundry assumes no responsibility or liability for any errors or inaccuracies that may appear in this Python API Guide and this Python API Guide is subject to change without notice. The content of this Python API Guide is furnished for informational use only.
+
+Except as permitted by the EULA, no part of this Python API Guide may be reproduced, stored in a retrieval system or transmitted, in any form or by any means, electronic, mechanical, recording or otherwise, without the prior written permission of The Foundry. To the extent that the EULA authorises the making of copies of this Python API Guide, such copies shall be reproduced with all copyright, trademark and other proprietary rights notices included herein. The EULA expressly prohibits any action that could adversely affect the property rights of The Foundry and/or The Foundry's licencors, including, but not limited to, the removal of the following (or any other copyright, trademark or other proprietary rights notice included herein):
+
+Hiero™ shot management and conform software © 2013 The Foundry Visionmongers Ltd. All Rights Reserved.
+
+Hiero™ is a trademark of The Foundry Visionmongers Ltd.
+
+Mac, Mac OS, Final Cut Pro and QuickTime are trademarks of Apple, Inc., registered in the U.S. and other countries.
+
+RED, RED-ONE, R3D, EPIC, HDRx, and RMD are trademarks of Red.com, Inc.
+
+In addition to those names set forth on this page, the names of other actual companies and products mentioned in this Python API Guide (including, but not limited to, those set forth below) may be the trademarks or service marks, or registered trademarks or service marks, of their respective owners in the United States and/or other countries. No association with any company or product is intended or inferred by the mention of its name in this Python API Guide.
+
+Adobe ® and After Effects ® are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries.
+
+Avid ®, Avid DNxHD ®, and Media Composer™ are either registered trademarks or trademarks of Avid Technology, Inc. or its subsidiaries in the United States and/or other countries.
+
+Hiero software design and engineering: Adam Cherbetji, Rick Coles, Jon Creighton, Vincent Delannoy, Paul Dunnill, Martiño Figueroa, Michael Hughes, Jerry Huxtable, David Jennings, Michael Jones, Juan Leni, Zulfiqar Malik, Matt Mauger, Dan Milburn, Antón Morant Fernández, Bruno Nicoletti, Matt Plec, Przemek Stys, and Dylan Yudaken.
+
+Product testing: Dan Allum, Nikolas Almpanis, Ant Nascè, Natasha Sandars, and Zachary Scheuren.
+
+Writing and layout design: Joel Byrne.
+
+Proof reading: Eija Närvänen.
+
+| The Foundry
+| 6th Floor, The Communications Building
+| 48 Leicester Square, London
+| WC2H 7LT
+| UK
+
+.. image:: _static/Foundry_logo.jpg
+   :width: 128px
+   :height: 128px
+

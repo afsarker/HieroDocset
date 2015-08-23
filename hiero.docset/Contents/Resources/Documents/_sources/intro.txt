@@ -1,0 +1,25 @@
+
+Introduction
+============
+
+.. contents::
+
+Welcome to the Python API Guide for Hiero. This guide aims to familiarise you with the Python API in Hiero.
+
+It’s important to note that if you copy and paste example scripts from this guide into the Script Editor, line indentations may not be preserved. If this is the case, correct the indentations manually.
+
+Modules
+-------
+
+The Python API consists of two modules:
+  * :doc:`api/api_core`
+  * :doc:`api/api_ui`
+
+The core module has methods for querying and manipulating data loaded into Hiero. The ui module is for manipulating Hiero's user interface. The following pages describe how to use both.
+
+For the API reference, see the links above. To get started with the API, see the :doc:`corestartup` page.
+
+Examples
+--------------------------
+
+Examples of using Hiero's Python ship inside Hiero's install directory and can also be found here :doc:`here <examples/index>`.

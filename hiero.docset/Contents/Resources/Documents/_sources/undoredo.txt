@@ -1,0 +1,28 @@
+
+Undo & Redo
+==============================
+
+Hiero supports undo/redo. Most Python commands which affect the underlying state of an object create an undo/redo action which can then be undone or redone through Python or through the Edit > Undo and Redo menu items.
+
+.. note::
+
+  Python commands only add undo/redo actions when they are run on the main thread and when they apply to objects that are children of a project. As a result, if you create an object and set some properties on it *prior to adding it to a project* (through an addItem command), then the commands to set the properties on the object are not undoable. The same applies if changes are made to an object on a thread other than the main thread.
+
+At any time you should be able to undo/redo last command using: ::
+
+  myProject.undo()
+  myProject.redo()
+
+If you want to group lots of commands into one undo operation, you must do it explicitly: ::
+
+  myProject.beginUndo("Some description")
+  ..
+  ..
+  binObject.addItem(myItem1)
+  binObject.addItem(myItem2)
+  binObject.addItem(myItem3)
+  ..
+  ..
+  myProject.endUndo()
+
+Once myProject.endUndo() is called, the Edit > Undo menu is updated to say "Undo Some description". If myProject.undo() were called at that point, all the commands inside the block beginUndo() through endUndo() would be reverted at the same time.

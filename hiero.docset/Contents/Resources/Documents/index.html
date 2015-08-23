@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to the Hiero Python Developer Guide &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="#" />
+    <link rel="next" title="Introduction" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+<li>
+  <span><a href="#"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-the-hiero-python-developer-guide">
+<h1>Welcome to the Hiero Python Developer Guide<a class="headerlink" href="#welcome-to-the-hiero-python-developer-guide" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#modules">Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Environment Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#running-python-on-startup">Running Python on Startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#adding-plug-in-locations">Adding Plug-in Locations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#manipulating-the-plug-in-path-from-scripts">Manipulating the Plug-in Path from Scripts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#environment-info-from-scripts">Environment Info from Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corestartup.html">Getting Started with hiero.core</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="corestartup.html#generic-operations">Generic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corestartup.html#accessing-bins">Accessing Bins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corestartup.html#bin-items">Bin Items</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corestartup.html#accessing-the-media">Accessing the Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corestartup.html#creating-a-project-from-scratch">Creating a Project from Scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="undoredo.html">Undo &amp; Redo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="events.html#event-types">Event types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#event-subtypes">Event subtypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#registering-interest-in-an-event">Registering Interest in an Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#custom-event-types">Custom Event Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Export System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="export.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html#tasks-and-processors">Tasks and Processors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html#interface-classes">Interface Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html#exporter-classes">Exporter Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html#export-tokens">Export Tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="export.html#export-structure">Export Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conformingrules.html">Conforming Rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_spreadsheet.html">Customising the Spreadsheet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="custom_spreadsheet.html#registering-custom-columns">Registering Custom Columns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/api_core.html">hiero.core reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_ui.html">hiero.ui reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/api_foundry_rpc.html">foundry.rpc reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="copyright.html">Legal Info</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Next topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="next chapter">Introduction</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >next</a> |</li>
+<li>
+  <span><a href="#"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+
+Events
+======
+
+The hiero.core.events module allows you to register method callbacks to respond to events sent by Hiero.
+Hiero uses this for the callback mechanism to allow Python scripts to get notifications when interesting things happen.
+It also allows for the creation of custom event types and for sending custom events. 
+
+An **event** is an object which is passed to registered callbacks. 
+
+If the event comes from Hiero itself (and is not a custom user registered event), it contains three attributes: 
+
+1) **type** - indicates the type of the EventType (e.g. kShowContextMenu)
+2) **subtype** - indicates the subtype of the EventType (e.g. kTimeline)
+3) **sender** (generally a view, or action which triggered the event)
+
+The **type** and **subtype** attributes indicate the type and subtype of the event, respectively. 
+The **sender** is the object that sent the event, and varies by event type (and sometimes by subtype event).
+
+.. note::
+
+  The subtype attribute can be None. This is the case if an event is sent without a subtype.
+  Generally, the type and subtype are strings, usually from the EventType enumeration.
+
+The most basic event callback takes the following form: ::
+
+  def eventCallback(event):
+    print "Event fired with type %s, subtype %s and sender %s" % (event.type, event.subtype, str(event.sender))
+
+
+Event types
+-----------------------
+
+Hiero registers a number of standard Event types:
+
+**Application event types** ::
+
+  kStartup - triggered when Hiero starts up
+  kShutdown - triggered when Hiero shuts down
+
+**Project event types** ::
+
+  kBeforeNewProjectCreated - triggered before a new Project is created
+  kAfterNewProjectCreated - triggered after a new Project is created  
+  kBeforeProjectLoad - triggered before a Project starts loading
+  kAfterProjectLoad - triggered after a Project has finished loading
+  kBeforeProjectSave - triggered before a Project is saved
+  kAfterProjectSave - triggered after a Project has been saved
+  kBeforeProjectClose - triggered before a Project has closed
+  kAfterProjectClose - triggered after a Project has closed
+
+.. note::
+
+  These Project events have a 'project' property, which allows you to work with the Project that triggered the event.
+  See `project_events.py <examples/projecT_events.py>` for example usage.
+
+**Playback event types** ::
+
+  kPlaybackStarted - triggered when a playback starts
+  kPlaybackStopped - triggered when a playback stops
+  kPlaybackClipChanged - triggered when the current Clip in the Viewer changes
+
+**Dialog event types** ::
+
+  kExportDialog - triggered when the Export Dialog is opened
+
+**View event types** ::
+
+  kShowContextualMenu - triggered when a right-click context menu is shown in a view
+  kSelectionChanged -  triggered when a selection of items (e.g. Shots, Clips) in the view changes
+  kDrop - triggered when something is dropped into the view
+  
+.. note:: 
+
+  View EventTypes (and other custom EventTypes) can be used in conjunction with the **subtypes** below.
+
+Event subtypes
+----------------------------------------------
+
+The following event subtypes can be used to register events which only trigger in particular view: ::
+
+  kTimeline - for events which occur in the TimelineEditor View
+  kViewer - for events which occur in the Viewer
+  kBin - for events which occur in the Bin View
+  kSpreadsheet - for events which occur in the Spreadsheet View
+
+Registering Interest in an Event
+----------------------------------------------
+
+To register interest in an event of a given type, use the registerInterest method, passing callable and optional arguments and keyword arguments. ::
+
+  events.registerInterest(eventType, callback, *args, **kwargs)
+
+When an event of eventType is fired, the callback is called, passed the event object first, then the args and finally the kwargs.
+
+To unregister interest in an event, use: ::
+
+  events.unregisterInterest( eventType, callback )
+
+eventType can be a string or an EventType member, such as in the following example: ::
+
+  from hiero.core import events
+
+  def eventCallback(event):
+    print "fired"
+
+  events.registerInterest(events.EventType.kShowContextMenu, eventCallback)
+  # or:
+  events.registerInterest("kShowContextMenu", eventCallback)
+
+Events can also be registered for a specific subtype (kTimeline/kViewer/kBin/kSpreadsheet). These describe specific types of similar events. 
+For example, kShowContextMenu fires when the user right-clicks on certain views in Hiero, and the subtype can filter out events for particular views.
+
+To register for a particular subtype of an event, you can either use a string with the event type and subtype separated by a forward slash, or you can use a tuple, as in the following lines: ::
+
+  from hiero.core import events
+
+  events.registerInterest((events.EventType.kShowContextMenu, events.EventType.kBin), eventCallback)
+  # or:
+  events.registerInterest("kShowContextMenu/kBin", eventCallback)
+
+The following are examples of different callbacks and scenarios: ::
+
+  from hiero.core import events
+
+  def callbackNoSpecialArgs(event):
+    print "callback1"
+    print "" # add some white space
+
+  def callbackWithArgs(event, customMessage="No Message", title=""):
+    print "callback2"
+    print "title=" + title
+    print "customMessage=" + customMessage
+    print "" # add some white space
+
+  # register interest in any context menu event
+  events.registerInterest(events.EventType.kShowContextMenu, callbackNoSpecialArgs)
+
+  # register interest in any context menu event with args by call order
+  events.registerInterest(events.EventType.kShowContextMenu, callbackWithArgs, "Hello World", "Callback With Args")
+
+  # register interest in any context menu event with args that uses keywords
+  events.registerInterest(events.EventType.kShowContextMenu, callbackWithArgs, title="Callback With keyword Args")
+
+  # register interest in context menu events for the bin view
+  events.registerInterest("kShowContextMenu/kBin", callbackWithArgs, title="Callback for bin view sub event type")
+
+With the above, if a user right-clicks in the Bin View, the following prints in the terminal and the Script Editor: ::
+
+  callback2
+  title=Callback for bin view sub event type
+  customMessage=No Message
+
+  callback1
+
+  callback2
+  title=Callback With Args
+  customMessage=Hello World
+
+  callback2
+  title=Callback With keyword Args
+  customMessage=No Message
+
+
+.. note::
+
+  Callbacks registered for events with a subtype specified are called first, then callbacks registered for the event type (with a subtype *not* specified) are called.
+
+Custom Event Types
+----------------------------------------------
+
+Users of the event system can register and unregister their own custom event types, using the following two methods: ::
+
+  from hiero.core import events
+
+  events.registerEventType( "kNewEventName" )
+  events.unregisterEventType( "kNewEventName" )
+
+Triggering Custom Events
+________________________
+
+There are two ways to trigger custom (or even Hiero registered) events. The first way is to trigger an event directly and immediately, using sendEvent. This blocks execution of the running script until all of the callbacks registered to listen for the event are processed. ::
+
+  from hiero.core import events
+
+  events.sendEvent( "kNewEventName", None )
+  # or, to use EventType...
+  events.sendEvent( EventType.kNewEventName, None )
+
+In the above code, the second argument to sendEvent is the subtype, which is set to None in this example.
+
+The second way to trigger an event is to add it to the event queue. Hiero maintains an event queue which is dispatched on the main thread during idle time. To queue an event, call postEvent: ::
+
+  from hiero.core import events
+
+  events.postEvent( EventType.kNewEventName, None )
+
+Both the sendEvent and the postEvent method take the same arguments: the event type, the subtype, and keyword arguments that become members of the event that can be accessed in callbacks that have registered an interest in events.
+
+.. note::
+
+  The event queue is only available in GUI mode.
+
+Putting It All Together
+______________________________________
+
+Below is an example of using a custom event type and subtype. ::
+
+  from hiero.core import events
+
+  # custom event handler that catches all custom events
+  def customEventHandler(event):
+    # note that we use the message member of the event
+    print "Custom Event Fired: " + event.message
+
+  # custom event handler that only handles custom events that are for a subtype
+  def customEventHandlerOnlySubType(event):
+    # note that we use the message member of the event
+    print "Custom Event Subtype Fired: " + event.message
+
+  # register the new event type and its subtype; both currently registered the same way
+  events.registerEventType("kMyEvent")
+  events.registerEventType("kMySubType")
+
+  # register interest in any variants of the custom event
+  events.registerInterest(events.EventType.kMyEvent, customEventHandler)
+
+  # register interest in only custom events that are subtyped
+  events.registerInterest((events.EventType.kMyEvent, events.EventType.kMySubType), customEventHandlerOnlySubType)
+
+  # fire a general event
+  print "Firing general event:"
+  events.sendEvent(events.EventType.kMyEvent, None, message="General Event")
+
+  # fire an event specifying the subtype
+  print ""
+  print "Firing event with subtype"
+  events.sendEvent(events.EventType.kMyEvent,events.EventType.kMySubType, message="With Subtype")
+  
+The above example prints out the following: ::
+
+  Firing general event:
+  Custom Event Fired: General Event
+
+  Firing event with subtype
+  Custom Event Subtype Fired: With Subtype
+  Custom Event Fired: With Subtype
+
+
+Example
+----------------------------------------------
+
+See the `bin_drop.py <examples/bin_drop.py>`_ and `project_events.py <examples/project_events.py>`_ examples which show how to register and respond to events.

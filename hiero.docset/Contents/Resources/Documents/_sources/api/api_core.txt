@@ -1,0 +1,19 @@
+hiero.core reference
+====================
+
+.. _hiero_core:
+
+.. contents::
+
+hiero.core methods and classes
+------------------------------
+
+.. hiero_module_toc:: hiero.core
+
+hiero.core method and class details
+-----------------------------------
+
+.. automodule:: hiero.core
+   :undoc-members:
+
+

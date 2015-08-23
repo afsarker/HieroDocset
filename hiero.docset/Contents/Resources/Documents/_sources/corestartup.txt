@@ -1,0 +1,252 @@
+
+Getting Started with hiero.core
+====================================================
+
+All Python objects related to data manipulation in Hiero are placed in the hiero.core namespace within the following structure:
+
+.. image:: _static/structure.png
+
+Before using hiero.core, import the necessary symbols using::
+
+    from hiero.core import *
+
+Generic Operations
+-------------------------------------------------
+
+We can get elements contained by an object using the items method: ::
+
+  for item in myProject.clipsBin().items():
+    print item
+
+Every Python object in Hiero has a name: ::
+
+  myProject.name()
+  item.name()
+
+Accessing Bins
+-------------------------------------------------
+
+Here is an example of some items loaded into Hiero:
+
+.. image:: _static/core_bin_example.png
+
+.. note::
+
+  To create the example shown above, copy and paste `this example script <examples/create_example.py>`_ into the Script Editor and execute it.
+
+There are a number of items shown there that you might want access to in Python.
+
+To access the project, you could get a reference to the Python object for it by name using the :core_api:`project` method or, if it's the last project loaded, by taking the last item in the :core_api:`project <projects>` list. For example: ::
+
+  from hiero.core import *
+
+  # get the last loaded project
+  myProject = projects()[-1]
+
+  # get the project by name
+  myProject = project("Untitled 2")
+
+Either of the above methods work, and return a :core_api:`Project` object.
+
+Once you have a project, you might want to get at the clips it contains. :core_api:`Project` objects have two top level bin containers: the clips bin, and the tags bin. To access either of these bins, you can use the :core_api:`clipsBin <Project.clipsBin>` and the :core_api:`tagsBin <Project.tagsBin>` methods. ::
+
+  clipsBin = myProject.clipsBin()
+
+The :core_api:`clipsBin <Project.clipsBin>` and the :core_api:`tagsBin <Project.tagsBin>` methods both return :core_api:`Bin` objects. :core_api:`Bin` objects contain lists of other :core_api:`Bin` objects as well as :core_api:`BinItem` objects.
+
+Bin Items
+-------------------------------------------------
+
+:core_api:`BinItem` objects are the containers used to hold :core_api:`Clips <Clip>` and :core_api:`Sequences <Sequence>`. Most access to :core_api:`Clips <Clip>` and :core_api:`Sequences <Sequence>`, once they are held onto by a :core_api:`Bin` object, is through :core_api:`BinItem` objects.
+
+To get a list of all of the items contained by a :core_api:`Bin` object, use any of the :core_api:`clips<Bin.clips>`, :core_api:`sequences<Bin.sequences>`, :core_api:`bins<Bin.bins>` or :core_api:`items<Bin.items>` methods. ::
+
+  clips = clipsBin.clips()
+  sequences = clipsBin.sequences()
+  bins = clipsBin.bins()
+  allItems = clipsBin.items()
+  certainItemTypes = clipsBin.items(Bin.ItemType.kClip | Bin.ItemType.kSequence)
+
+  print "clips: " + str(clips)
+  print "sequences: " + str(sequences)
+  print "bins: " + str(bins)
+  print "allItems: " + str(allItems)
+  print "certainItemTypes: " + str(certainItemTypes)
+
+Given the example project loaded in Hiero, shown at the top of this document, the code above shows the following: ::
+
+  clips: (BinItem('blue_green_checkerboard'),)
+  sequences: (BinItem('NewSequence'),)
+  bins: (Bin('Bin 1'), Bin('Bin 3'))
+  allItems: (Bin('Bin 1'), Bin('Bin 3'), BinItem('blue_green_checkerboard'), BinItem('NewSequence'))
+  certainItemTypes: (BinItem('blue_green_checkerboard'), BinItem('NewSequence'))
+  
+To access the :core_api:`clip<Clip>` or :core_api:`sequence<Sequence>` item contained by a :core_api:`BinItem` object, use its :core_api:`activeItem<BinItem.activeItem>` method: ::
+
+  clip = clips[0].activeItem()
+  sequence = sequences[0].activeItem()
+
+Accessing the Media
+-------------------------------------------------
+
+To access a clip's media, you can get its :core_api:`MediaSource` using the :core_api:`mediaSource <Clip.mediaSource>` method ::
+
+  mediaSource = clip.mediaSource()
+
+Once you have a :core_api:`MediaSource` object, you can find the path to its media using the :core_api:`fileinfos <MediaSource.fileinfos>` method. The :core_api:`fileinfos <MediaSource.fileinfos>` method returns a tuple of :core_api:`MediaFileInfo` objects, from which you can retrieve the file path for the media on disk from: ::
+
+  files = mediaSource.fileinfos()
+  for file in files:
+    print file.filename()
+
+.. note::
+
+  :core_api:`MediaSource` objects can contain references to multiple files, which is why the :core_api:`fileinfos <MediaSource.fileinfos>` method returns a tuple. It is best not to assume that there will only be one item in the tuple returned.
+
+Creating a Project from Scratch
+-------------------------------------------------
+
+To start off with, let's clear the currently loaded projects out. Assuming that you've already imported hiero.core, you can call the :core_api:`closeAllProjects <closeAllProjects>` method: ::
+
+  closeAllProjects()
+
+Now you want to create a new project. Use the :core_api:`newProject <newProject>` method: ::
+
+  myProject = newProject()
+
+Creating Bins
+__________________________________________________
+
+To create :core_api:`Bin <Bin>` objects, you can just initialise a new :core_api:`Bin` object, supplying the name to the initialiser method: ::
+
+  bin1 = Bin("Bin 1")
+  bin2 = Bin("Bin 2")
+  bin3 = Bin("Bin 3")
+
+To make a bin a child of another bin, use the :core_api:`addItem <Bin.addItem>` method: ::
+
+  bin1.addItem(bin2)
+
+To add the bins to the project, and display them in the bin view, add the bins to the clipsBin for the project: ::
+
+  clipsBin = myProject.clipsBin()
+  clipsBin.addItem(bin1)
+  clipsBin.addItem(bin3)
+
+.. note::
+
+  Attached vs Unattached
+
+  There are two different ways/conventions when creating and manipulating objects in Hiero: attached and unattached. Attached objects are those that have been inserted as a child of a :core_api:`Project` object in some way. In the above code, calling addItem on the clipsBin attaches bin1 and bin3 to the project. It also attaches bin2 to the project, as bin2 is a child of bin1.
+  
+  The two important things to note about attached objects are:
+
+  * methods called on them throw an exception if not called on the main thread.
+  * undo/redo items *are added to the undo/redo stack* for almost all methods called that modify the underlying state of attached objects.
+
+  Unattached objects are those that have not been made a child, directly or indirectly, or a :core_api:`Project` object. The two important things to note about unattached objects are:
+
+  * methods called on them work on any thread.
+  * undo/redo items *are not added to the undo/redo* stack for any methods called that modify the underlying state of the objects.
+
+
+Creating Clips
+__________________________________________________
+
+To create a :core_api:`clip <Clip>`, you'll want to first create a :core_api:`MediaSource`.
+
+We can do this using the sample resources provided with Hiero, but we'll first have to find them on your system. You can do that with the following code: ::
+
+  import PySide.QtCore
+  import os.path
+
+  hieroExecutablePath = PySide.QtCore.QCoreApplication.applicationDirPath()
+
+  if platform.system() == "Darwin":
+    hieroExecutablePath = os.path.join(hieroExecutablePath, "..")
+  resourcesPath = str(os.path.abspath(os.path.join(hieroExecutablePath, "Documentation", "Python", "Resources")))
+
+  print resourcesPath
+
+We can create new :core_api:`MediaSource` objects by initialising them with the path to sources on disk, like so: ::
+
+  source1 = MediaSource(os.path.join(resourcesPath, "blue_green_checkerboard.mov"))
+  source2 = MediaSource(os.path.join(resourcesPath, "red_black_checkerboard.mov"))
+  source3 = MediaSource(os.path.join(resourcesPath, "colour_bars.mov"))
+  source4 = MediaSource(os.path.join(resourcesPath, "colour_wheel.mov"))
+  source5 = MediaSource(os.path.join(resourcesPath, "purple.######.dpx"))
+
+Now we can create some clips from the :core_api:`MediaSources <MediaSource>` objects: ::
+
+  clip1 = Clip(source1)
+  clip2 = Clip(source2)
+  clip3 = Clip(source3)
+  clip4 = Clip(source4)
+  clip5 = Clip(source5)
+
+And lastly, we can attach the clips to the project: ::
+
+  clipsBin.addItem(BinItem(clip1))
+  bin1.addItem(BinItem(clip2))
+  bin2.addItem(BinItem(clip3))
+  bin3.addItem(BinItem(clip4))
+  bin3.addItem(BinItem(clip5))
+
+.. note::
+
+  As mentioned in previous sections, :core_api:`Clip` objects are wrapped in :core_api:`BinItems <BinItem>` before they can be stored in :core_api:`Bins <Bin>`.
+
+Your project should now look like this:
+
+.. image:: _static/untitled_core_bin_example.png
+
+Creating Sequences
+__________________________________________________
+
+To create a new :core_api:`sequence <Sequence>` and add it to the project, do the following: ::
+
+  sequence = Sequence("NewSequence")
+  clipsBin.addItem(BinItem(sequence))
+
+.. note::
+
+  As mentioned in previous sections, :core_api:`Sequence` objects are wrapped in :core_api:`BinItems <BinItem>` before they can be stored in :core_api:`Bins <Bin>`.
+
+:core_api:`Sequences <Sequence>` consist of :core_api:`VideoTracks <VideoTrack>` and :core_api:`AudioTracks <AudioTrack>`, which are composed of :core_api:`TrackItems <TrackItem>`. To create a track, create either a :core_api:`VideoTrack` or an :core_api:`AudioTrack`, like so: ::
+
+  track = VideoTrack("VideoTrack")
+
+Next, given a source clip, you can create and initialise :core_api:`TrackItems <TrackItem>` like so: ::
+
+  # create the item
+  trackItem = track.createTrackItem("Shot23")
+
+  # set its source clip
+  trackItem.setSource(clip1)
+
+  # set its timeline values
+  trackItem.setTimelineIn(0)
+  trackItem.setTimelineOut(trackItem.sourceDuration() - 1)
+
+  # add it to the track
+  track.addItem(trackItem)
+
+.. note: ::
+
+  The :core_api:`Track.createTrackItem` method creates a track but does not add it to the :core_api:`Track <Track>`. Use the :core_api:`addItem <Track.addItem>` method to do that.
+
+To add the track to the sequence, just call the :core_api:`addTrack <Sequence.addTrack>` method: ::
+
+  sequence.addTrack(track)
+
+
+
+Create Objects Example
+__________________________________________________
+
+See the `create_example.py <examples/create_example.py>`_ for an example of creating a Project, adding some clips to it and creating a sequence.
+After running that, you should have a bin view that looks like this (as shown at the top of this page):
+
+.. image:: _static/core_bin_example.png
+
+

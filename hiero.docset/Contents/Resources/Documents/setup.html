@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Environment Setup &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Getting Started with hiero.core" href="corestartup.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corestartup.html" title="Getting Started with hiero.core"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="environment-setup">
+<h1>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-python-on-startup">
+<h2>Running Python on Startup<a class="headerlink" href="#running-python-on-startup" title="Permalink to this headline">¶</a></h2>
+<p>At startup, Hiero and HieroPlayer automatically searches for Python code in the following special directories:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>&lt;path&gt;/<strong>Python/Startup</strong></li>
+<li>&lt;path&gt;/<strong>Python/StartupUI</strong></li>
+</ol>
+</div></blockquote>
+<p>The <strong>&lt;path&gt;</strong> varies by platform, and a full list of paths can be found by running: <strong>hiero.core.pluginPath()</strong> in the Script Editor.</p>
+<p>Any Python <strong>.py</strong> modules or packages containing <strong>__init__.py</strong> found in these two Python sub-directories will get automatically loaded when Hiero starts up.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, Hiero will not create <strong>Python/Startup</strong> of <strong>Python/StartupUI</strong> sub-directories, <strong>you will need to create these manually.</strong></p>
+</div>
+<p>Scanning is done in two passes — all the <strong>Startup</strong> folders are searched and then all the <strong>StartupUI</strong> folders.</p>
+<p>Each package or module discovered is imported and added to the built-in package hiero.plugins.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Scripts are imported in alphabetical order so you can force ordering if necessary. Type: <strong>help(hiero.core.addPluginPath)</strong> for more details.</p>
+</div>
+<p>Just like Nuke&#8217;s &#8216;.nuke&#8217; directory, by default, Hiero creates a <strong>.hiero</strong> directory.</p>
+<p>The recommended default location for running Python on startup is <strong>~/.hiero/Python/Startup</strong>, <strong>~/.hiero/Python/StartupUI</strong>, (where &#8216;~&#8217; denotes the user&#8217;s home directory)</p>
+<p>A full list of &lt;path&gt; locations can be found with hiero.core.pluginPath(). See <a class="reference internal" href="#listing-plug-in-paths">Listing Plug-in Paths</a> for more information.</p>
+<p>You can also specify any number of user-defined paths using the environment variable <strong>HIERO_PLUGIN_PATH</strong>, separating paths with &#8216;:&#8217;, just like the standard unix PATH environment variable and Nuke&#8217;s NUKE_PATH.</p>
+<p>See <a class="reference internal" href="#adding-plug-in-locations">Adding plug-in locations</a> for more information.</p>
+<div class="section" id="startup-projects-and-templates">
+<h3>Startup Projects and Templates<a class="headerlink" href="#startup-projects-and-templates" title="Permalink to this headline">¶</a></h3>
+<p>Hiero and HieroPlayer allow you to create Startup Projects and Templates which can be added on startup.</p>
+<p>There are two types of Projects that can be loaded on startup:</p>
+<ul class="simple">
+<li><strong>Startup Projects</strong> - are created once on startup. They may contain custom Tags, or Clip media elements that you&#8217;d like to provide to your artists.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Once loaded, Startup Projects are <strong>read-only</strong> and are designed to contain objects that you intend to use across all projects.</p>
+</div>
+<ul class="simple">
+<li><strong>Templates</strong> - allow you to make editable, templated Projects.  If you have multiple projects in the Templates directory, you will be presented with a Template chooser, like so:</li>
+</ul>
+<img alt="_images/template.png" src="_images/template.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Project Templates could be used for different episodic shows, or different localities of commercials for example.</p>
+</div>
+<p>To create a Startup or Template Project, create a new Project (.hrox) with Bins/Clips/Sequences/Tags as you would do normally, and save it to the appropriate location shown below:</p>
+<ul class="simple">
+<li>&lt;path&gt;/<strong>StartupProjects/Hiero</strong> - .hrox Projects in these folders are displayed in Hiero only.</li>
+<li>&lt;path&gt;/<strong>StartupProjects/HieroPlayer</strong> — .hrox Projects in these folders are displayed in HieroPlayer only.</li>
+<li>&lt;path&gt;/<strong>Templates</strong> - .hrox Projects in these folders are available as Templates in Hiero and HieroPlayer.</li>
+</ul>
+<p>Projects placed in these folders behave differently, depending on which folder they are read from:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, Hiero will not create <strong>StartupProjects/Hiero</strong>, <strong>StartupProjects/HieroPlayer</strong>, and <strong>Templates</strong> directories, <strong>you will need to create these manually.</strong></p>
+</div>
+<p>To remove a Startup or Template Project, either:</p>
+<ul class="simple">
+<li>Remove it from the &lt;path&gt;/... sub-directory, or</li>
+<li>Rename the file extension so Hiero doesn’t recognise it on startup. For example, myStartup.hrox_hidden.</li>
+</ul>
+<p>To modify a startup project:</p>
+<ol class="arabic simple">
+<li>Load the project using File &gt; Open.</li>
+<li>Make any required edits and save over the original in the same location.</li>
+</ol>
+<p>Now the edited project loads at startup.</p>
+</div>
+</div>
+<div class="section" id="adding-plug-in-locations">
+<h2>Adding Plug-in Locations<a class="headerlink" href="#adding-plug-in-locations" title="Permalink to this headline">¶</a></h2>
+<p id="addingplugins">You can guide Hiero to directories containing scripts at startup using the HIERO_PLUGIN_PATH environment variable.
+For full of details of how to set environment variables on Mac, Linux and Windows, please refer to the Hiero User Guide &#8216;Hiero Environment Variables&#8217; section.</p>
+</div>
+<div class="section" id="manipulating-the-plug-in-path-from-scripts">
+<h2>Manipulating the Plug-in Path from Scripts<a class="headerlink" href="#manipulating-the-plug-in-path-from-scripts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="listing-plug-in-paths">
+<h3>Listing Plug-in Paths<a class="headerlink" href="#listing-plug-in-paths" title="Permalink to this headline">¶</a></h3>
+<p>To see the current paths that Hiero searches when loading plug-ins, run the following in the Script Editor:</p>
+<div class="highlight-cpp"><pre>import hiero.core
+
+hiero.core.pluginPath()</pre>
+</div>
+</div>
+<div class="section" id="adding-plug-in-paths">
+<h3>Adding Plug-in Paths<a class="headerlink" href="#adding-plug-in-paths" title="Permalink to this headline">¶</a></h3>
+<p>To append a path (if it exists) to the list of plug-in paths search by Hiero, use the following Python code:</p>
+<div class="highlight-cpp"><pre>import hiero.core
+
+hiero.core.addPluginPath(path)</pre>
+</div>
+<p>To insert a path (if it exists) into the list of plug-in paths, use the following Python code:</p>
+<div class="highlight-cpp"><pre>import hiero.core
+
+hiero.core.addPluginPath(path, index)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If index &lt; 0 or out of bounds, the path is appended to the list.</p>
+</div>
+</div>
+</div>
+<div class="section" id="environment-info-from-scripts">
+<h2>Environment Info from Scripts<a class="headerlink" href="#environment-info-from-scripts" title="Permalink to this headline">¶</a></h2>
+<p>The hiero.core.env object contains information about the currently running Hiero executable, such as the major/minor version, the release number, etc. Run the following in Hiero&#8217;s Script Editor to see this information:</p>
+<div class="highlight-cpp"><pre>from hiero.core import *
+
+print env
+print env["VersionDate"]
+print env["VersionMajor"]
+print env["VersionMinor"]
+print env["VersionString"]</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Environment Setup</a><ul>
+<li><a class="reference internal" href="#running-python-on-startup">Running Python on Startup</a><ul>
+<li><a class="reference internal" href="#startup-projects-and-templates">Startup Projects and Templates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-plug-in-locations">Adding Plug-in Locations</a></li>
+<li><a class="reference internal" href="#manipulating-the-plug-in-path-from-scripts">Manipulating the Plug-in Path from Scripts</a><ul>
+<li><a class="reference internal" href="#listing-plug-in-paths">Listing Plug-in Paths</a></li>
+<li><a class="reference internal" href="#adding-plug-in-paths">Adding Plug-in Paths</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#environment-info-from-scripts">Environment Info from Scripts</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="corestartup.html"
+                        title="next chapter">Getting Started with hiero.core</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corestartup.html" title="Getting Started with hiero.core"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

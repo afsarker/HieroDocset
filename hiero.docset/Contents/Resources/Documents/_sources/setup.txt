@@ -1,0 +1,137 @@
+
+Environment Setup
+=================
+
+.. :contents::
+
+Running Python on Startup
+------------------------------
+
+At startup, Hiero and HieroPlayer automatically searches for Python code in the following special directories: 
+
+  #. <path>/**Python/Startup**
+  #. <path>/**Python/StartupUI**
+  
+  
+The **<path>** varies by platform, and a full list of paths can be found by running: **hiero.core.pluginPath()** in the Script Editor.
+
+Any Python **.py** modules or packages containing **__init__.py** found in these two Python sub-directories will get automatically loaded when Hiero starts up.
+
+.. note::
+
+  By default, Hiero will not create **Python/Startup** of **Python/StartupUI** sub-directories, **you will need to create these manually.**
+
+Scanning is done in two passes — all the **Startup** folders are searched and then all the **StartupUI** folders.
+
+Each package or module discovered is imported and added to the built-in package hiero.plugins.
+
+.. note::
+
+  Scripts are imported in alphabetical order so you can force ordering if necessary. Type: **help(hiero.core.addPluginPath)** for more details.
+
+Just like Nuke's '.nuke' directory, by default, Hiero creates a **.hiero** directory.
+
+The recommended default location for running Python on startup is **~/.hiero/Python/Startup**, **~/.hiero/Python/StartupUI**, (where '~' denotes the user's home directory)
+
+A full list of <path> locations can be found with hiero.core.pluginPath(). See `Listing Plug-in Paths`_ for more information.
+
+You can also specify any number of user-defined paths using the environment variable **HIERO_PLUGIN_PATH**, separating paths with ':', just like the standard unix PATH environment variable and Nuke's NUKE_PATH.
+
+See `Adding plug-in locations`_ for more information.
+
+
+Startup Projects and Templates
+__________________________________________
+
+Hiero and HieroPlayer allow you to create Startup Projects and Templates which can be added on startup.
+
+There are two types of Projects that can be loaded on startup:
+
+* **Startup Projects** - are created once on startup. They may contain custom Tags, or Clip media elements that you'd like to provide to your artists. 
+
+.. note::
+  Once loaded, Startup Projects are **read-only** and are designed to contain objects that you intend to use across all projects.
+
+* **Templates** - allow you to make editable, templated Projects.  If you have multiple projects in the Templates directory, you will be presented with a Template chooser, like so:
+.. image:: Resources/template.png
+
+.. note::
+  Project Templates could be used for different episodic shows, or different localities of commercials for example.
+
+To create a Startup or Template Project, create a new Project (.hrox) with Bins/Clips/Sequences/Tags as you would do normally, and save it to the appropriate location shown below:
+
+* <path>/**StartupProjects/Hiero** - .hrox Projects in these folders are displayed in Hiero only.
+* <path>/**StartupProjects/HieroPlayer** — .hrox Projects in these folders are displayed in HieroPlayer only.
+* <path>/**Templates** - .hrox Projects in these folders are available as Templates in Hiero and HieroPlayer.
+
+Projects placed in these folders behave differently, depending on which folder they are read from:
+
+.. note::
+
+  By default, Hiero will not create **StartupProjects/Hiero**, **StartupProjects/HieroPlayer**, and **Templates** directories, **you will need to create these manually.** 
+
+To remove a Startup or Template Project, either:
+
+* Remove it from the <path>/... sub-directory, or
+* Rename the file extension so Hiero doesn’t recognise it on startup. For example, myStartup.hrox_hidden.
+
+To modify a startup project:
+
+#. Load the project using File > Open.
+#. Make any required edits and save over the original in the same location.
+  
+Now the edited project loads at startup.
+
+Adding Plug-in Locations
+-------------------------
+
+.. _addingplugins:
+
+You can guide Hiero to directories containing scripts at startup using the HIERO_PLUGIN_PATH environment variable.
+For full of details of how to set environment variables on Mac, Linux and Windows, please refer to the Hiero User Guide 'Hiero Environment Variables' section.
+
+
+Manipulating the Plug-in Path from Scripts
+-------------------------------------------------
+
+Listing Plug-in Paths
+_____________________
+
+To see the current paths that Hiero searches when loading plug-ins, run the following in the Script Editor: ::
+
+  import hiero.core
+
+  hiero.core.pluginPath()
+
+Adding Plug-in Paths
+____________________
+
+To append a path (if it exists) to the list of plug-in paths search by Hiero, use the following Python code: ::
+
+  import hiero.core
+
+  hiero.core.addPluginPath(path)
+
+To insert a path (if it exists) into the list of plug-in paths, use the following Python code: ::
+
+  import hiero.core
+
+  hiero.core.addPluginPath(path, index)
+
+.. note::
+
+   If index < 0 or out of bounds, the path is appended to the list.
+
+
+Environment Info from Scripts
+-------------------------------------------------
+
+The hiero.core.env object contains information about the currently running Hiero executable, such as the major/minor version, the release number, etc. Run the following in Hiero's Script Editor to see this information: ::
+
+  from hiero.core import *
+
+  print env
+  print env["VersionDate"]
+  print env["VersionMajor"]
+  print env["VersionMinor"]
+  print env["VersionString"]

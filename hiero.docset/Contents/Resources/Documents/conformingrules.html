@@ -1,0 +1,143 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Conforming Rules &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Customising the Spreadsheet" href="custom_spreadsheet.html" />
+    <link rel="prev" title="Export System" href="export.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="custom_spreadsheet.html" title="Customising the Spreadsheet"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="export.html" title="Export System"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="conforming-rules">
+<h1>Conforming Rules<a class="headerlink" href="#conforming-rules" title="Permalink to this headline">¶</a></h1>
+<p>The standard conforming rules match the source media with the timeline using the following criteria: UMID, File name, Tape name, RED tape name, Partial file name, Timecode, and Folder names.</p>
+<p>These rules can be extended in the Python API by defining classes derived from the ConformRule class and instantiating them.</p>
+<p>For instance, the name matching rule can be re-implemented as:</p>
+<div class="highlight-cpp"><pre>class NameConformRule(ConformRule):
+
+  """Match media filenames."""
+  def __init__(self):
+    ConformRule.__init__(self, "Name")
+
+  def compare( self, media, candidateMedia ):
+    try:
+      sourceName = media[ kName ].lower()
+      candidateName = candidateMedia[ kName ].lower()
+      return sourceName == candidateName
+    except KeyError:
+      return False</pre>
+</div>
+<p>The compare() member function has all of the logic to determine a match. It takes in a dictionary of metadata for the timeline media and the candidate media.</p>
+<p>To activate this rule, an instance needs to be constructed:</p>
+<div class="highlight-cpp"><pre>nameRule = NameConformRule()</pre>
+</div>
+<p>To turn off the rule, it can be either destroyed by setting it to None or by explicitly calling deactivate:</p>
+<div class="highlight-cpp"><pre>nameRule.deactivate()</pre>
+</div>
+<p>If you want to list the currently active conform rules, a tuple can be returned by calling the activeConformRules() function:</p>
+<div class="highlight-cpp"><pre>activeRules = activeConformRules()</pre>
+</div>
+<p>An example of a custom conform rule can be found in conform_rules.py with the other examples that ship with Hiero, or you can view it here: <a class="reference external" href="examples/bin_drop.py">BinView Drag &amp; Drop</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="export.html"
+                        title="previous chapter">Export System</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="custom_spreadsheet.html"
+                        title="next chapter">Customising the Spreadsheet</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="custom_spreadsheet.html" title="Customising the Spreadsheet"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="export.html" title="Export System"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

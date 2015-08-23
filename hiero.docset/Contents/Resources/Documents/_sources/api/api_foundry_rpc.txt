@@ -1,0 +1,20 @@
+foundry.rpc reference
+======================
+
+.. _foundry_rpc:
+
+.. contents::
+
+foundry.rpc methods and classes
+---------------------------------
+
+.. hiero_module_toc:: foundry.rpc
+   :undoc-members:
+
+foundry.rpc method and class details
+--------------------------------------
+
+.. automodule:: foundry.rpc
+   :undoc-members:
+
+

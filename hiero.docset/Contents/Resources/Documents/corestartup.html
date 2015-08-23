@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started with hiero.core &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Undo &amp; Redo" href="undoredo.html" />
+    <link rel="prev" title="Environment Setup" href="setup.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="undoredo.html" title="Undo &amp; Redo"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setup.html" title="Environment Setup"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started-with-hiero-core">
+<h1>Getting Started with hiero.core<a class="headerlink" href="#getting-started-with-hiero-core" title="Permalink to this headline">¶</a></h1>
+<p>All Python objects related to data manipulation in Hiero are placed in the hiero.core namespace within the following structure:</p>
+<img alt="_images/structure.png" src="_images/structure.png" />
+<p>Before using hiero.core, import the necessary symbols using:</p>
+<div class="highlight-cpp"><pre>from hiero.core import *</pre>
+</div>
+<div class="section" id="generic-operations">
+<h2>Generic Operations<a class="headerlink" href="#generic-operations" title="Permalink to this headline">¶</a></h2>
+<p>We can get elements contained by an object using the items method:</p>
+<div class="highlight-cpp"><pre>for item in myProject.clipsBin().items():
+  print item</pre>
+</div>
+<p>Every Python object in Hiero has a name:</p>
+<div class="highlight-cpp"><pre>myProject.name()
+item.name()</pre>
+</div>
+</div>
+<div class="section" id="accessing-bins">
+<h2>Accessing Bins<a class="headerlink" href="#accessing-bins" title="Permalink to this headline">¶</a></h2>
+<p>Here is an example of some items loaded into Hiero:</p>
+<img alt="_images/core_bin_example.png" src="_images/core_bin_example.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To create the example shown above, copy and paste <a class="reference external" href="examples/create_example.py">this example script</a> into the Script Editor and execute it.</p>
+</div>
+<p>There are a number of items shown there that you might want access to in Python.</p>
+<p>To access the project, you could get a reference to the Python object for it by name using the <a class="reference external" href="api/api_core.html#hiero.core.project">project</a> method or, if it&#8217;s the last project loaded, by taking the last item in the <a class="reference external" href="api/api_core.html#hiero.core.projects">project</a> list. For example:</p>
+<div class="highlight-cpp"><pre>from hiero.core import *
+
+# get the last loaded project
+myProject = projects()[-1]
+
+# get the project by name
+myProject = project("Untitled 2")</pre>
+</div>
+<p>Either of the above methods work, and return a <a class="reference external" href="api/api_core.html#hiero.core.Project">Project</a> object.</p>
+<p>Once you have a project, you might want to get at the clips it contains. <a class="reference external" href="api/api_core.html#hiero.core.Project">Project</a> objects have two top level bin containers: the clips bin, and the tags bin. To access either of these bins, you can use the <a class="reference external" href="api/api_core.html#hiero.core.Project.clipsBin">clipsBin</a> and the <a class="reference external" href="api/api_core.html#hiero.core.Project.tagsBin">tagsBin</a> methods.</p>
+<div class="highlight-cpp"><pre>clipsBin = myProject.clipsBin()</pre>
+</div>
+<p>The <a class="reference external" href="api/api_core.html#hiero.core.Project.clipsBin">clipsBin</a> and the <a class="reference external" href="api/api_core.html#hiero.core.Project.tagsBin">tagsBin</a> methods both return <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> objects. <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> objects contain lists of other <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> objects as well as <a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItem</a> objects.</p>
+</div>
+<div class="section" id="bin-items">
+<h2>Bin Items<a class="headerlink" href="#bin-items" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItem</a> objects are the containers used to hold <a class="reference external" href="api/api_core.html#hiero.core.Clip">Clips</a> and <a class="reference external" href="api/api_core.html#hiero.core.Sequence">Sequences</a>. Most access to <a class="reference external" href="api/api_core.html#hiero.core.Clip">Clips</a> and <a class="reference external" href="api/api_core.html#hiero.core.Sequence">Sequences</a>, once they are held onto by a <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> object, is through <a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItem</a> objects.</p>
+<p>To get a list of all of the items contained by a <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> object, use any of the <a class="reference external" href="api/api_core.html#hiero.core.Bin.clips">clips</a>, <a class="reference external" href="api/api_core.html#hiero.core.Bin.sequences">sequences</a>, <a class="reference external" href="api/api_core.html#hiero.core.Bin.bins">bins</a> or <a class="reference external" href="api/api_core.html#hiero.core.Bin.items">items</a> methods.</p>
+<div class="highlight-cpp"><pre>clips = clipsBin.clips()
+sequences = clipsBin.sequences()
+bins = clipsBin.bins()
+allItems = clipsBin.items()
+certainItemTypes = clipsBin.items(Bin.ItemType.kClip | Bin.ItemType.kSequence)
+
+print "clips: " + str(clips)
+print "sequences: " + str(sequences)
+print "bins: " + str(bins)
+print "allItems: " + str(allItems)
+print "certainItemTypes: " + str(certainItemTypes)</pre>
+</div>
+<p>Given the example project loaded in Hiero, shown at the top of this document, the code above shows the following:</p>
+<div class="highlight-cpp"><pre>clips: (BinItem('blue_green_checkerboard'),)
+sequences: (BinItem('NewSequence'),)
+bins: (Bin('Bin 1'), Bin('Bin 3'))
+allItems: (Bin('Bin 1'), Bin('Bin 3'), BinItem('blue_green_checkerboard'), BinItem('NewSequence'))
+certainItemTypes: (BinItem('blue_green_checkerboard'), BinItem('NewSequence'))</pre>
+</div>
+<p>To access the <a class="reference external" href="api/api_core.html#hiero.core.Clip">clip</a> or <a class="reference external" href="api/api_core.html#hiero.core.Sequence">sequence</a> item contained by a <a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItem</a> object, use its <a class="reference external" href="api/api_core.html#hiero.core.BinItem.activeItem">activeItem</a> method:</p>
+<div class="highlight-cpp"><pre>clip = clips[0].activeItem()
+sequence = sequences[0].activeItem()</pre>
+</div>
+</div>
+<div class="section" id="accessing-the-media">
+<h2>Accessing the Media<a class="headerlink" href="#accessing-the-media" title="Permalink to this headline">¶</a></h2>
+<p>To access a clip&#8217;s media, you can get its <a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSource</a> using the <a class="reference external" href="api/api_core.html#hiero.core.Clip.mediaSource">mediaSource</a> method</p>
+<div class="highlight-cpp"><pre>mediaSource = clip.mediaSource()</pre>
+</div>
+<p>Once you have a <a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSource</a> object, you can find the path to its media using the <a class="reference external" href="api/api_core.html#hiero.core.MediaSource.fileinfos">fileinfos</a> method. The <a class="reference external" href="api/api_core.html#hiero.core.MediaSource.fileinfos">fileinfos</a> method returns a tuple of <a class="reference external" href="api/api_core.html#hiero.core.MediaFileInfo">MediaFileInfo</a> objects, from which you can retrieve the file path for the media on disk from:</p>
+<div class="highlight-cpp"><pre>files = mediaSource.fileinfos()
+for file in files:
+  print file.filename()</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSource</a> objects can contain references to multiple files, which is why the <a class="reference external" href="api/api_core.html#hiero.core.MediaSource.fileinfos">fileinfos</a> method returns a tuple. It is best not to assume that there will only be one item in the tuple returned.</p>
+</div>
+</div>
+<div class="section" id="creating-a-project-from-scratch">
+<h2>Creating a Project from Scratch<a class="headerlink" href="#creating-a-project-from-scratch" title="Permalink to this headline">¶</a></h2>
+<p>To start off with, let&#8217;s clear the currently loaded projects out. Assuming that you&#8217;ve already imported hiero.core, you can call the <a class="reference external" href="api/api_core.html#hiero.core.closeAllProjects">closeAllProjects</a> method:</p>
+<div class="highlight-cpp"><pre>closeAllProjects()</pre>
+</div>
+<p>Now you want to create a new project. Use the <a class="reference external" href="api/api_core.html#hiero.core.newProject">newProject</a> method:</p>
+<div class="highlight-cpp"><pre>myProject = newProject()</pre>
+</div>
+<div class="section" id="creating-bins">
+<h3>Creating Bins<a class="headerlink" href="#creating-bins" title="Permalink to this headline">¶</a></h3>
+<p>To create <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> objects, you can just initialise a new <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bin</a> object, supplying the name to the initialiser method:</p>
+<div class="highlight-cpp"><pre>bin1 = Bin("Bin 1")
+bin2 = Bin("Bin 2")
+bin3 = Bin("Bin 3")</pre>
+</div>
+<p>To make a bin a child of another bin, use the <a class="reference external" href="api/api_core.html#hiero.core.Bin.addItem">addItem</a> method:</p>
+<div class="highlight-cpp"><pre>bin1.addItem(bin2)</pre>
+</div>
+<p>To add the bins to the project, and display them in the bin view, add the bins to the clipsBin for the project:</p>
+<div class="highlight-cpp"><pre>clipsBin = myProject.clipsBin()
+clipsBin.addItem(bin1)
+clipsBin.addItem(bin3)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Attached vs Unattached</p>
+<p>There are two different ways/conventions when creating and manipulating objects in Hiero: attached and unattached. Attached objects are those that have been inserted as a child of a <a class="reference external" href="api/api_core.html#hiero.core.Project">Project</a> object in some way. In the above code, calling addItem on the clipsBin attaches bin1 and bin3 to the project. It also attaches bin2 to the project, as bin2 is a child of bin1.</p>
+<p>The two important things to note about attached objects are:</p>
+<ul class="simple">
+<li>methods called on them throw an exception if not called on the main thread.</li>
+<li>undo/redo items <em>are added to the undo/redo stack</em> for almost all methods called that modify the underlying state of attached objects.</li>
+</ul>
+<p>Unattached objects are those that have not been made a child, directly or indirectly, or a <a class="reference external" href="api/api_core.html#hiero.core.Project">Project</a> object. The two important things to note about unattached objects are:</p>
+<ul class="last simple">
+<li>methods called on them work on any thread.</li>
+<li>undo/redo items <em>are not added to the undo/redo</em> stack for any methods called that modify the underlying state of the objects.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="creating-clips">
+<h3>Creating Clips<a class="headerlink" href="#creating-clips" title="Permalink to this headline">¶</a></h3>
+<p>To create a <a class="reference external" href="api/api_core.html#hiero.core.Clip">clip</a>, you&#8217;ll want to first create a <a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSource</a>.</p>
+<p>We can do this using the sample resources provided with Hiero, but we&#8217;ll first have to find them on your system. You can do that with the following code:</p>
+<div class="highlight-cpp"><pre>import PySide.QtCore
+import os.path
+
+hieroExecutablePath = PySide.QtCore.QCoreApplication.applicationDirPath()
+
+if platform.system() == "Darwin":
+  hieroExecutablePath = os.path.join(hieroExecutablePath, "..")
+resourcesPath = str(os.path.abspath(os.path.join(hieroExecutablePath, "Documentation", "Python", "Resources")))
+
+print resourcesPath</pre>
+</div>
+<p>We can create new <a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSource</a> objects by initialising them with the path to sources on disk, like so:</p>
+<div class="highlight-cpp"><pre>source1 = MediaSource(os.path.join(resourcesPath, "blue_green_checkerboard.mov"))
+source2 = MediaSource(os.path.join(resourcesPath, "red_black_checkerboard.mov"))
+source3 = MediaSource(os.path.join(resourcesPath, "colour_bars.mov"))
+source4 = MediaSource(os.path.join(resourcesPath, "colour_wheel.mov"))
+source5 = MediaSource(os.path.join(resourcesPath, "purple.######.dpx"))</pre>
+</div>
+<p>Now we can create some clips from the <a class="reference external" href="api/api_core.html#hiero.core.MediaSource">MediaSources</a> objects:</p>
+<div class="highlight-cpp"><pre>clip1 = Clip(source1)
+clip2 = Clip(source2)
+clip3 = Clip(source3)
+clip4 = Clip(source4)
+clip5 = Clip(source5)</pre>
+</div>
+<p>And lastly, we can attach the clips to the project:</p>
+<div class="highlight-cpp"><pre>clipsBin.addItem(BinItem(clip1))
+bin1.addItem(BinItem(clip2))
+bin2.addItem(BinItem(clip3))
+bin3.addItem(BinItem(clip4))
+bin3.addItem(BinItem(clip5))</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As mentioned in previous sections, <a class="reference external" href="api/api_core.html#hiero.core.Clip">Clip</a> objects are wrapped in <a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItems</a> before they can be stored in <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bins</a>.</p>
+</div>
+<p>Your project should now look like this:</p>
+<img alt="_images/untitled_core_bin_example.png" src="_images/untitled_core_bin_example.png" />
+</div>
+<div class="section" id="creating-sequences">
+<h3>Creating Sequences<a class="headerlink" href="#creating-sequences" title="Permalink to this headline">¶</a></h3>
+<p>To create a new <a class="reference external" href="api/api_core.html#hiero.core.Sequence">sequence</a> and add it to the project, do the following:</p>
+<div class="highlight-cpp"><pre>sequence = Sequence("NewSequence")
+clipsBin.addItem(BinItem(sequence))</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As mentioned in previous sections, <a class="reference external" href="api/api_core.html#hiero.core.Sequence">Sequence</a> objects are wrapped in <a class="reference external" href="api/api_core.html#hiero.core.BinItem">BinItems</a> before they can be stored in <a class="reference external" href="api/api_core.html#hiero.core.Bin">Bins</a>.</p>
+</div>
+<p><a class="reference external" href="api/api_core.html#hiero.core.Sequence">Sequences</a> consist of <a class="reference external" href="api/api_core.html#hiero.core.VideoTrack">VideoTracks</a> and <a class="reference external" href="api/api_core.html#hiero.core.AudioTrack">AudioTracks</a>, which are composed of <a class="reference external" href="api/api_core.html#hiero.core.TrackItem">TrackItems</a>. To create a track, create either a <a class="reference external" href="api/api_core.html#hiero.core.VideoTrack">VideoTrack</a> or an <a class="reference external" href="api/api_core.html#hiero.core.AudioTrack">AudioTrack</a>, like so:</p>
+<div class="highlight-cpp"><pre>track = VideoTrack("VideoTrack")</pre>
+</div>
+<p>Next, given a source clip, you can create and initialise <a class="reference external" href="api/api_core.html#hiero.core.TrackItem">TrackItems</a> like so:</p>
+<div class="highlight-cpp"><pre># create the item
+trackItem = track.createTrackItem("Shot23")
+
+# set its source clip
+trackItem.setSource(clip1)
+
+# set its timeline values
+trackItem.setTimelineIn(0)
+trackItem.setTimelineOut(trackItem.sourceDuration() - 1)
+
+# add it to the track
+track.addItem(trackItem)</pre>
+</div>
+<p>To add the track to the sequence, just call the <a class="reference external" href="api/api_core.html#hiero.core.Sequence.addTrack">addTrack</a> method:</p>
+<div class="highlight-cpp"><pre>sequence.addTrack(track)</pre>
+</div>
+</div>
+<div class="section" id="create-objects-example">
+<h3>Create Objects Example<a class="headerlink" href="#create-objects-example" title="Permalink to this headline">¶</a></h3>
+<p>See the <a class="reference external" href="examples/create_example.py">create_example.py</a> for an example of creating a Project, adding some clips to it and creating a sequence.
+After running that, you should have a bin view that looks like this (as shown at the top of this page):</p>
+<img alt="_images/core_bin_example.png" src="_images/core_bin_example.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started with hiero.core</a><ul>
+<li><a class="reference internal" href="#generic-operations">Generic Operations</a></li>
+<li><a class="reference internal" href="#accessing-bins">Accessing Bins</a></li>
+<li><a class="reference internal" href="#bin-items">Bin Items</a></li>
+<li><a class="reference internal" href="#accessing-the-media">Accessing the Media</a></li>
+<li><a class="reference internal" href="#creating-a-project-from-scratch">Creating a Project from Scratch</a><ul>
+<li><a class="reference internal" href="#creating-bins">Creating Bins</a></li>
+<li><a class="reference internal" href="#creating-clips">Creating Clips</a></li>
+<li><a class="reference internal" href="#creating-sequences">Creating Sequences</a></li>
+<li><a class="reference internal" href="#create-objects-example">Create Objects Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setup.html"
+                        title="previous chapter">Environment Setup</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="undoredo.html"
+                        title="next chapter">Undo &amp; Redo</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="undoredo.html" title="Undo &amp; Redo"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setup.html" title="Environment Setup"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

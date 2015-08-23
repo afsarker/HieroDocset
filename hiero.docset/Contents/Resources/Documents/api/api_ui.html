@@ -1,0 +1,1512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>hiero.ui reference — Hiero Python Developers Guide</title>
+<link href="../_static/default.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script src="../_static/jquery.js" type="text/javascript"></script>
+<script src="../_static/underscore.js" type="text/javascript"></script>
+<script src="../_static/doctools.js" type="text/javascript"></script>
+<link href="../copyright.html" rel="copyright" title="Copyright"/>
+<link href="../index.html" rel="top" title="Hiero Python Developers Guide"/>
+<link href="index.html" rel="up" title="API Reference"/>
+<link href="api_foundry_rpc.html" rel="next" title="foundry.rpc reference"/>
+<link href="api_core.html" rel="prev" title="hiero.core reference"/>
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a accesskey="I" href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a accesskey="N" href="api_foundry_rpc.html" title="foundry.rpc reference">next</a> |</li>
+<li class="right">
+<a accesskey="P" href="api_core.html" title="hiero.core reference">previous</a> |</li>
+<li>
+<span><a href="../index.html"><img alt="Logo" class="logo" height="30" src="../_static/HieroIcon.png" style="vertical-align: middle" width="30"/>Python Dev Guide</a> »</span>
+</li>
+<li><a accesskey="U" href="index.html">API Reference</a> »</li>
+</ul>
+</div>
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+<div class="section" id="hiero-ui-reference">
+<h1><a class="toc-backref" href="#id1">hiero.ui reference</a><a class="headerlink" href="#hiero-ui-reference" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<span id="hiero-ui"></span><p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#hiero-ui-reference" id="id1">hiero.ui reference</a><ul>
+<li><a class="reference internal" href="#hiero-ui-methods-and-classes" id="id2">hiero.ui methods and classes</a></li>
+<li><a class="reference internal" href="#module-hiero.ui" id="id3">hiero.ui method and class details</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="hiero-ui-methods-and-classes">
+<h2><a class="toc-backref" href="#id2">hiero.ui methods and classes</a><a class="headerlink" href="#hiero-ui-methods-and-classes" title="Permalink to this headline">¶</a></h2>
+<div class="contents topic">
+<ul class="simple">
+<li><a class="reference internal" href="#hiero.ui.ApplicationSettings">ApplicationSettings</a></li>
+<li><a class="reference internal" href="#hiero.ui.BinView">BinView</a></li>
+<li><a class="reference internal" href="#hiero.ui.CodecSettings">CodecSettings</a></li>
+<li><a class="reference internal" href="#hiero.ui.IExporterUIRegistry">IExporterUIRegistry</a></li>
+<li><a class="reference internal" href="#hiero.ui.IProcessorUI">IProcessorUI</a></li>
+<li><a class="reference internal" href="#hiero.ui.ITaskUI">ITaskUI</a></li>
+<li><a class="reference internal" href="#hiero.ui.Player">Player</a></li>
+<li><a class="reference internal" href="#hiero.ui.ProcessorUIBase">ProcessorUIBase</a></li>
+<li><a class="reference internal" href="#hiero.ui.RenderTaskUIBase">RenderTaskUIBase</a></li>
+<li><a class="reference internal" href="#hiero.ui.TaskUIBase">TaskUIBase</a></li>
+<li><a class="reference internal" href="#hiero.ui.TimelineEditor">TimelineEditor</a></li>
+<li><a class="reference internal" href="#hiero.ui.VersionWidget">VersionWidget</a></li>
+<li><a class="reference internal" href="#hiero.ui.Viewer">Viewer</a></li>
+<li><a class="reference internal" href="#hiero.ui.ViewerWipeTool">ViewerWipeTool</a></li>
+<li><a class="reference internal" href="#hiero.ui.WindowManager">WindowManager</a></li>
+<li><a class="reference internal" href="#hiero.ui.activeView">activeView</a></li>
+<li><a class="reference internal" href="#hiero.ui.addMenuAction">addMenuAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.browseForApplication">browseForApplication</a></li>
+<li><a class="reference internal" href="#hiero.ui.createMenuAction">createMenuAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.currentContextMenuView">currentContextMenuView</a></li>
+<li><a class="reference internal" href="#hiero.ui.currentViewer">currentViewer</a></li>
+<li><a class="reference internal" href="#hiero.ui.findMenuAction">findMenuAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.findRegisteredAction">findRegisteredAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.flushAllViewersCache">flushAllViewersCache</a></li>
+<li><a class="reference internal" href="#hiero.ui.insertMenuAction">insertMenuAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.mainWindow">mainWindow</a></li>
+<li><a class="reference internal" href="#hiero.ui.menuBar">menuBar</a></li>
+<li><a class="reference internal" href="#hiero.ui.openInNewViewer">openInNewViewer</a></li>
+<li><a class="reference internal" href="#hiero.ui.openInSpreadsheet">openInSpreadsheet</a></li>
+<li><a class="reference internal" href="#hiero.ui.openInTimeline">openInTimeline</a></li>
+<li><a class="reference internal" href="#hiero.ui.openInViewer">openInViewer</a></li>
+<li><a class="reference internal" href="#hiero.ui.registerAction">registerAction</a></li>
+<li><a class="reference internal" href="#hiero.ui.registeredActions">registeredActions</a></li>
+<li><a class="reference internal" href="#hiero.ui.resetCurrentWorkspace">resetCurrentWorkspace</a></li>
+<li><a class="reference internal" href="#hiero.ui.sendToViewerA">sendToViewerA</a></li>
+<li><a class="reference internal" href="#hiero.ui.sendToViewerB">sendToViewerB</a></li>
+<li><a class="reference internal" href="#hiero.ui.setWorkspace">setWorkspace</a></li>
+<li><a class="reference internal" href="#hiero.ui.windowManager">windowManager</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-hiero.ui">
+<span id="hiero-ui-method-and-class-details"></span><h2><a name="//apple_ref/cpp/Module/hiero.ui"></a><a class="toc-backref" href="#id3">hiero.ui method and class details</a><a class="headerlink" href="#module-hiero.ui" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="hiero.ui.BinView"><a name="//apple_ref/cpp/Class/hiero.ui.BinView"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">BinView</tt><a class="headerlink" href="#hiero.ui.BinView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object representing the Bin View. Passed as the sender object to the event handler callbacks registered for hiero.core.events.EventType.kShowContextMenu type events. Can also be retrieved using <a class="reference external" href="api_ui.html#hiero.ui.currentContextMenuView">currentContextMenuView</a> when active during the context menu events.</p>
+<dl class="attribute">
+<dt id="hiero.ui.BinView.getSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.BinView.getSelection"></a>
+<tt class="descname">getSelection</tt><a class="headerlink" href="#hiero.ui.BinView.getSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated; please use the selection method instead.</p>
+<p>@return: tuple of <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> objects</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.BinView.selection"><a name="//apple_ref/cpp/Attribute/hiero.ui.BinView.selection"></a>
+<tt class="descname">selection</tt><a class="headerlink" href="#hiero.ui.BinView.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selection() -&gt; returns a tuple with the currently selected items.</p>
+<p>@return: tuple of <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> objects</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.CodecSettings"><a name="//apple_ref/cpp/Class/hiero.ui.CodecSettings"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">CodecSettings</tt><a class="headerlink" href="#hiero.ui.CodecSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object to manage codec specific settings. Currently only supports quicktime settings, and only on Mac and Windows.</p>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.codecList"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.codecList"></a>
+<tt class="descname">codecList</tt><a class="headerlink" href="#hiero.ui.CodecSettings.codecList" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.codecList() -&gt; returns a list of available QuickTime codecs.</p>
+<p>@return tuple of strings</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.getQuickTimeCodec"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.getQuickTimeCodec"></a>
+<tt class="descname">getQuickTimeCodec</tt><a class="headerlink" href="#hiero.ui.CodecSettings.getQuickTimeCodec" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.getQuickTimeCodec(settings) -&gt; deprecated; please use <a class="reference external" href="api_ui.html#hiero.ui.CodecSettings">CodecSettings</a>.quickTimeCodec instead.</p>
+<p>@return string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.getQuickTimeSettingsAsString"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.getQuickTimeSettingsAsString"></a>
+<tt class="descname">getQuickTimeSettingsAsString</tt><a class="headerlink" href="#hiero.ui.CodecSettings.getQuickTimeSettingsAsString" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.getQuickTimeSettingsAsString(settings) -&gt; deprecated; please use <a class="reference external" href="api_ui.html#hiero.ui.CodecSettings">CodecSettings</a>.quickTimeSettingsAsString instead.</p>
+<p>@return string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.quickTimeCodec"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.quickTimeCodec"></a>
+<tt class="descname">quickTimeCodec</tt><a class="headerlink" href="#hiero.ui.CodecSettings.quickTimeCodec" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.quickTimeCodec() -&gt; returns the human readable codec name encoded in the settings string, which will have been set with a call to showQuickTimeSettingsDialog previously.</p>
+<p>@return string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.quickTimeFrameRate"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.quickTimeFrameRate"></a>
+<tt class="descname">quickTimeFrameRate</tt><a class="headerlink" href="#hiero.ui.CodecSettings.quickTimeFrameRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.quickTimeFrameRate() -&gt; returns the frame rate setting, which will have been set with a call to showQuickTimeSettingsDialog previously.</p>
+<p>@return float</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.quickTimeKeyFrameRate"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.quickTimeKeyFrameRate"></a>
+<tt class="descname">quickTimeKeyFrameRate</tt><a class="headerlink" href="#hiero.ui.CodecSettings.quickTimeKeyFrameRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.quickTimeKeyFrameRate() -&gt; returns the rate at which to encode key frames, which will have been set with a call to showQuickTimeSettingsDialog previously.</p>
+<p>@return int</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.quickTimeQuality"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.quickTimeQuality"></a>
+<tt class="descname">quickTimeQuality</tt><a class="headerlink" href="#hiero.ui.CodecSettings.quickTimeQuality" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.quickTimeQuality() -&gt; returns the quality setting, which will have been set with a call to showQuickTimeSettingsDialog previously.</p>
+<p>@return int</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.quickTimeSettingsAsString"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.quickTimeSettingsAsString"></a>
+<tt class="descname">quickTimeSettingsAsString</tt><a class="headerlink" href="#hiero.ui.CodecSettings.quickTimeSettingsAsString" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.quickTimeSettingsAsString(settings) -&gt; converts a QuickTime format settings string (as returned from self.showQuickTimeSettingsDialog()) into a human readable string.</p>
+<p>@param settings: string of QuickTime encoded settings, as returned at some point in the past from <a class="reference external" href="api_ui.html#hiero.ui.CodecSettings">CodecSettings</a>.showQuickTimeSettingsDialog</p>
+<p>@return human readable settings string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.CodecSettings.showQuickTimeSettingsDialog"><a name="//apple_ref/cpp/Attribute/hiero.ui.CodecSettings.showQuickTimeSettingsDialog"></a>
+<tt class="descname">showQuickTimeSettingsDialog</tt><a class="headerlink" href="#hiero.ui.CodecSettings.showQuickTimeSettingsDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.showQuickTimeSettingsDialog() -&gt; brings up the QuickTime settings dialog box, on Mac and Windows only. Returns a string representing the settings, in a QuickTime specific (non-human-readable) format.</p>
+<p>self.showQuickTimeSettingsDialog(settings, fps) -&gt; same as the above, but takes in a QuickTime formatted settings string and an fps to set for the initial values in the dialog.</p>
+<p>self.showQuickTimeSettingsDialog(settings, fps, quality, keyframerate, codec) -&gt; same as the above, but with more parameters.</p>
+<p>To see the return value in a human readable form, pass it to self.quickTimeSettingsAsString(settings). You can also retrieve other values set from this method, with quickTimeCodec, quickTimeKeyFrameRate and quickTimeQuality</p>
+<p>@param settings: a settings string previously returned from this method, or a 0-length string ()</p>
+<p>@param fps: frame rate to default the dialog to</p>
+<p>@param quality: integer value indicating quality slider setting</p>
+<p>@param keyframerate: integer value indicating when to generate key-frames</p>
+<p>@param codec: string name of the codec to preselect</p>
+<p>@return string</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.DisclosureButton"><a name="//apple_ref/cpp/Class/hiero.ui.DisclosureButton"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">DisclosureButton</tt><a class="headerlink" href="#hiero.ui.DisclosureButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QCheckBox</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.DisclosureButton.addWidget"><a name="//apple_ref/cpp/Attribute/hiero.ui.DisclosureButton.addWidget"></a>
+<tt class="descname">addWidget</tt><a class="headerlink" href="#hiero.ui.DisclosureButton.addWidget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.DisclosureButton.paintEvent"><a name="//apple_ref/cpp/Attribute/hiero.ui.DisclosureButton.paintEvent"></a>
+<tt class="descname">paintEvent</tt><a class="headerlink" href="#hiero.ui.DisclosureButton.paintEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.DisclosureButton.removeWidget"><a name="//apple_ref/cpp/Attribute/hiero.ui.DisclosureButton.removeWidget"></a>
+<tt class="descname">removeWidget</tt><a class="headerlink" href="#hiero.ui.DisclosureButton.removeWidget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.DisclosureButton.setVisible"><a name="//apple_ref/cpp/Attribute/hiero.ui.DisclosureButton.setVisible"></a>
+<tt class="descname">setVisible</tt><a class="headerlink" href="#hiero.ui.DisclosureButton.setVisible" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.DisclosureButton.showOrHideWidgets"><a name="//apple_ref/cpp/Attribute/hiero.ui.DisclosureButton.showOrHideWidgets"></a>
+<tt class="descname">showOrHideWidgets</tt><a class="headerlink" href="#hiero.ui.DisclosureButton.showOrHideWidgets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.ExportStructureViewer"><a name="//apple_ref/cpp/Class/hiero.ui.ExportStructureViewer"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">ExportStructureViewer</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QWidget</span></tt></p>
+<dl class="class">
+<dt id="hiero.ui.ExportStructureViewer.EditMode"><a name="//apple_ref/cpp/Class/hiero.ui.ExportStructureViewer.EditMode"></a>
+<em class="property">class </em><tt class="descname">EditMode</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.EditMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.EditMode.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.EditMode.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.EditMode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.addFile"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.addFile"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">addFile</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.addFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.addFolder"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.addFolder"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">addFolder</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.addFolder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.allowNodeDelete"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.allowNodeDelete"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">allowNodeDelete</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.allowNodeDelete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.clearResolveEntries"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.clearResolveEntries"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">clearResolveEntries</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.clearResolveEntries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.copy"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.copy"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">copy</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.cut"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.cut"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">cut</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.cut" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.exportRootChanged"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.exportRootChanged"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">exportRootChanged</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.exportRootChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.filenameField"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.filenameField"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">filenameField</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.filenameField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.getWidget"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.getWidget"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">getWidget</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.getWidget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.handleSelectionChanged"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.handleSelectionChanged"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">handleSelectionChanged</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.handleSelectionChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.initUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.initUI"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">initUI</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.initUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.itemTypes"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.itemTypes"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">itemTypes</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.itemTypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.keyPressEvent"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.keyPressEvent"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">keyPressEvent</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.keyPressEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.paste"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.paste"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">paste</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.paste" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.refresh"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.refresh"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">refresh</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.refresh" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.refreshContentField"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.refreshContentField"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">refreshContentField</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.refreshContentField" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.removeNode"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.removeNode"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">removeNode</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.removeNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.selectFileIfOnlyOne"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.selectFileIfOnlyOne"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">selectFileIfOnlyOne</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.selectFileIfOnlyOne" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.selection"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.selection"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">selection</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.selection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.selectionAnchor"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.selectionAnchor"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">selectionAnchor</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.selectionAnchor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.selectionRect"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.selectionRect"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">selectionRect</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.selectionRect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.setAllowNodeDelete"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.setAllowNodeDelete"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">setAllowNodeDelete</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.setAllowNodeDelete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.setExportStructure"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.setExportStructure"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">setExportStructure</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.setExportStructure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.setItemTypes"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.setItemTypes"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">setItemTypes</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.setItemTypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.setProject"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.setProject"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">setProject</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.setProject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ExportStructureViewer.setResolveEntry"><a name="//apple_ref/cpp/Attribute/hiero.ui.ExportStructureViewer.setResolveEntry"></a>
+<tt class="descclassname">ExportStructureViewer.</tt><tt class="descname">setResolveEntry</tt><a class="headerlink" href="#hiero.ui.ExportStructureViewer.setResolveEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.FormatChooser"><a name="//apple_ref/cpp/Class/hiero.ui.FormatChooser"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">FormatChooser</tt><a class="headerlink" href="#hiero.ui.FormatChooser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QComboBox</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.FormatChooser.currentFormat"><a name="//apple_ref/cpp/Attribute/hiero.ui.FormatChooser.currentFormat"></a>
+<tt class="descname">currentFormat</tt><a class="headerlink" href="#hiero.ui.FormatChooser.currentFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.FormatChooser.setCurrentFormat"><a name="//apple_ref/cpp/Attribute/hiero.ui.FormatChooser.setCurrentFormat"></a>
+<tt class="descname">setCurrentFormat</tt><a class="headerlink" href="#hiero.ui.FormatChooser.setCurrentFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.IExporterUIRegistry"><a name="//apple_ref/cpp/Class/hiero.ui.IExporterUIRegistry"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">IExporterUIRegistry</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>IExporterUIRegistry provides a simple interface for our C++ Application to access the Python instance of TaskUIRegistry.</p>
+<p>This class should not be used directly; use hiero.ui.TaskUIRegistry instead.</p>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.aquireProcessorUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.aquireProcessorUI"></a>
+<tt class="descname">aquireProcessorUI</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.aquireProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.aquireProcessorUI() -&gt; Called from Hiero Application to aquire a reference to an instance of the ProcessorUI object related to the specified hiero.core.TaskPreset.</p>
+<p>@param preset : <a class="reference external" href="api_core.html#hiero.core.ITaskPreset">ITaskPreset</a></p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.getProcessorUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.getProcessorUI"></a>
+<tt class="descname">getProcessorUI</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.getProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.getProcessorUIForPreset"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.getProcessorUIForPreset"></a>
+<tt class="descname">getProcessorUIForPreset</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.getProcessorUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.getTaskUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.getTaskUI"></a>
+<tt class="descname">getTaskUI</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.getTaskUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.getTaskUIForPreset"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.getTaskUIForPreset"></a>
+<tt class="descname">getTaskUIForPreset</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.getTaskUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.numProcessorUIs"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.numProcessorUIs"></a>
+<tt class="descname">numProcessorUIs</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.numProcessorUIs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.numTaskUIs"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.numTaskUIs"></a>
+<tt class="descname">numTaskUIs</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.numTaskUIs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.registerme"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.registerme"></a>
+<tt class="descname">registerme</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.registerme" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.registerme() -&gt; Called from python implimentation of TaskUIRegistry to register instance as the Application TaskUI Registry.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IExporterUIRegistry.releaseProcessorUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.IExporterUIRegistry.releaseProcessorUI"></a>
+<tt class="descname">releaseProcessorUI</tt><a class="headerlink" href="#hiero.ui.IExporterUIRegistry.releaseProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.releaseProcessorUI() -&gt; Called from Hiero Application to release the reference to a IProcessorUI object previously aquired using IExporterUIRegistry.aquireProcessorUI.</p>
+<p>@param processorUI : <a class="reference external" href="api_ui.html#hiero.ui.IProcessorUI">IProcessorUI</a></p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.IProcessorUI"><a name="//apple_ref/cpp/Class/hiero.ui.IProcessorUI"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">IProcessorUI</tt><a class="headerlink" href="#hiero.ui.IProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>IProcessorUI provides a simple interface for our C++ Application to access Python instances of ProcessorUIBase.</p>
+<p>This class should not be used directly; use hiero.ui.ProcessorUIBase instead.</p>
+<dl class="class">
+<dt id="hiero.ui.IProcessorUI.EditMode"><a name="//apple_ref/cpp/Class/hiero.ui.IProcessorUI.EditMode"></a>
+<em class="property">class </em><tt class="descname">EditMode</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.EditMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.EditMode.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.EditMode.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.EditMode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.displayName"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.displayName"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">displayName</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.displayName" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.displayName() -&gt; called by Hiero to get the Display name of a task for displaying in UI.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.populateUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.populateUI"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">populateUI</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.populateUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.populateUI() -&gt; called by Hiero to allow the IProcessorUI to populate a QWidget with the ui widgets neccessary to reflect the current preset.</p>
+<p>The EditMode is used to instruct the UI generation code to build in ReadOnly mode</p>
+<p>@param widget: <a class="reference external" href="mailto:PySide.QtGui.QWidget%40param">PySide<span>.</span>QtGui<span>.</span>QWidget<span>@</span>param</a> items: [hiero.core.ItemWrapper]@param editMode: <a class="reference external" href="api_core.html#hiero.core.IProcessorUI">IProcessorUI</a>.EditMode</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.preset"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.preset"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">preset</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.preset" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.preset() -&gt; called by Hiero to get the TaskPreset which this TaskUI is currently reflecting.</p>
+<p>@return: <a class="reference external" href="api_core.html#hiero.core.ITaskPreset">ITaskPreset</a></p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.savePreset"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.savePreset"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">savePreset</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.savePreset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.setPreset"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.setPreset"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">setPreset</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.setPreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setPreset() -&gt; called by Hiero to set the TaskPreset which this TaskUI will reflect.</p>
+<p>@param preset: <a class="reference external" href="api_core.html#hiero.core.ITaskPreset">ITaskPreset</a></p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.toolTip"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.toolTip"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">toolTip</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.toolTip" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.toolTip() -&gt; called by Hiero to get the desciption of a task for displaying in UI as a tooltip.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.validate"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.validate"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">validate</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.validate() -&gt; called by Hiero to get .</p>
+<p>@param: [hiero.core.ItemWrapper,]@return: bool</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.IProcessorUI.validateSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.IProcessorUI.validateSelection"></a>
+<tt class="descclassname">IProcessorUI.</tt><tt class="descname">validateSelection</tt><a class="headerlink" href="#hiero.ui.IProcessorUI.validateSelection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.ITaskUI"><a name="//apple_ref/cpp/Class/hiero.ui.ITaskUI"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">ITaskUI</tt><a class="headerlink" href="#hiero.ui.ITaskUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>ITaskUI provides a simple interface for our C++ Application to access Python instances of TaskUIBase.</p>
+<p>This class should not be used directly; use hiero.ui.TaskUIBase instead.</p>
+<dl class="attribute">
+<dt id="hiero.ui.ITaskUI.displayName"><a name="//apple_ref/cpp/Attribute/hiero.ui.ITaskUI.displayName"></a>
+<tt class="descname">displayName</tt><a class="headerlink" href="#hiero.ui.ITaskUI.displayName" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.displayName() -&gt; called by Hiero to get the Display name of a task for displaying in UI.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ITaskUI.ident"><a name="//apple_ref/cpp/Attribute/hiero.ui.ITaskUI.ident"></a>
+<tt class="descname">ident</tt><a class="headerlink" href="#hiero.ui.ITaskUI.ident" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.ident() -&gt; called by Hiero to get a unique identifier linking this TaskUI with a Task and TaskPreset.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ITaskUI.populateUI"><a name="//apple_ref/cpp/Attribute/hiero.ui.ITaskUI.populateUI"></a>
+<tt class="descname">populateUI</tt><a class="headerlink" href="#hiero.ui.ITaskUI.populateUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.populateUI() -&gt; called by Hiero to allow the TaskUI to populate a QWidget with the ui widgets neccessary to reflect the current preset.</p>
+<p>@param widget: <a class="reference external" href="mailto:PySide.QtGui.QWidget%40param">PySide<span>.</span>QtGui<span>.</span>QWidget<span>@</span>param</a> exportTemplate: <a class="reference external" href="api_core.html#hiero.core.IExportStructure">IExportStructure</a></p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ITaskUI.preset"><a name="//apple_ref/cpp/Attribute/hiero.ui.ITaskUI.preset"></a>
+<tt class="descname">preset</tt><a class="headerlink" href="#hiero.ui.ITaskUI.preset" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.preset() -&gt; called by Hiero to get the TaskPreset which this TaskUI is currently reflecting.</p>
+<p>@return: <a class="reference external" href="api_core.html#hiero.core.ITaskPreset">ITaskPreset</a></p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ITaskUI.setPreset"><a name="//apple_ref/cpp/Attribute/hiero.ui.ITaskUI.setPreset"></a>
+<tt class="descname">setPreset</tt><a class="headerlink" href="#hiero.ui.ITaskUI.setPreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setPreset() -&gt; called by Hiero to set the TaskPreset which this TaskUI will reflect.</p>
+<p>@param preset: <a class="reference external" href="api_core.html#hiero.core.ITaskPreset">ITaskPreset</a></p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.MediaFlagsChooser"><a name="//apple_ref/cpp/Class/hiero.ui.MediaFlagsChooser"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">MediaFlagsChooser</tt><a class="headerlink" href="#hiero.ui.MediaFlagsChooser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QWidget</span></tt></p>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Player"><a name="//apple_ref/cpp/Class/hiero.ui.Player"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">Player</tt><a class="headerlink" href="#hiero.ui.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object representing a video player in Hiero. Players are used by Viewer objects, and can be retrieved using the player() method of Viewer objects.</p>
+<dl class="class">
+<dt id="hiero.ui.Player.Channels"><a name="//apple_ref/cpp/Class/hiero.ui.Player.Channels"></a>
+<em class="property">class </em><tt class="descname">Channels</tt><a class="headerlink" href="#hiero.ui.Player.Channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Player.Channels.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.Channels.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Player.Channels.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.LUT"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.LUT"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">LUT</tt><a class="headerlink" href="#hiero.ui.Player.LUT" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.LUT() -&gt; returns the name of the LUT currently in use by the player.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Player.MaskOverlayStyle"><a name="//apple_ref/cpp/Class/hiero.ui.Player.MaskOverlayStyle"></a>
+<em class="property">class </em><tt class="descclassname">Player.</tt><tt class="descname">MaskOverlayStyle</tt><a class="headerlink" href="#hiero.ui.Player.MaskOverlayStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Player.MaskOverlayStyle.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.MaskOverlayStyle.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Player.MaskOverlayStyle.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Player.ProxyResolution"><a name="//apple_ref/cpp/Class/hiero.ui.Player.ProxyResolution"></a>
+<em class="property">class </em><tt class="descclassname">Player.</tt><tt class="descname">ProxyResolution</tt><a class="headerlink" href="#hiero.ui.Player.ProxyResolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Player.ProxyResolution.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.ProxyResolution.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Player.ProxyResolution.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Player.WarningOverlay"><a name="//apple_ref/cpp/Class/hiero.ui.Player.WarningOverlay"></a>
+<em class="property">class </em><tt class="descclassname">Player.</tt><tt class="descname">WarningOverlay</tt><a class="headerlink" href="#hiero.ui.Player.WarningOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Player.WarningOverlay.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.WarningOverlay.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Player.WarningOverlay.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.centerImage"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.centerImage"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">centerImage</tt><a class="headerlink" href="#hiero.ui.Player.centerImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.centerImage() -&gt; centers the player, resetting the pan values.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.channels"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.channels"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">channels</tt><a class="headerlink" href="#hiero.ui.Player.channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.channels() -&gt; returns channel(s) that the player is currently displaying.</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.Player">Player</a>.Channels object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.displayGain"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.displayGain"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">displayGain</tt><a class="headerlink" href="#hiero.ui.Player.displayGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.displayGain() -&gt; returns the current gain of the player. Defaults to 1.0</p>
+<p>@return: float</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.displayGamma"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.displayGamma"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">displayGamma</tt><a class="headerlink" href="#hiero.ui.Player.displayGamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.displayGamma() -&gt; returns the current gamma of the player. Since the viewer displays pixels in linear space, this value defaults to 1.0.</p>
+<p>@return: float</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.getSequence"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.getSequence"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">getSequence</tt><a class="headerlink" href="#hiero.ui.Player.getSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.getSequence() -&gt; deprecated; use self.sequence() instead.</p>
+<p>@return <a class="reference external" href="api_core.html#hiero.core.Clip">Clip</a> object or <a class="reference external" href="api_core.html#hiero.core.Sequence">Sequence</a> object, depending on what is currently playing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.guideOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.guideOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">guideOverlay</tt><a class="headerlink" href="#hiero.ui.Player.guideOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.guideOverlay() -&gt; returns the guide overlays displayed in the player.</p>
+<p>@return: sequence of foundry.ui.Drawing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.ignorePixelAspectRatio"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.ignorePixelAspectRatio"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">ignorePixelAspectRatio</tt><a class="headerlink" href="#hiero.ui.Player.ignorePixelAspectRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.ignorePixelAspectRatio() -&gt; returns whether the player ignores the pixel aspect ratio or not.</p>
+<p>@return: True or False</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.maskOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.maskOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">maskOverlay</tt><a class="headerlink" href="#hiero.ui.Player.maskOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.maskOverlay() -&gt; returns the drawing used as the mask overlay in the player.</p>
+<p>@return: foundry.ui.Drawing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.maskOverlayStyle"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.maskOverlayStyle"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">maskOverlayStyle</tt><a class="headerlink" href="#hiero.ui.Player.maskOverlayStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.maskOverlayStyle() -&gt; returns the current drawing style of the mask overlay used by the player.</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.Player">Player</a>.MaskOverlayStyle</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.pan"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.pan"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">pan</tt><a class="headerlink" href="#hiero.ui.Player.pan" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.pan(dx, dy) -&gt; pans the player by (dx, dy).</p>
+<p>@param dx: float value to pan in x by</p>
+<p>@param dy: float value to pan in y by</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.proxyResolution"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.proxyResolution"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">proxyResolution</tt><a class="headerlink" href="#hiero.ui.Player.proxyResolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.proxyResolution() -&gt; get the current proxy resolution setting for the player</p>
+<p>@return Player.ProxyResolution</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.sequence"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.sequence"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">sequence</tt><a class="headerlink" href="#hiero.ui.Player.sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.sequence() -&gt; returns the object currently being played.</p>
+<p>@return <a class="reference external" href="api_core.html#hiero.core.Clip">Clip</a> object or <a class="reference external" href="api_core.html#hiero.core.Sequence">Sequence</a> object, depending on what is currently playing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setChannels"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setChannels"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setChannels</tt><a class="headerlink" href="#hiero.ui.Player.setChannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setChannels(channels) -&gt; sets the channels to display in the player. It’s currently either one of the channels or red, green and blue.</p>
+<p>@param channels: <a class="reference external" href="api_ui.html#hiero.ui.Player">Player</a>.Channels object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setDisplayGain"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setDisplayGain"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setDisplayGain</tt><a class="headerlink" href="#hiero.ui.Player.setDisplayGain" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setDisplayGain(gain) -&gt; sets the gain of the player.</p>
+<p>@param gain: float</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setDisplayGamma"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setDisplayGamma"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setDisplayGamma</tt><a class="headerlink" href="#hiero.ui.Player.setDisplayGamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setDisplayGamma(gamma) -&gt; sets the gamma of the player.</p>
+<p>@param gamma: float</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setGuideOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setGuideOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setGuideOverlay</tt><a class="headerlink" href="#hiero.ui.Player.setGuideOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setGuideOverlay(guideOverlays) -&gt; sets the guide overlays to display in the player.</p>
+<p>@param guideOverlays: sequence of foundry.ui.Drawing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setIgnorePixelAspectRatio"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setIgnorePixelAspectRatio"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setIgnorePixelAspectRatio</tt><a class="headerlink" href="#hiero.ui.Player.setIgnorePixelAspectRatio" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setIgnorePixelAspectRatio(ignorePixelAspectRatio) -&gt; tells the player whether or not to display in anamorphic mode.</p>
+<p>@param ignorePixelAspectRatio: True to have the player ignore the pixel aspect ratio, False otherwise</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setLUT"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setLUT"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setLUT</tt><a class="headerlink" href="#hiero.ui.Player.setLUT" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setLUT(lut) -&gt; sets the LUT to use in the player. If the lut doesn’t exist, it will have no effect on what’s displayed by the player.</p>
+<p>@param lut: string name of the lut to use</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setMaskOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setMaskOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setMaskOverlay</tt><a class="headerlink" href="#hiero.ui.Player.setMaskOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setMaskOverlay(aspect) -&gt; sets the drawing to use for the mask overlay.</p>
+<p>@param aspect: foundry.ui.Drawing</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setMaskOverlayStyle"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setMaskOverlayStyle"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setMaskOverlayStyle</tt><a class="headerlink" href="#hiero.ui.Player.setMaskOverlayStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setMaskOverlayStyle(style) -&gt; sets the drawing style of the mask overlay.</p>
+<p>@param <a class="reference external" href="api_ui.html#hiero.ui.Player">Player</a>.MaskOverlayStyle style</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setProxyResolution"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setProxyResolution"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setProxyResolution</tt><a class="headerlink" href="#hiero.ui.Player.setProxyResolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setProxyResolution(resolution) -&gt; set the player proxy resolution.</p>
+<p>@param resolution: Player.ProxyResolution</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setSequence"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setSequence"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setSequence</tt><a class="headerlink" href="#hiero.ui.Player.setSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setSequence(clip) -&gt; sets the clip to be played back by the Player object.</p>
+<p>self.setSequence(sequence) -&gt; sets the sequence to be played back by the Player object.</p>
+<p>@param clip: <a class="reference external" href="api_core.html#hiero.core.Clip">Clip</a> object to play</p>
+<p>@param sequence: <a class="reference external" href="api_core.html#hiero.core.Sequence">Sequence</a> object to play</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.setWarningOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.setWarningOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">setWarningOverlay</tt><a class="headerlink" href="#hiero.ui.Player.setWarningOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setWarningOverlay(warningOverlay) -&gt; sets the warning overlay.</p>
+<p>@param warningOverlay: One of the following enums: eWarningNone, eWarningExposure, eWarningPAL or eWarningNTSC</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.time"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.time"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">time</tt><a class="headerlink" href="#hiero.ui.Player.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.time() -&gt; gets the time of the playhead.</p>
+<p>@return: frame number</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.warningOverlay"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.warningOverlay"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">warningOverlay</tt><a class="headerlink" href="#hiero.ui.Player.warningOverlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.warningOverlay() -&gt; returns player’s warningOverlay.</p>
+<p>@return: One of the following enums: eWarningNone, eWarningExposure, eWarningPAL or eWarningNTSC</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomAbsolute"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomAbsolute"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomAbsolute</tt><a class="headerlink" href="#hiero.ui.Player.zoomAbsolute" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomAbsolute(centerX, centerY, zoom) -&gt; scales the image to an absolute value. The centerX and centerY values are currently ignored.</p>
+<p>self.zoomAbsolute(zoom) -&gt; scales the image to an absolute value</p>
+<p>@param zoom: float value scale by</p>
+<p>@param centerX: unused</p>
+<p>@param centerY: unused</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomRelative"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomRelative"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomRelative</tt><a class="headerlink" href="#hiero.ui.Player.zoomRelative" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomRelative(centerX, centerY, zoomFactor) -&gt; scales the image relatively and repositions the image.</p>
+<p>@param centerX: new x center of the image, in image pixels</p>
+<p>@param centerY: new y center of the image, in image pixels</p>
+<p>@param zoom: float value scale by</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToActualSize"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToActualSize"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToActualSize</tt><a class="headerlink" href="#hiero.ui.Player.zoomToActualSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToActualSize() -&gt; scales and centers the image to the full size of the image.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToFill"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToFill"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToFill</tt><a class="headerlink" href="#hiero.ui.Player.zoomToFill" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToFill() -&gt; scales the image so that it fills the player window.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToFit"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToFit"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToFit</tt><a class="headerlink" href="#hiero.ui.Player.zoomToFit" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToFit() -&gt; scales the image so that it fits in the player window, maintaining the pixel aspect ratio.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToFitHeight"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToFitHeight"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToFitHeight</tt><a class="headerlink" href="#hiero.ui.Player.zoomToFitHeight" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToFitHeight() -&gt; scales the image so that the height of the image fits in the player window, maintaining the pixel aspect ratio.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToFitWidth"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToFitWidth"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToFitWidth</tt><a class="headerlink" href="#hiero.ui.Player.zoomToFitWidth" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToFitWidth() -&gt; scales the image so that the width of the image fits in the player window, maintaining the pixel aspect ratio.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Player.zoomToHalfSize"><a name="//apple_ref/cpp/Attribute/hiero.ui.Player.zoomToHalfSize"></a>
+<tt class="descclassname">Player.</tt><tt class="descname">zoomToHalfSize</tt><a class="headerlink" href="#hiero.ui.Player.zoomToHalfSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.zoomToActualSize() -&gt; scales and centers the image to half the size of the image.</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.ProcessorUIBase"><a name="//apple_ref/cpp/Class/hiero.ui.ProcessorUIBase"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">ProcessorUIBase</tt><a class="headerlink" href="#hiero.ui.ProcessorUIBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">ui.Hiero.Python.IProcessorUI</span></tt></p>
+<p>ProcessorUIBase is the base class from which all Processor UI components must derive</p>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.checkOfflineMedia"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.checkOfflineMedia"></a>
+<tt class="descname">checkOfflineMedia</tt><big>(</big><em>exportItems</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.checkOfflineMedia" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.findOfflineMedia"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.findOfflineMedia"></a>
+<tt class="descname">findOfflineMedia</tt><big>(</big><em>exportItems</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.findOfflineMedia" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.offlineMediaPrompt"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.offlineMediaPrompt"></a>
+<tt class="descname">offlineMediaPrompt</tt><big>(</big><em>messageText</em>, <em>messageDetails</em>, <em>hasOnline</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.offlineMediaPrompt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.projectFromSelection"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.projectFromSelection"></a>
+<tt class="descname">projectFromSelection</tt><big>(</big><em>items</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.projectFromSelection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.toTrackItems"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.toTrackItems"></a>
+<tt class="descname">toTrackItems</tt><big>(</big><em>items</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.toTrackItems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.ProcessorUIBase.validate"><a name="//apple_ref/cpp/Method/hiero.ui.ProcessorUIBase.validate"></a>
+<tt class="descname">validate</tt><big>(</big><em>exportItems</em><big>)</big><a class="headerlink" href="#hiero.ui.ProcessorUIBase.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate settings in UI. Return False for failure in order to abort export.</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.RenderTaskUIBase"><a name="//apple_ref/cpp/Class/hiero.ui.RenderTaskUIBase"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">RenderTaskUIBase</tt><big>(</big><em>taskType</em>, <em>preset</em>, <em>displayName</em><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">hiero.ui.FnExporterBaseUI.TaskUIBase</span></tt></p>
+<p>RenderTaskUIBase is a specialization of TaskUIBase which reflects the codec properties in RenderTaskPreset into UI</p>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.buildCodecUI"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.buildCodecUI"></a>
+<tt class="descname">buildCodecUI</tt><big>(</big><em>layout</em>, <em>includeAuxProperties=False</em><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.buildCodecUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Populate layout with widgets reflected from the RenderPresetBase class</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.codecComboBoxChanged"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.codecComboBoxChanged"></a>
+<tt class="descname">codecComboBoxChanged</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.codecComboBoxChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.formatChanged"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.formatChanged"></a>
+<tt class="descname">formatChanged</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.formatChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.propertyChanged"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.propertyChanged"></a>
+<tt class="descname">propertyChanged</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.propertyChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.reformatChanged"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.reformatChanged"></a>
+<tt class="descname">reformatChanged</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.reformatChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.RenderTaskUIBase.setFormat"><a name="//apple_ref/cpp/Method/hiero.ui.RenderTaskUIBase.setFormat"></a>
+<tt class="descname">setFormat</tt><big>(</big><em>format</em><big>)</big><a class="headerlink" href="#hiero.ui.RenderTaskUIBase.setFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.SpreadsheetView"><a name="//apple_ref/cpp/Class/hiero.ui.SpreadsheetView"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">SpreadsheetView</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.beginSelectionUpdate"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.beginSelectionUpdate"></a>
+<tt class="descname">beginSelectionUpdate</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.beginSelectionUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.beginSelectionUpdate() -&gt; Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.endSelectionUpdate"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.endSelectionUpdate"></a>
+<tt class="descname">endSelectionUpdate</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.endSelectionUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.endSelectionUpdate() -&gt; Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.selectAll"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.selectAll"></a>
+<tt class="descname">selectAll</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.selectAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selectAll( )</p>
+<p>Select All TrackItems within current sequence.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.selectNone"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.selectNone"></a>
+<tt class="descname">selectNone</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.selectNone" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selectNone( )</p>
+<p>Unselect all TrackItems.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.selection"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.selection"></a>
+<tt class="descname">selection</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.selection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.sequence"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.sequence"></a>
+<tt class="descname">sequence</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.sequence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.SpreadsheetView.setSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.SpreadsheetView.setSelection"></a>
+<tt class="descname">setSelection</tt><a class="headerlink" href="#hiero.ui.SpreadsheetView.setSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setSelection( <a class="reference external" href="api_core.html#hiero.core.TrackItem">TrackItem</a> )</p>
+<p>self.setSelection( [hiero.core.TrackItem] )</p>
+<p>Will throw exception if selection is not subset of current sequence.</p>
+<p>@param selection : track item(s) to be selected.</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.TaskUIBase"><a name="//apple_ref/cpp/Class/hiero.ui.TaskUIBase"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">TaskUIBase</tt><big>(</big><em>taskType</em>, <em>preset</em>, <em>displayName</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">ui.Hiero.Python.ITaskUI</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtCore.QObject</span></tt></p>
+<p>TaskUIBase is the base class from hich all TaskUI components should derrive</p>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.displayName"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.displayName"></a>
+<tt class="descname">displayName</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.displayName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exporter name to be displayed in the UI</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.ident"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.ident"></a>
+<tt class="descname">ident</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.ident" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.initialise"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.initialise"></a>
+<tt class="descname">initialise</tt><big>(</big><em>preset</em>, <em>exportStructure</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.initialise" title="Permalink to this definition">¶</a></dt>
+<dd><p>When Parent ExportStructure is opened in the ui,
+initialise is called for each preset. Register any callbacks here</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.parentType"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.parentType"></a>
+<tt class="descname">parentType</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.parentType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.populateUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.populateUI"></a>
+<tt class="descname">populateUI</tt><big>(</big><em>widget</em>, <em>exportTemplate</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.populateUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>populateUI() Export dialog to allow the TaskUI to populate a QWidget with the ui widgets neccessary to reflect the current preset.</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.preset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.preset"></a>
+<tt class="descname">preset</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.preset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return Preset currently assigned to ExporterUI</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.setPreset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.setPreset"></a>
+<tt class="descname">setPreset</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.setPreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign Preset to ExporterUI</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIBase.setTags"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIBase.setTags"></a>
+<tt class="descname">setTags</tt><big>(</big><em>tags</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIBase.setTags" title="Permalink to this definition">¶</a></dt>
+<dd><p>setTags passes the subset of tags associated with the selection for export</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.TaskUIRegistry"><a name="//apple_ref/cpp/Class/hiero.ui.TaskUIRegistry"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">TaskUIRegistry</tt><a class="headerlink" href="#hiero.ui.TaskUIRegistry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">ui.Hiero.Python.IExporterUIRegistry</span></tt></p>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.aquireProcessorUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.aquireProcessorUI"></a>
+<tt class="descname">aquireProcessorUI</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.aquireProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.getProcessorUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.getProcessorUI"></a>
+<tt class="descname">getProcessorUI</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.getProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.getProcessorUIForPreset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.getProcessorUIForPreset"></a>
+<tt class="descname">getProcessorUIForPreset</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.getProcessorUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.getTaskUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.getTaskUI"></a>
+<tt class="descname">getTaskUI</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.getTaskUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.getTaskUIForPreset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.getTaskUIForPreset"></a>
+<tt class="descname">getTaskUIForPreset</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.getTaskUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.numProcessorUIs"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.numProcessorUIs"></a>
+<tt class="descname">numProcessorUIs</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.numProcessorUIs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.numTaskUIs"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.numTaskUIs"></a>
+<tt class="descname">numTaskUIs</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.numTaskUIs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.processorUIByIndex"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.processorUIByIndex"></a>
+<tt class="descname">processorUIByIndex</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.processorUIByIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ProcessorUI registered at specified index</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.processorUIForPreset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.processorUIForPreset"></a>
+<tt class="descname">processorUIForPreset</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.processorUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ProcessorUI object associated with preset type</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.registerProcessorUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.registerProcessorUI"></a>
+<tt class="descname">registerProcessorUI</tt><big>(</big><em>processorPreset</em>, <em>processorUI</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.registerProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.registerTaskUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.registerTaskUI"></a>
+<tt class="descname">registerTaskUI</tt><big>(</big><em>taskPreset</em>, <em>taskUI</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.registerTaskUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register TaskUI and associate with TaskPreset object</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.releaseProcessorUI"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.releaseProcessorUI"></a>
+<tt class="descname">releaseProcessorUI</tt><big>(</big><em>processorUI</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.releaseProcessorUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.taskUIByIndex"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.taskUIByIndex"></a>
+<tt class="descname">taskUIByIndex</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.taskUIByIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return TaskUI registered at specified index</p>
+</dd></dl>
+<dl class="method">
+<dt id="hiero.ui.TaskUIRegistry.taskUIForPreset"><a name="//apple_ref/cpp/Method/hiero.ui.TaskUIRegistry.taskUIForPreset"></a>
+<tt class="descname">taskUIForPreset</tt><big>(</big><em>preset</em><big>)</big><a class="headerlink" href="#hiero.ui.TaskUIRegistry.taskUIForPreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return TaskUI object associated with preset type</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.TimelineEditor"><a name="//apple_ref/cpp/Class/hiero.ui.TimelineEditor"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">TimelineEditor</tt><a class="headerlink" href="#hiero.ui.TimelineEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object representing the Timeline Editor.</p>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.beginSelectionUpdate"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.beginSelectionUpdate"></a>
+<tt class="descname">beginSelectionUpdate</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.beginSelectionUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.beginSelectionUpdate() -&gt; Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.endSelectionUpdate"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.endSelectionUpdate"></a>
+<tt class="descname">endSelectionUpdate</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.endSelectionUpdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.endSelectionUpdate() -&gt; Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.getSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.getSelection"></a>
+<tt class="descname">getSelection</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.getSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated; please use the selection method instead.</p>
+<p>@return: tuple of TrackItem and Transition objects</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.selectAll"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.selectAll"></a>
+<tt class="descname">selectAll</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.selectAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selectAll( )</p>
+<p>Select All TrackItems within current sequence.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.selectNone"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.selectNone"></a>
+<tt class="descname">selectNone</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.selectNone" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selectNone( )</p>
+<p>Unselect all TrackItems and Tracks.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.selection"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.selection"></a>
+<tt class="descname">selection</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.selection() -&gt; returns a tuple with the currently selected items.</p>
+<p>@return: tuple of TrackItem and Transition objects</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.sequence"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.sequence"></a>
+<tt class="descname">sequence</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.sequence() -&gt; returns the Sequence currently being edited in the timeline editor.</p>
+<p>@return: Sequence object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.setSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.setSelection"></a>
+<tt class="descname">setSelection</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.setSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setSelection( <a class="reference external" href="api_core.html#hiero.core.TrackItem">TrackItem</a> )</p>
+<p>self.setSelection( [hiero.core.TrackItem] )</p>
+<p>Will throw exception if selection is not subset of current sequence.</p>
+<p>@param selection : track item(s) to be selected.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.TimelineEditor.setTrackSelection"><a name="//apple_ref/cpp/Attribute/hiero.ui.TimelineEditor.setTrackSelection"></a>
+<tt class="descname">setTrackSelection</tt><a class="headerlink" href="#hiero.ui.TimelineEditor.setTrackSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setTrackSelection( <a class="reference external" href="api_core.html#hiero.core.TrackBase">TrackBase</a> )</p>
+<p>self.setTrackSelection( [hiero.core.TrackBase] )</p>
+<p>Will throw exception if selection is not subset of current sequence.</p>
+<p>@param selection : Tracks to be selected.</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.VersionWidget"><a name="//apple_ref/cpp/Class/hiero.ui.VersionWidget"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">VersionWidget</tt><a class="headerlink" href="#hiero.ui.VersionWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QWidget</span></tt></p>
+<p>A QSpinBox with buttons to increase/decrease padding of the value</p>
+<dl class="method">
+<dt id="hiero.ui.VersionWidget.initUI"><a name="//apple_ref/cpp/Method/hiero.ui.VersionWidget.initUI"></a>
+<tt class="descname">initUI</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.VersionWidget.initUI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.VersionWidget.setPadding"><a name="//apple_ref/cpp/Method/hiero.ui.VersionWidget.setPadding"></a>
+<tt class="descname">setPadding</tt><big>(</big><em>padding</em><big>)</big><a class="headerlink" href="#hiero.ui.VersionWidget.setPadding" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.VersionWidget.setRange"><a name="//apple_ref/cpp/Method/hiero.ui.VersionWidget.setRange"></a>
+<tt class="descname">setRange</tt><big>(</big><em>min</em>, <em>max</em><big>)</big><a class="headerlink" href="#hiero.ui.VersionWidget.setRange" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="hiero.ui.VersionWidget.setValue"><a name="//apple_ref/cpp/Method/hiero.ui.VersionWidget.setValue"></a>
+<tt class="descname">setValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#hiero.ui.VersionWidget.setValue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Viewer"><a name="//apple_ref/cpp/Class/hiero.ui.Viewer"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">Viewer</tt><a class="headerlink" href="#hiero.ui.Viewer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object for manipulating viewers in Hiero. Get the currently active viewer by calling <a class="reference external" href="api_ui.html#hiero.ui.currentViewer">currentViewer()</a>.</p>
+<dl class="class">
+<dt id="hiero.ui.Viewer.CompareMode"><a name="//apple_ref/cpp/Class/hiero.ui.Viewer.CompareMode"></a>
+<em class="property">class </em><tt class="descname">CompareMode</tt><a class="headerlink" href="#hiero.ui.Viewer.CompareMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.CompareMode.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.CompareMode.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Viewer.CompareMode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.Viewer.LayoutMode"><a name="//apple_ref/cpp/Class/hiero.ui.Viewer.LayoutMode"></a>
+<em class="property">class </em><tt class="descclassname">Viewer.</tt><tt class="descname">LayoutMode</tt><a class="headerlink" href="#hiero.ui.Viewer.LayoutMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.LayoutMode.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.LayoutMode.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.Viewer.LayoutMode.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.cachedFrames"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.cachedFrames"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">cachedFrames</tt><a class="headerlink" href="#hiero.ui.Viewer.cachedFrames" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.cachedFrames() -&gt; get the frames which are currently cached in the viewer.</p>
+<p>@return: set containing the indices of the cached frames</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.compareMode"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.compareMode"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">compareMode</tt><a class="headerlink" href="#hiero.ui.Viewer.compareMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.compareMode() -&gt; returns the compare mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@return: a Viewer.CompareMode object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.enterFullScreen"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.enterFullScreen"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">enterFullScreen</tt><a class="headerlink" href="#hiero.ui.Viewer.enterFullScreen" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.enterFullScreen() -&gt; puts the viewer into full screen mode. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.exitFullScreen"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.exitFullScreen"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">exitFullScreen</tt><a class="headerlink" href="#hiero.ui.Viewer.exitFullScreen" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.exitFullScreen() -&gt; takes the viewer out of full screen mode. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.flushCache"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.flushCache"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">flushCache</tt><a class="headerlink" href="#hiero.ui.Viewer.flushCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.flushCache() -&gt; flush the cache on the viewer and pause caching.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.frameIncrement"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.frameIncrement"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">frameIncrement</tt><a class="headerlink" href="#hiero.ui.Viewer.frameIncrement" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.frameIncrement() -&gt; returns the frame increment for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@return: the number of frames to skip or nudge</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.getAchievedFPS"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.getAchievedFPS"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">getAchievedFPS</tt><a class="headerlink" href="#hiero.ui.Viewer.getAchievedFPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.getAchievedFPS() -&gt; returns the average fps achieved by the viewer.</p>
+<p>@return: floating point frames per second average</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.image"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.image"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">image</tt><a class="headerlink" href="#hiero.ui.Viewer.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.image() -&gt; returns the contents of the viewer as an image, including all overlays. Can only be called from the user interface thread.</p>
+<p>@return: a PySide.QtGui.QImage object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.isCachingPaused"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.isCachingPaused"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">isCachingPaused</tt><a class="headerlink" href="#hiero.ui.Viewer.isCachingPaused" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.isCachingPaused() -&gt; get whether caching is paused.</p>
+<p>@return: bool</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.layoutMode"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.layoutMode"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">layoutMode</tt><a class="headerlink" href="#hiero.ui.Viewer.layoutMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.layoutMode() -&gt; returns the layout mode the viewer is currently in.</p>
+<p>@return: a Viewer.LayoutMode object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.overlaysShown"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.overlaysShown"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">overlaysShown</tt><a class="headerlink" href="#hiero.ui.Viewer.overlaysShown" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.overlaysShown() -&gt; get whether overlays are shown in the viewer.</p>
+<p>@return: bool</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.pauseCaching"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.pauseCaching"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">pauseCaching</tt><a class="headerlink" href="#hiero.ui.Viewer.pauseCaching" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.pauseCaching() -&gt; pause caching on the viewer.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.play"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.play"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">play</tt><a class="headerlink" href="#hiero.ui.Viewer.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.play() -&gt; starts playback in the viewer in the forward direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.playBackwards"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.playBackwards"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">playBackwards</tt><a class="headerlink" href="#hiero.ui.Viewer.playBackwards" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.playBackwards() -&gt; starts playback in the viewer in the backwards direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.playForwards"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.playForwards"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">playForwards</tt><a class="headerlink" href="#hiero.ui.Viewer.playForwards" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.playForwards() -&gt; starts playback in the viewer in the forward direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.player"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.player"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">player</tt><a class="headerlink" href="#hiero.ui.Viewer.player" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.player(index) -&gt; returns the player object attached to this viewer, based on the input index.</p>
+<p>@param index: integer index of the player to retrieve</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.Player">Player</a> object</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.resumeCaching"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.resumeCaching"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">resumeCaching</tt><a class="headerlink" href="#hiero.ui.Viewer.resumeCaching" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.resumeCaching() -&gt; resume caching on the viewer.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.setCompareMode"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.setCompareMode"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">setCompareMode</tt><a class="headerlink" href="#hiero.ui.Viewer.setCompareMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setCompareMode(mode) -&gt; changes the compare mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@param compareMode: a Viewer.CompareMode value</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.setFrameIncrement"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.setFrameIncrement"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">setFrameIncrement</tt><a class="headerlink" href="#hiero.ui.Viewer.setFrameIncrement" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setFrameIncrement(frames) -&gt; changes the frame increment for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@param frames: the number of frames to skip or nudge</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.setLayoutMode"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.setLayoutMode"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">setLayoutMode</tt><a class="headerlink" href="#hiero.ui.Viewer.setLayoutMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setLayoutMode(mode) -&gt; changes the layout mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@param layoutMode: a Viewer.LayoutMode value indicating what layout to set the viewer to</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.setOverlaysShown"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.setOverlaysShown"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">setOverlaysShown</tt><a class="headerlink" href="#hiero.ui.Viewer.setOverlaysShown" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setOverlaysShown(show) -&gt; set whether overlays are shown in the viewer.</p>
+<p>@param show: bool</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.setTime"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.setTime"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">setTime</tt><a class="headerlink" href="#hiero.ui.Viewer.setTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setTime(time) -&gt; seeks the play head of the viewer to the time parameter. Works the same as scrubbing the timeline in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+<p>@param time: frame to set the play head to</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.stop"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.stop"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">stop</tt><a class="headerlink" href="#hiero.ui.Viewer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.stop() -&gt; stops playback in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.time"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.time"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">time</tt><a class="headerlink" href="#hiero.ui.Viewer.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.time() -&gt; returns the current frame of the viewer.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.toggleFullScreen"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.toggleFullScreen"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">toggleFullScreen</tt><a class="headerlink" href="#hiero.ui.Viewer.toggleFullScreen" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.toggleFullScreen() -&gt; toggles full screen mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.toggleFullScreen1_1"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.toggleFullScreen1_1"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">toggleFullScreen1_1</tt><a class="headerlink" href="#hiero.ui.Viewer.toggleFullScreen1_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.toggleFullScreen1_1() -&gt; toggles 1:1 full screen mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.Viewer.wipeTool"><a name="//apple_ref/cpp/Attribute/hiero.ui.Viewer.wipeTool"></a>
+<tt class="descclassname">Viewer.</tt><tt class="descname">wipeTool</tt><a class="headerlink" href="#hiero.ui.Viewer.wipeTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.wipeTool() -&gt; return the split wipe tool for this viewer.</p>
+<p>@return: ViewerWipeTool object</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.ViewerWipeTool"><a name="//apple_ref/cpp/Class/hiero.ui.ViewerWipeTool"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">ViewerWipeTool</tt><a class="headerlink" href="#hiero.ui.ViewerWipeTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Object for manipulating the viewer wipe tool in Hiero.</p>
+<dl class="attribute">
+<dt id="hiero.ui.ViewerWipeTool.isActive"><a name="//apple_ref/cpp/Attribute/hiero.ui.ViewerWipeTool.isActive"></a>
+<tt class="descname">isActive</tt><a class="headerlink" href="#hiero.ui.ViewerWipeTool.isActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.isActive() -&gt; returns True if the tool is active.</p>
+<p>@param index: integer index of the player to retrieve</p>
+<p>@return: bool</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.ViewerWipeTool.setActive"><a name="//apple_ref/cpp/Attribute/hiero.ui.ViewerWipeTool.setActive"></a>
+<tt class="descname">setActive</tt><a class="headerlink" href="#hiero.ui.ViewerWipeTool.setActive" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.setActive(active) -&gt; Make the tool active or inactive.</p>
+<p>@param active: the active state</p>
+<p>@return: None</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="hiero.ui.WindowManager"><a name="//apple_ref/cpp/Class/hiero.ui.WindowManager"></a>
+<em class="property">class </em><tt class="descclassname">hiero.ui.</tt><tt class="descname">WindowManager</tt><a class="headerlink" href="#hiero.ui.WindowManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">Shiboken.Object</span></tt></p>
+<p>Global object to handle window management in Hiero. Use <a class="reference external" href="api_ui.html#hiero.ui.windowManager">windowManager()</a> to get the single instance of this object to use.</p>
+<dl class="class">
+<dt id="hiero.ui.WindowManager.WindowMenuSection"><a name="//apple_ref/cpp/Class/hiero.ui.WindowManager.WindowMenuSection"></a>
+<em class="property">class </em><tt class="descname">WindowMenuSection</tt><a class="headerlink" href="#hiero.ui.WindowManager.WindowMenuSection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="hiero.ui.WindowManager.WindowMenuSection.name"><a name="//apple_ref/cpp/Attribute/hiero.ui.WindowManager.WindowMenuSection.name"></a>
+<tt class="descname">name</tt><a class="headerlink" href="#hiero.ui.WindowManager.WindowMenuSection.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.WindowManager.addWindow"><a name="//apple_ref/cpp/Attribute/hiero.ui.WindowManager.addWindow"></a>
+<tt class="descclassname">WindowManager.</tt><tt class="descname">addWindow</tt><a class="headerlink" href="#hiero.ui.WindowManager.addWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.addWindow(window, section, shortcut) -&gt; adds a window to the window manager and insert a menu item for it into the Window menu. This will also make the window dockable with Hiero’s other windows.</p>
+<p>@param window: QWidget object for the window</p>
+<p>@param section: section (either an int, or a WindowManager.WindowMenuSection) to insert the menu item into</p>
+<p>@param shortcut: shortcut to apply to the menu item. See the documentation on QKeySequence for more info</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.WindowManager.popupWindow"><a name="//apple_ref/cpp/Attribute/hiero.ui.WindowManager.popupWindow"></a>
+<tt class="descclassname">WindowManager.</tt><tt class="descname">popupWindow</tt><a class="headerlink" href="#hiero.ui.WindowManager.popupWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.popupWindow(window) -&gt; Opens the window in a floating dock panel.</p>
+<p>@param window: QWidget object for the window</p>
+</dd></dl>
+<dl class="attribute">
+<dt id="hiero.ui.WindowManager.showWindow"><a name="//apple_ref/cpp/Attribute/hiero.ui.WindowManager.showWindow"></a>
+<tt class="descclassname">WindowManager.</tt><tt class="descname">showWindow</tt><a class="headerlink" href="#hiero.ui.WindowManager.showWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.showWindow(window) -&gt; Opens the window in its layout position or if as a floating dock panel</p>
+<p>@param window: QWidget object for the window</p>
+</dd></dl>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.activeView"><a name="//apple_ref/cpp/Function/hiero.ui.activeView"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">activeView</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.activeView" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.activeView() -&gt; gets the currently active view object.</p>
+<p>@return: depending on the active view, a hiero.ui.TimelineEditor, a hiero.ui.SpreadsheetView object, a hiero.ui.Viewer object or a hiero.ui.BinView object</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.addMenuAction"><a name="//apple_ref/cpp/Function/hiero.ui.addMenuAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">addMenuAction</tt><big>(</big><em>path</em>, <em>action</em>, <em>before=None</em><big>)</big><a class="headerlink" href="#hiero.ui.addMenuAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a QAction to the main menubar. The ‘path’ parameter specifies the menu to which to add the action as a ‘/’-separated string.
+The path may contain either internal action names or display names. e.g. ‘View/Transform’, or (better) ‘foundry.menu.view/foundry.view.transform’.”
+The optional ‘before’ parameter specifies the name of an item the action should be inserted before. If this is not specified, the action is appended to the menu.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.browseForApplication"><a name="//apple_ref/cpp/Function/hiero.ui.browseForApplication"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">browseForApplication</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.browseForApplication" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.browseForApplication">browseForApplication</a> (message, initialPath, parentWidget) -&gt; brings up the file browser to allow the user to select an application. Allows the user to select an executable file on Windows and Linux, and to select an application bundle (*.app) directory on OSX.</p>
+<p>@param message: prompt to display to the user in the file browser</p>
+<p>@param initialPath: initial path to set the file browser to. Can be a zero length string</p>
+<p>@param parentWidget: QWidget to set as the parent of the file browser. Can be None.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.createMenuAction"><a name="//apple_ref/cpp/Function/hiero.ui.createMenuAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">createMenuAction</tt><big>(</big><em>name</em>, <em>method</em>, <em>icon=None</em><big>)</big><a class="headerlink" href="#hiero.ui.createMenuAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a menu action (QAction) for use in Hiero’s context menus or Main menubar. 
+The ‘name’ parameter specifies the title of the action.
+@param: name - the title of the menu action
+@param: method - the Python method which this action triggers
+@param: icon (optional) - provides an icon for the action. This can be an absolute path (‘/var/tmp/myIcon.png’), or relative path (‘icons:myIcon.png’)</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.currentContextMenuView"><a name="//apple_ref/cpp/Function/hiero.ui.currentContextMenuView"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">currentContextMenuView</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.currentContextMenuView" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.currentContextMenuView">currentContextMenuView()</a> -&gt; returns the current view for the context menu. Only valid during a kShowContextMenu event callback.</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.Viewer">Viewer</a>,  <a class="reference external" href="api_ui.html#hiero.ui.TimelineEditor">TimelineEditor</a>,  <a class="reference external" href="api_ui.html#hiero.ui.BinView">BinView</a>, depending on which window had the context menu created for it</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.currentViewer"><a name="//apple_ref/cpp/Function/hiero.ui.currentViewer"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">currentViewer</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.currentViewer" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.currentViewer">currentViewer()</a> -&gt; returns the current viewer window.</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.Viewer">Viewer</a></p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.findMenuAction"><a name="//apple_ref/cpp/Function/hiero.ui.findMenuAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">findMenuAction</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#hiero.ui.findMenuAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a QAction in the main menubar. The ‘name’ parameter specifies the name of the action.
+The name may be either an internal action name or a display name. e.g. ‘Cut’, or (better) ‘foundry.application.cut’.”</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.findRegisteredAction"><a name="//apple_ref/cpp/Function/hiero.ui.findRegisteredAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">findRegisteredAction</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.findRegisteredAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.findRegisteredAction(name) -&gt; Find the action with the given name.</p>
+<p>@return: a QAction, or None if not found.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.flushAllViewersCache"><a name="//apple_ref/cpp/Function/hiero.ui.flushAllViewersCache"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">flushAllViewersCache</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.flushAllViewersCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>self.flushAllViewersCache() -&gt; flush the cache of all viewers and pause caching</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.insertMenuAction"><a name="//apple_ref/cpp/Function/hiero.ui.insertMenuAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">insertMenuAction</tt><big>(</big><em>action</em>, <em>menu</em>, <em>before=None</em>, <em>after=None</em><big>)</big><a class="headerlink" href="#hiero.ui.insertMenuAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a QAction into the given QMenu. If strings ‘before’ or ‘after’ are specified, the action is inserted before or after the action with that name.
+If no such action is found or ‘before/after’ are not given, the action is appended to the menu.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.mainWindow"><a name="//apple_ref/cpp/Function/hiero.ui.mainWindow"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">mainWindow</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.mainWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.mainWindow() -&gt; used to get Hiero’s main window object.</p>
+<p>@return: a PySide.QtGui.QMainWindow object</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.menuBar"><a name="//apple_ref/cpp/Function/hiero.ui.menuBar"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">menuBar</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.menuBar" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.menuBar() -&gt; used to get Hiero’s global menu bar.</p>
+<p>@return: a PySide.QtGui.QMenuBar object</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.openInNewViewer"><a name="//apple_ref/cpp/Function/hiero.ui.openInNewViewer"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">openInNewViewer</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.openInNewViewer" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.openInNewViewer">openInNewViewer( binItem )</a> -&gt; Opens a BinItem’s activeItem (Clip/Sequence) in a new Viewer.</p>
+<p>@param binItem: <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> to be opened in a new Viewer</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.openInOSShell"><a name="//apple_ref/cpp/Function/hiero.ui.openInOSShell"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">openInOSShell</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.openInOSShell" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.openInSpreadsheet"><a name="//apple_ref/cpp/Function/hiero.ui.openInSpreadsheet"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">openInSpreadsheet</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.openInSpreadsheet" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.openInSpreadsheet">openInSpreadsheet( sequence )</a> -&gt; Opens a Sequence in a Spreadsheet.</p>
+<p>@param sequence: <a class="reference external" href="api_core.html#hiero.core.Sequence">Sequence</a> to be opened in Spreadsheet</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.openInTimeline"><a name="//apple_ref/cpp/Function/hiero.ui.openInTimeline"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">openInTimeline</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.openInTimeline" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api/api_ui.html#hiero.ui.openInTimeline( ">openInTimeline( </a> ) &lt;openInTimeline, None&gt;` -&gt; Opens a BinItem’s activeItem (Clip/Sequence) in a Timeline View.</p>
+<p><a class="reference external" href="api/api_ui.html#hiero.ui.openInTimeline( ">openInTimeline( </a> -&gt; Opens a list of BinItems’ activeItems (Clips/Sequences) in a Timeline View.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.openInViewer"><a name="//apple_ref/cpp/Function/hiero.ui.openInViewer"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">openInViewer</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.openInViewer" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.openInViewer">openInViewer( binItem )</a> -&gt; Opens a BinItem’s activeItem (Clip/Sequence) in the Viewer.</p>
+<p>@param binItem: <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> to be opened in the current Viewer</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.registerAction"><a name="//apple_ref/cpp/Function/hiero.ui.registerAction"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">registerAction</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.registerAction" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.registerAction(action) -&gt; Register an action.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.registerBinViewCustomMimeDataType"><a name="//apple_ref/cpp/Function/hiero.ui.registerBinViewCustomMimeDataType"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">registerBinViewCustomMimeDataType</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.registerBinViewCustomMimeDataType" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.registerBinViewCustomMimeDataType">registerBinViewCustomMimeDataType(customMimeType)</a> -&gt; registers a custom mime type so that Hiero passes on drag and drop events through the event system. For an example of how to use this method, see the bin_drop.py example.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.registerPanel"><a name="//apple_ref/cpp/Function/hiero.ui.registerPanel"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">registerPanel</tt><big>(</big><em>id</em>, <em>command</em><big>)</big><a class="headerlink" href="#hiero.ui.registerPanel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.registeredActions"><a name="//apple_ref/cpp/Function/hiero.ui.registeredActions"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">registeredActions</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.registeredActions" title="Permalink to this definition">¶</a></dt>
+<dd><p>hiero.ui.registeredActions() -&gt; Returns a list of all registered actions.</p>
+<p>@return: a tuple of QActions</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.resetCurrentWorkspace"><a name="//apple_ref/cpp/Function/hiero.ui.resetCurrentWorkspace"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">resetCurrentWorkspace</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.resetCurrentWorkspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the currently active Workspace to its default state.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.restorePanel"><a name="//apple_ref/cpp/Function/hiero.ui.restorePanel"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">restorePanel</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#hiero.ui.restorePanel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.sendToViewerA"><a name="//apple_ref/cpp/Function/hiero.ui.sendToViewerA"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">sendToViewerA</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.sendToViewerA" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.sendToViewerA">sendToViewerA( binItem )</a> -&gt; Sends a BinItem’s activeItem (Clip/Sequence) to the Viewer A.</p>
+<p>@param binItem: <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> to be opened in the current Viewer’s A Buffer</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.sendToViewerB"><a name="//apple_ref/cpp/Function/hiero.ui.sendToViewerB"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">sendToViewerB</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.sendToViewerB" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.sendToViewerB">sendToViewerB( binItem )</a> -&gt; Sends a BinItem’s activeItem (Clip/Sequence) to the Viewer B.</p>
+<p>@param binItem: <a class="reference external" href="api_core.html#hiero.core.BinItem">BinItem</a> to be opened in the current Viewer’s B buffer</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.setWorkspace"><a name="//apple_ref/cpp/Function/hiero.ui.setWorkspace"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">setWorkspace</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#hiero.ui.setWorkspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the Workspace with name, as per the name in the Workspace menu of the main menubar.
+Example: hiero.ui.setWorkspace(‘Reviewing’)</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.trackNameValidator"><a name="//apple_ref/cpp/Function/hiero.ui.trackNameValidator"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">trackNameValidator</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.trackNameValidator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.unregisterBinViewCustomMimeDataType"><a name="//apple_ref/cpp/Function/hiero.ui.unregisterBinViewCustomMimeDataType"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">unregisterBinViewCustomMimeDataType</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.unregisterBinViewCustomMimeDataType" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.unregisterBinViewCustomMimeDataType">unregisterBinViewCustomMimeDataType(customMimeType)</a> -&gt; unregisters a custom mime type that was previously registered using <a class="reference external" href="api_ui.html#hiero.ui.registerBinViewCustomMimeDataType">registerBinViewCustomMimeDataType()</a>.</p>
+</dd></dl>
+<dl class="function">
+<dt id="hiero.ui.unregisterPanel"><a name="//apple_ref/cpp/Function/hiero.ui.unregisterPanel"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">unregisterPanel</tt><big>(</big><em>id</em>, <em>command</em><big>)</big><a class="headerlink" href="#hiero.ui.unregisterPanel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.updateViewer"><a name="//apple_ref/cpp/Function/hiero.ui.updateViewer"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">updateViewer</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.updateViewer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="hiero.ui.windowManager"><a name="//apple_ref/cpp/Function/hiero.ui.windowManager"></a>
+<tt class="descclassname">hiero.ui.</tt><tt class="descname">windowManager</tt><big>(</big><big>)</big><a class="headerlink" href="#hiero.ui.windowManager" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="api_ui.html#hiero.ui.windowManager">windowManager()</a> -&gt; returns the single WindowManager object.</p>
+<p>@return: <a class="reference external" href="api_ui.html#hiero.ui.WindowManager">WindowManager</a></p>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">hiero.ui reference</a><ul>
+<li><a class="reference internal" href="#hiero-ui-methods-and-classes">hiero.ui methods and classes</a></li>
+<li><a class="reference internal" href="#module-hiero.ui">hiero.ui method and class details</a></li>
+</ul>
+</li>
+</ul>
+<h4>Previous topic</h4>
+<p class="topless"><a href="api_core.html" title="previous chapter">hiero.core reference</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="api_foundry_rpc.html" title="next chapter">foundry.rpc reference</a></p>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form action="../search.html" class="search" method="get">
+<input name="q" size="18" type="text"/>
+<input type="submit" value="Go"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="api_foundry_rpc.html" title="foundry.rpc reference">next</a> |</li>
+<li class="right">
+<a href="api_core.html" title="hiero.core reference">previous</a> |</li>
+<li>
+<span><a href="../index.html"><img alt="Logo" class="logo" height="30" src="../_static/HieroIcon.png" style="vertical-align: middle" width="30"/>Python Dev Guide</a> »</span>
+</li>
+<li><a href="index.html">API Reference</a> »</li>
+</ul>
+</div>
+<div class="footer">
+        © <a href="../copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+</body>
+</html>

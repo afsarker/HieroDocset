@@ -1,0 +1,40 @@
+
+Conforming Rules
+==============================
+
+The standard conforming rules match the source media with the timeline using the following criteria: UMID, File name, Tape name, RED tape name, Partial file name, Timecode, and Folder names.
+
+These rules can be extended in the Python API by defining classes derived from the ConformRule class and instantiating them.
+
+For instance, the name matching rule can be re-implemented as: ::
+
+  class NameConformRule(ConformRule):
+
+    """Match media filenames."""
+    def __init__(self):
+      ConformRule.__init__(self, "Name")
+
+    def compare( self, media, candidateMedia ):
+      try:
+        sourceName = media[ kName ].lower()
+        candidateName = candidateMedia[ kName ].lower()
+        return sourceName == candidateName
+      except KeyError:
+        return False
+
+The compare() member function has all of the logic to determine a match. It takes in a dictionary of metadata for the timeline media and the candidate media.
+
+To activate this rule, an instance needs to be constructed: ::
+
+  nameRule = NameConformRule()
+
+To turn off the rule, it can be either destroyed by setting it to None or by explicitly calling deactivate: ::
+
+  nameRule.deactivate()
+
+If you want to list the currently active conform rules, a tuple can be returned by calling the activeConformRules() function: ::
+
+  activeRules = activeConformRules()
+
+An example of a custom conform rule can be found in conform_rules.py with the other examples that ship with Hiero, or you can view it here: `BinView Drag & Drop <examples/bin_drop.py>`_
+

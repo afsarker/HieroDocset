@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>foundry.rpc reference — Hiero Python Developers Guide</title>
+<link href="../_static/default.css" rel="stylesheet" type="text/css"/>
+<link href="../_static/pygments.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+<script src="../_static/jquery.js" type="text/javascript"></script>
+<script src="../_static/underscore.js" type="text/javascript"></script>
+<script src="../_static/doctools.js" type="text/javascript"></script>
+<link href="../copyright.html" rel="copyright" title="Copyright"/>
+<link href="../index.html" rel="top" title="Hiero Python Developers Guide"/>
+<link href="index.html" rel="up" title="API Reference"/>
+<link href="../examples/index.html" rel="next" title="Examples"/>
+<link href="api_ui.html" rel="prev" title="hiero.ui reference"/>
+</head>
+<body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a accesskey="I" href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a accesskey="N" href="../examples/index.html" title="Examples">next</a> |</li>
+<li class="right">
+<a accesskey="P" href="api_ui.html" title="hiero.ui reference">previous</a> |</li>
+<li>
+<span><a href="../index.html"><img alt="Logo" class="logo" height="30" src="../_static/HieroIcon.png" style="vertical-align: middle" width="30"/>Python Dev Guide</a> »</span>
+</li>
+<li><a accesskey="U" href="index.html">API Reference</a> »</li>
+</ul>
+</div>
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+<div class="section" id="foundry-rpc-reference">
+<h1><a class="toc-backref" href="#id1">foundry.rpc reference</a><a class="headerlink" href="#foundry-rpc-reference" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<span id="foundry-rpc"></span><p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#foundry-rpc-reference" id="id1">foundry.rpc reference</a><ul>
+<li><a class="reference internal" href="#foundry-rpc-methods-and-classes" id="id2">foundry.rpc methods and classes</a></li>
+<li><a class="reference internal" href="#module-foundry.rpc" id="id3">foundry.rpc method and class details</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="foundry-rpc-methods-and-classes">
+<h2><a class="toc-backref" href="#id2">foundry.rpc methods and classes</a><a class="headerlink" href="#foundry-rpc-methods-and-classes" title="Permalink to this headline">¶</a></h2>
+<div class="contents topic">
+<ul class="simple">
+<li><a class="reference internal" href="#foundry.rpc.RPCClient">RPCClient</a></li>
+<li><a class="reference internal" href="#foundry.rpc.RPCServer">RPCServer</a></li>
+<li><a class="reference internal" href="#foundry.rpc.ServerAlreadyRunningException">ServerAlreadyRunningException</a></li>
+<li><a class="reference internal" href="#foundry.rpc.runOnMainThreadWithResult">runOnMainThreadWithResult</a></li>
+<li><a class="reference internal" href="#foundry.rpc.runOnMainThread">runOnMainThread</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-foundry.rpc">
+<span id="foundry-rpc-method-and-class-details"></span><h2><a name="//apple_ref/cpp/Module/foundry.rpc"></a><a class="toc-backref" href="#id3">foundry.rpc method and class details</a><a class="headerlink" href="#module-foundry.rpc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="foundry.rpc.RPCClient"><a name="//apple_ref/cpp/Class/foundry.rpc.RPCClient"></a>
+<em class="property">class </em><tt class="descclassname">foundry.rpc.</tt><tt class="descname">RPCClient</tt><big>(</big><em>timeoutInSeconds</em>, <em>host</em>, <em>port</em>, <em>localProxyObjects={}</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">foundry.rpc.communicator.RPCCommunicator</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">foundry.rpc.dispatcher.RPCDispatcher</span></tt></p>
+<p>An RPCClient manages a single connection to an RPCServer, when the two can be connected on the same host and port, via sockets.</p>
+<p>There can be many clients connecting to a single server, but only a single server.</p>
+<p>Once a client object is started (using the connectToServer method), it spawns a thread that continually tries to connect to the server running on the same host/port.
+Once the client is connected, the thread blocks and waits for any messages sent from the server to the client.
+The client’s thread will also send a ‘heartbeat’ message every once in awhile. If it doesn’t get a valid response from the server, it assumes that something bad has occurred and it closes the connection.</p>
+<p>Clients have the following options:</p>
+<ul class="simple">
+<li>host -&gt; address to connect to the server with (localhost can be used for connections on a single machine).</li>
+<li>port -&gt; the port to connect to the server with.</li>
+<li>localProxyObjects -&gt; dictionary of name and objects. The server can send over commands which will be dispatched to these objects.</li>
+<li>timeoutInSeconds -&gt; the timeout to wait when communicating with the server. Can be set after initialisation with setTimeout()</li>
+</ul>
+<p>To receive notification when certain events occur, the RPCClient class can be derived from and the following methods can be declared in the base class to deal with these events:</p>
+<ul class="simple">
+<li>statusChanged(self, newStatus) -&gt; called when the status of the client has changed (i.e. when it stops or starts).</li>
+<li>remoteProxyObjectRegistered(connectionID, name) -&gt; called when the server sends over a remote proxy object name.</li>
+</ul>
+<p>The server registers proxy objects with the client by name. To send a command to the server, you can call remoteProxyObject() and specify the name of the object to retrieve. You can then call methods on the object as if it was an object running in a currently loaded module.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre># get a server command object; assumes that "serverCommands"
+# has been registered by the server with the client
+serverCommands = server.remoteProxyObject("serverCommands")
+  
+# call the printMessage method on the serverCommands object. Will send the message
+# over to the server which will dispatch it to the serverCommands object running
+# in the server environment.
+serverCommands.printMessage("Hello World!")</pre>
+</div>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.canStart"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.canStart"></a>
+<tt class="descname">canStart</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.canStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the client can start.</p>
+<p>@return: True or False</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.canStop"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.canStop"></a>
+<tt class="descname">canStop</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.canStop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the client can stop</p>
+<p>@return: True or False</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.connectToServer"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.connectToServer"></a>
+<tt class="descname">connectToServer</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.connectToServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells the client to connect to the server.
+The client will spawn a separate thread, and will block on a socket read until it connects to the server.
+Once it connects to the server, it will block waiting for commands from the server or a disconnect.
+In the event of a disconnect, it will attempt to reconnect, until/unless disconnectFromServer() is called.</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.connectionID"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.connectionID"></a>
+<tt class="descname">connectionID</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.connectionID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the connectionID, which is the value that the server uses to identify this client with.
+This value is sent over to the client by the server when it first connects.
+A timeout may occur, and the client may disconnect and reconnect to the server; in that case, the connectionID may change over the life time of the client object.</p>
+<p>@return: string</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.disconnectFromServer"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.disconnectFromServer"></a>
+<tt class="descname">disconnectFromServer</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.disconnectFromServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Signals the client to stop connecting to the server. Has no effect if the client was already disconnecting.</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.isConnected"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.isConnected"></a>
+<tt class="descname">isConnected</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.isConnected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the client is currently connected.</p>
+<p>@return: True or False</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.sendCommand"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.sendCommand"></a>
+<tt class="descname">sendCommand</tt><big>(</big><em>command</em>, <em>completionCallback=None</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.sendCommand" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.sendUniqueIdentifier"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.sendUniqueIdentifier"></a>
+<tt class="descname">sendUniqueIdentifier</tt><big>(</big><em>identifier</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.sendUniqueIdentifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a unique identifier for this client to the server. The server keeps track of this identifier and users of the server can then read the unique identifier per client.</p>
+<p>@param identifier: string</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.status"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.status"></a>
+<tt class="descname">status</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of the client.</p>
+<p>@return: status string; one of (RPCClient.STATUS_AUTO_CONNECTING, RPCClient.STATUS_DISCONNECTED, RPCClient.STATUS_CONNECTING, RPCClient.STATUS_CONNECTED, RPCClient.STATUS_DISCONNECTING)</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCClient.statusChanged"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCClient.statusChanged"></a>
+<tt class="descname">statusChanged</tt><big>(</big><em>newStatus</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCClient.statusChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the status of the client changes.
+This method can be overridden by derived classes to be notified when the client status changes.
+The default implementation does nothing.
+Be aware that this method may be called on threads other than the main thread.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre>class CustomClient(RPCClient):
+  def statusChanged(self, newStatus):
+    print "Client status changed to: %s" % newStatus
+    if newStatus == RPCClient.STATUS_DISCONNECTED:
+      print "Client is not running"</pre>
+</div>
+<p>@param newStatus: one of (RPCClient.STATUS_AUTO_CONNECTING, RPCClient.STATUS_DISCONNECTED, RPCClient.STATUS_CONNECTING, RPCClient.STATUS_CONNECTED, RPCClient.STATUS_DISCONNECTING)</p>
+</dd></dl>
+</dd></dl>
+<dl class="class">
+<dt id="foundry.rpc.RPCServer"><a name="//apple_ref/cpp/Class/foundry.rpc.RPCServer"></a>
+<em class="property">class </em><tt class="descclassname">foundry.rpc.</tt><tt class="descname">RPCServer</tt><big>(</big><em>timeoutInSeconds</em>, <em>host</em>, <em>port</em>, <em>maxConnectionsAllowed=None</em>, <em>localProxyObjects={}</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">foundry.rpc.dispatcher.RPCDispatcher</span></tt></p>
+<p>An RPCServer manages connections between itself and clients, connected on the same host address and port, via sockets.</p>
+<p>There can be only one server, but many clients. If a server is started but detects that another is already running, a ServerAlreadyRunningException will be raised.</p>
+<p>Once started, the server spawns a thread which blocks until the socket on the host address and port is connected to by a client.</p>
+<p>Once a connection is made, communication carries on between the two on the same host address, but with a different port (as selected by the OS) and over a different socket.
+For each new connection made, the server spawns another thread to listen for communication coming from the connected client.
+This thread will also send a ‘heartbeat’ message every once in awhile. If it doesn’t get a valid response from the client, it assumes that something bad has occurred and it closes the connection.</p>
+<p>Servers have the following options:</p>
+<ul class="simple">
+<li>host -&gt; address for the server to listen for connections on (localhost can be used for connections on a single machine).</li>
+<li>port -&gt; the port for the server to listen for connections on.</li>
+<li>localProxyObjects -&gt; dictionary of name and objects. Clients can send over commands which will be dispatched to these objects.</li>
+<li>maxConnections -&gt; the maximum number of clients to connect to at one time. Can be set after initialisation with setMaxConnectionsAllowed().</li>
+<li>timeoutInSeconds -&gt; the timeout to wait when communicating with the clients. Can be set after initialisation with setTimeout()</li>
+</ul>
+<p>Once connected, a client can be referred to by a connectonID, which will be unique to that client.
+Currently connected client connectionIDs can be retrieved with the connections() method.</p>
+<p>To receive notification when certain events occur, the RPCServer class can be derived from and the following methods can be declared in the base class to deal with these events:</p>
+<ul class="simple">
+<li>statusChanged(self, newStatus) -&gt; called when the status of the server has changed (i.e. when it stops or starts).</li>
+<li>connectionMade(connectionID) -&gt; called when a client is connected, with the connectionID for the new client.</li>
+<li>disconnectionMade(connectionID) -&gt; called when a client is disconnected, with the connectionID of the disconnected client.</li>
+<li>remoteProxyObjectRegistered(connectionID, name) -&gt; called when a client sends over a remote proxy object name.</li>
+</ul>
+<p>Clients register proxy objects with the server by name. To send a command to a client, you can call remoteProxyObject() and specify the connectionID (for the client you want to communicate with) and the name of the object to retrieve. You can then call methods on the object as if it was an object running in a currently loaded module.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre># get a client connection to communicate with
+clientConnectionID = server.connections()[0]
+  
+# get a client command object; assumes that "clientCommands"
+# has been registered by the client with the server
+clientCommands = server.remoteProxyObject(clientConnectionID, "clientCommands")
+  
+# call the printMessage method on the clientCommands object. Will send the message
+# over to the client which will dispatch it to the clientCommands object running
+# in the client environment.
+clientCommands.printMessage("Hello World!")</pre>
+</div>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.connectionMade"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.connectionMade"></a>
+<tt class="descname">connectionMade</tt><big>(</big><em>connectionID</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.connectionMade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a client connects to the server.
+This method can be overridden by derived classes, to deal with a new client connection.
+The default implementation does nothing.
+Be aware that this method will not be called on the main thread.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre>class CustomServer(RPCServer):
+  def connectionMade(self, connectionID):
+    
+    # since this is not called on the main thread, we don't want to update the ui directly here
+    def addMenuItem():
+      self.connectionListMenu.addNewMenuItem(self.connectionID)
+    runOnMainThread(addMenuItem)</pre>
+</div>
+<p>@param connectionID: the connectionID of the newly connected client</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.connectionStatus"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.connectionStatus"></a>
+<tt class="descname">connectionStatus</tt><big>(</big><em>connectionID</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.connectionStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a status string for the connection specified.
+@param connectionID: the id of the client to get the status for
+@return: status string; one of (RPCClient.STATUS_AUTO_CONNECTING, RPCClient.STATUS_DISCONNECTED, RPCClient.STATUS_CONNECTING, RPCClient.STATUS_CONNECTED, RPCClient.STATUS_DISCONNECTING)</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.connectionUniqueIdentifier"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.connectionUniqueIdentifier"></a>
+<tt class="descname">connectionUniqueIdentifier</tt><big>(</big><em>connectionID</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.connectionUniqueIdentifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a possibly helpful unique string of text for the client connection specified.
+@param connectionID: id of the client to get the unique identifier for
+@return: string</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.connections"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.connections"></a>
+<tt class="descname">connections</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the client connection ids.
+@return: list of connection</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.disconnectionMade"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.disconnectionMade"></a>
+<tt class="descname">disconnectionMade</tt><big>(</big><em>connectionID</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.disconnectionMade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a client disconnects to (or is disconnected from) the server.
+Also called when the communication with the client times out.
+This method can be overridden by derived classes, to deal with a new client connection.
+The default implementation does nothing.
+Be aware that this method will not be called on the main thread.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre>class CustomServer(RPCServer):
+  def disconnectionMade(self, connectionID):
+    
+    # since this is not called on the main thread, we don't want to update the ui directly here
+    def removeMenuItem():
+      self.connectionListMenu.removeMenuItem(self.connectionID)
+    runOnMainThread(removeMenuItem)</pre>
+</div>
+<p>@param connectionID: the connectionID of the disconnected client</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.isRunning"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.isRunning"></a>
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.isRunning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if the server is currently starting up or already running</p>
+<p>@return: True or False</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.remoteProxyObject"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.remoteProxyObject"></a>
+<tt class="descname">remoteProxyObject</tt><big>(</big><em>connectionID</em>, <em>name</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.remoteProxyObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called to access a remote proxy object that has been previously registered by a client.
+@param connectionID: the id of the client to get the object from; an exception will occur if the connectionID is invalid
+@param name: the name of the object to retrieve
+@return: a proxy object that can be used to send commands to the matching object on the client, or None if an object with the name requested was not registered.</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.remoteProxyObjectRegistered"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.remoteProxyObjectRegistered"></a>
+<tt class="descname">remoteProxyObjectRegistered</tt><big>(</big><em>connectionID</em>, <em>name</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.remoteProxyObjectRegistered" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a client registers a remote object that can be called.
+This method can be overridden by derived classes, which can then perform certain actions when particular proxy objects are registered.
+The default implementation does nothing.
+Be aware that this method will not be called on the main thread.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre>class CustomServer(RPCServer):
+  def remoteProxyObjectRegistered(self, connectionID, name):
+    
+    if name == "Bank":
+      
+      bank = self.remoteProxyObject(connectionID, "Bank")
+      bank.giveMeAllYourMoney()</pre>
+</div>
+<p>@param connectionID: the connectionID of the client that the new proxy object is running in
+@param name: the name of the newly registered object</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.setMaxConnectionsAllowed"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.setMaxConnectionsAllowed"></a>
+<tt class="descname">setMaxConnectionsAllowed</tt><big>(</big><em>maxConnectionsAllowed=None</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.setMaxConnectionsAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the maximum number of client connections that the server will connect to at one time.</p>
+<p>@param maxConnectionsAllowed: the maximum number of connections to allow, or None to remove any maximum</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.setTimeout"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.setTimeout"></a>
+<tt class="descname">setTimeout</tt><big>(</big><em>timeoutInSeconds</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.setTimeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the timeout to allow before the server suspects an error has occurred when communicating with a client</p>
+<p>@param timeoutInSeconds: the timeout to allow, in seconds</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.start"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.start"></a>
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells the server to start listening for client connections and communicating with any that do connect.
+It will first test to see if another server is already running, and if it is, will raise a ServerAlreadyRunningException exception.
+Otherwise, a thread is spawned to listen for client connections and to communicate with them.</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.status"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.status"></a>
+<tt class="descname">status</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of the server.
+@return: status string; one of (RPCServer.STATE_NOT_RUNNING, RPCServer.STATE_STARTING, RPCServer.STATE_RUNNING, RPCServer.STATE_STOPPING)</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.statusChanged"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.statusChanged"></a>
+<tt class="descname">statusChanged</tt><big>(</big><em>newStatus</em><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.statusChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the status of the server changes.
+This method can be overridden by derived classes to be notified when the server status changes.
+The default implementation does nothing.
+Be aware that this method may be called on threads other than the main thread.</p>
+<p>For example:</p>
+<div class="highlight-cpp"><pre>class CustomServer(RPCServer):
+  def statusChanged(self, newStatus):
+    print "Server status changed to: %s" % newStatus
+    if newStatus == RPCServer.STATE_NOT_RUNNING:
+      print "Server is not running"</pre>
+</div>
+<p>@param newStatus: one of (RPCServer.STATE_NOT_RUNNING, RPCServer.STATE_STARTING, RPCServer.STATE_RUNNING, RPCServer.STATE_STOPPING)</p>
+</dd></dl>
+<dl class="method">
+<dt id="foundry.rpc.RPCServer.stop"><a name="//apple_ref/cpp/Method/foundry.rpc.RPCServer.stop"></a>
+<tt class="descname">stop</tt><big>(</big><big>)</big><a class="headerlink" href="#foundry.rpc.RPCServer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tells the server to stop listening for client connections and to disconnect from any currently connected.</p>
+</dd></dl>
+</dd></dl>
+<dl class="exception">
+<dt id="foundry.rpc.ServerAlreadyRunningException"><a name="//apple_ref/cpp/Exception/foundry.rpc.ServerAlreadyRunningException"></a>
+<em class="property">exception </em><tt class="descclassname">foundry.rpc.</tt><tt class="descname">ServerAlreadyRunningException</tt><a class="headerlink" href="#foundry.rpc.ServerAlreadyRunningException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.BaseException</span></tt></p>
+<p>Exception thrown when a Server at the specified port and address is already running</p>
+</dd></dl>
+<dl class="function">
+<dt id="foundry.rpc.runOnMainThreadWithResult"><a name="//apple_ref/cpp/Function/foundry.rpc.runOnMainThreadWithResult"></a>
+<tt class="descclassname">foundry.rpc.</tt><tt class="descname">runOnMainThreadWithResult</tt><big>(</big><em>callable</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#foundry.rpc.runOnMainThreadWithResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>runOnMainThreadWithResult(callable, *args, **kwargs) -&gt; ensures that the callable is executed on the main thread, blocking until it does and returning the result.</p>
+<p>Use this method to interact with the user interface from threads other than the main (user interface) thread.
+Qt/PySide requires that all widget manipulation happens on the thread that created the widgets, and runOnMainThreadWithResult allows you to execute functions and methods on the main thread and get the result back.</p>
+<p>If runOnMainThreadWithResult is called from the main (user interface) thread, the callable will be executed immediately without blocking the currently running thread.</p>
+<dl class="docutils">
+<dt>If runOnMainThreadWithResult is called from another thread, it will:</dt>
+<dd><ul class="first last simple">
+<li>add the callable to a queue that will be run the next time the main (user interface) thread’s event queue is processed</li>
+<li>block until the callable is executed on the main thread</li>
+<li>return the result of the callable</li>
+</ul>
+</dd>
+</dl>
+<p>@return: result of callable</p>
+</dd></dl>
+<dl class="function">
+<dt id="foundry.rpc.runOnMainThread"><a name="//apple_ref/cpp/Function/foundry.rpc.runOnMainThread"></a>
+<tt class="descclassname">foundry.rpc.</tt><tt class="descname">runOnMainThread</tt><big>(</big><em>callable</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#foundry.rpc.runOnMainThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>runOnMainThread(callable, *args, **kwargs) -&gt; ensures that the callable is executed on the main thread. Does not block until completion.</p>
+<p>Use this method to interact with the user interface from threads other than the main (user interface) thread.
+Qt/PySide requires that all widget manipulation happens on the thread that created the widgets, and runOnMainThreadWithResult allows you to execute functions and methods on the main thread.</p>
+<p>If runOnMainThread is called from the main (user interface) thread, the callable will be executed immediately.</p>
+<p>If runOnMainThread is called from another thread, the callable (and the args and kwargs) is queued up and will be executed the next time the main (user interface) thread’s event queue is processed.</p>
+<p>Callables sent to runOnMainThread from non-main threads will be executed in the order that runOnMainThread is called.
+Callables sent to runOnMainThread from the main thread are executed immediately, regardless of whether or not other callables sent earlier to runOnMainThread has been executed already or not.</p>
+<p>@return: result of callable</p>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul>
+<li><a class="reference internal" href="#">foundry.rpc reference</a><ul>
+<li><a class="reference internal" href="#foundry-rpc-methods-and-classes">foundry.rpc methods and classes</a></li>
+<li><a class="reference internal" href="#module-foundry.rpc">foundry.rpc method and class details</a></li>
+</ul>
+</li>
+</ul>
+<h4>Previous topic</h4>
+<p class="topless"><a href="api_ui.html" title="previous chapter">hiero.ui reference</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="../examples/index.html" title="next chapter">Examples</a></p>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form action="../search.html" class="search" method="get">
+<input name="q" size="18" type="text"/>
+<input type="submit" value="Go"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../examples/index.html" title="Examples">next</a> |</li>
+<li class="right">
+<a href="api_ui.html" title="hiero.ui reference">previous</a> |</li>
+<li>
+<span><a href="../index.html"><img alt="Logo" class="logo" height="30" src="../_static/HieroIcon.png" style="vertical-align: middle" width="30"/>Python Dev Guide</a> »</span>
+</li>
+<li><a href="index.html">API Reference</a> »</li>
+</ul>
+</div>
+<div class="footer">
+        © <a href="../copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+</body>
+</html>

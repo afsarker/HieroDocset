@@ -1,0 +1,41 @@
+Examples
+==================
+The following examples can also be found in Hiero's site-packages directory, located here:
+
+  **Mac OS X** ::
+
+    /Applications/Hiero1.9v1/Hiero1.9v1.app/Contents/Plugins/site-packages/hiero/examples/
+
+  **Linux** ::
+
+    /usr/local/Hiero1.9v1/Plugins/site-packages/hiero/examples/
+
+  **Windows** ::
+
+    C:\Program Files\The Foundry\Hiero1.9v1\plugins\site-packages\hiero\examples\
+    
+  The following examples are included:
+    
+    
+
+* `bin_drop.py <bin_drop.py>`_ Class to show how to handle drop events in the bin view. \ 
+* `conform_rules.py <conform_rules.py>`_ Class to show how to handle drop events in the bin view. \ 
+* `conformer_options.py <conformer_options.py>`_ conformer_options.py - Shows how to set options for the Conform (Match Media) and Import Folder dialog. (for creating custom conform rules, see also conform_rules.py). \ 
+* `create_example.py <create_example.py>`_ Shows how to create a new project, add clips, and create a sequence. \ 
+* `custom_guides.py <custom_guides.py>`_ Example shows how you can add custom viewer guides and masks via Python. If you wish for this code to be run on startup, copy it to your <HIERO_PATH>/StartupUI directory. Run: help(hiero.ui.guides) for more info. \ 
+* `custom_spreadsheet.py <custom_spreadsheet.py>`_ Shows how to add custom columns to the Spreadsheet view. \ 
+* `custom_transcode.py <custom_transcode.py>`_ Example of a custom transcoder. \ 
+* `custom_transcode_ui.py <custom_transcode_ui.py>`_ Example of the user interface for a custom transcoder (goes with the custom_transcode.py code). \ 
+* `keyboard_shortcuts.py <keyboard_shortcuts.py>`_ This example shows how you can add custom keyboard shortcuts to Hiero. If you wish for this code to be run on startup, copy it to your <HIERO_PATH>/Startup directory. \ 
+* `localisation_helpers.py <localisation_helpers.py>`_ Localisation Helper Functions -. These methods allow you to Localise Clips on Bins, Shots, Tracks and Sequences. \ 
+* `multi_export.py <multi_export.py>`_ An example which shows how to spawn multiple exports from a Sequence from right-click menu in the Project Bin. \ 
+* `naming_example.py <naming_example.py>`_ Example for how to override hiero naming scheme. \ 
+* `new_sequence_from_selection.py <new_sequence_from_selection.py>`_ Context menu option to create new sequences from selected Clips in the Bin View. If Clips are named as Stereo left and right then one sequence will be created with left and right tagged tracks. \ 
+* `nuke_write.py <nuke_write.py>`_ An example of creating a nuke (\*.nk) script and using Nuke to render it. \ 
+* `playback_events_statusbar.py <playback_events_statusbar.py>`_ Shows how to use the Playback Started/Stopped events and adds a simple message to the MainWindow Status Bar. \ 
+* `project_events.py <project_events.py>`_ Shows how to use hiero.core.events to register callbacks for startup, shutdown and various project event types. See help on hiero.core.events.registerInterest and hiero.core.events.unregisterInterest for more details. \ 
+* `rush_render_auto_submit.py <rush_render_auto_submit.py>`_ Example to submit a Transcode render to a Rush render farm, automatically start the render, and open IRush. \ 
+* `rush_render_start_irush.py <rush_render_start_irush.py>`_ Example to submit a Transcode render to a Rush render farm. \ 
+* `spreadsheet_csv_export.py <spreadsheet_csv_export.py>`_ This Example shows how to register a custom menu to the Spreadsheet View and exports the contents of the Spreadsheet as a CSV file. Usage: Right-click on a row of the Spreadsheet, select Export > Spreadsheet to .CSV. Note: The 'Action' column is not currently hooked up and it does not currently take 'Drop Frame' into account. \ 
+* `versioning_example.py <versioning_example.py>`_ Example for how to override hiero versioning. \ 
+* `web_browser.py <web_browser.py>`_ An example of creating a dockable panel from Python. This script creates a simple PySide Qt web browser. \ 

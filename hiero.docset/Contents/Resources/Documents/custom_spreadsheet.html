@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Customising the Spreadsheet &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="API Reference" href="api/index.html" />
+    <link rel="prev" title="Conforming Rules" href="conformingrules.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/index.html" title="API Reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="conformingrules.html" title="Conforming Rules"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="customising-the-spreadsheet">
+<h1>Customising the Spreadsheet<a class="headerlink" href="#customising-the-spreadsheet" title="Permalink to this headline">¶</a></h1>
+<p>The functionality of the Spreadsheet View can be extended by registering a custom column class via Python.</p>
+<p>Creating custom columns allows you to display extra information in the Spreadsheet view, e.g. notes/metadata in Tags, or certain properties of a Clip which are not displayed by default.</p>
+<p>You can also customise the appearance of cells, e.g. the colour, size, font or icon displayed.</p>
+<p>Text data stored in your custom cells is also searchable in the Spreadsheet&#8217;s search filter box.</p>
+<div class="section" id="registering-custom-columns">
+<h2>Registering Custom Columns<a class="headerlink" href="#registering-custom-columns" title="Permalink to this headline">¶</a></h2>
+<p>To create your custom columns, you need to create a custom column class, which inherits from a &#8216;new style&#8217; python <strong>object</strong> class.</p>
+<p>You then inject your custom column class (e.g. MyCustomColumns) into the <strong>hiero.ui.customColumn</strong> module, like so:</p>
+<div class="highlight-cpp"><pre>hiero.ui.customColumn = MyCustomColumns()</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">hiero.ui.customColumn is a specially reserved module location that Hiero looks for when creating custom Spreadsheet columns. It can only contain a single custom column class.</p>
+</div>
+<p>Once you have registered your custom columns, you can right-click in the Spreadsheet View, to select which columns you would like to display.</p>
+<p>An example of creating custom spreadsheet columns can be found <a class="reference external" href="examples/custom_spreadsheet.py">here,</a> or by running the code below:</p>
+<div class="highlight-cpp"><pre># Shows how to add custom columns to the Spreadsheet view
+import hiero.ui
+import PySide.QtCore
+import PySide.QtGui
+
+_itemData = dict() # Just for example purposes. In real life, you'd store this in the model
+
+class CustomSpreadsheetColumns(object):
+  """
+    A class defining custom columns for Hiero's spreadsheet view. This has a similar, but
+    slightly simplified, interface to the QAbstractItemModel and QItemDelegate classes.
+  """
+
+  def numColumns(self):
+    """
+      Return the number of custom columns in the spreadsheet view
+    """
+    return 3
+
+  def columnName(self, column):
+    """
+      Return the name of a custom column
+    """
+    if column == 0:
+      return "Python Tags"
+    if column == 1:
+      return "Python Name"
+    if column == 2:
+      return "Python Row"
+    return ""
+
+  def getData(self, row, column, item):
+    """
+      Return the data in a cell
+    """
+    if column == 0:
+      return ""
+    if column == 1:
+      if item in _itemData:
+        return str(_itemData[item])
+      return item.name()
+    if column == 2:
+      return str(row+1)
+    return None
+
+  def setData(self, row, column, item, data):
+    """
+      Set the data in a cell
+    """
+    print "setData", (self, row, column, item, data)
+    _itemData[item] = str(data)
+
+  def getTooltip(self, row, column, item):
+    """
+      Return the tooltip for a cell
+    """
+    return "Tooltip: "+str(row)+"/"+str(column)+": "+item.name()
+
+  def getFont(self, row, column, item):
+    """
+      Return the tooltip for a cell
+    """
+    if column == 1:
+      return PySide.QtGui.QFont("Courier", 24)
+    return None
+
+  def getBackground(self, row, column, item):
+    """
+      Return the background colour for a cell
+    """
+    if column == 1:
+      return PySide.QtGui.QColor(64, 255, 64)
+    return None
+
+  def getForeground(self, row, column, item):
+    """
+      Return the text colour for a cell
+    """
+    if column == 1:
+      return PySide.QtGui.QColor(255, 64, 64)
+    return None
+
+  def getIcon(self, row, column, item):
+    """
+      Return the icon for a cell
+    """
+    if column == 1:
+      return PySide.QtGui.QIcon("icons:Add.png")
+    return None
+
+  def getSizeHint(self, row, column, item):
+    """
+      Return the size hint for a cell
+    """
+    if column == 0:
+      return PySide.QtCore.QSize(300, 32)
+    return None
+
+  def paintCell(self, row, column, item, painter, option):
+    """
+      Paint a custom cell. Return True if the cell was painted, or False to continue
+      with the default cell painting.
+    """
+    if column == 0:
+      if option.state &amp; PySide.QtGui.QStyle.State_Selected:
+        painter.fillRect(option.rect, option.palette.highlight())
+      iconSize = 20
+      r = PySide.QtCore.QRect(option.rect.x(), option.rect.y()+(option.rect.height()-iconSize)/2, iconSize, iconSize)
+      tags = item.tags()
+      if len(tags) &gt; 0:
+        painter.save()
+        painter.setClipRect(option.rect)
+        for tag in item.tags():
+          PySide.QtGui.QIcon(tag.icon()).paint(painter, r, PySide.QtCore.Qt.AlignLeft)
+          r.translate(r.width()+2, 0)
+        painter.restore()
+        return True
+    return False
+
+  def createEditor(self, row, column, item, view):
+    """
+      Create an editing widget for a custom cell
+    """
+    tags = item.tags()
+    if len(tags) &gt; 0:
+      cb = PySide.QtGui.QComboBox()
+      for tag in tags:
+        cb.addItem(PySide.QtGui.QIcon(tag.icon()), tag.name())
+      cb.currentIndexChanged.connect(self.indexChanged);
+      print "createEditor:", (self, row, column, item, view)
+      return cb
+    return None
+
+  def setEditorData(self, row, column, item, editor):
+    """
+      Update the custom editor from the model data. Return True if this was done.
+    """
+    print "setEditorData:", (self, row, column, item, editor)
+    if column == 1:
+      try:
+        print " - setEditorData:", _itemData[item]
+        index = int(_itemData[item])
+        editor.setCurrentIndex(index)
+      except:
+        print "No existing data for item"
+      return True
+    return False
+
+  def setModelData(self, row, column, item, editor):
+    """
+      Update the model data from the custom editor. Return True if this was done.
+    """
+    print "setModelData:", (self, row, column, item, editor)
+    if column == 1:
+      _itemData[item] = str(editor.currentIndex())
+      print " - setModelData:", _itemData[item]
+      return True
+    return False
+
+  def dropMimeData(self, row, column, item, data, items):
+    """
+      Handle a drag and drop operation
+    """
+    print "dropMimeData", (self, row, column, item, data.formats(), items)
+    return None
+
+
+  def indexChanged(self, index):
+    """
+      This method is called when our custom widget changes index.
+    """
+    print "ComboBox index changed:", index
+
+# Register our custom columns
+hiero.ui.customColumn = CustomSpreadsheetColumns()</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Customising the Spreadsheet</a><ul>
+<li><a class="reference internal" href="#registering-custom-columns">Registering Custom Columns</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="conformingrules.html"
+                        title="previous chapter">Conforming Rules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="api/index.html"
+                        title="next chapter">API Reference</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api/index.html" title="API Reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="conformingrules.html" title="Conforming Rules"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hieroXML>
+<hieroXML version="8" revision="51739" release="dev" hash="ee989be5-aee0-4c0c-e1b5-5aa409c735d7">
+ <Media>
+  <Source duration="32" objName="media" guid="{d8c08710-0000-0000-d8c0-871000000000}" name="colour_bars" file="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/colour_bars.mov">
+   <sets>
+    <Set title="Media" domainroot="foundry.source">
+     <values>
+      <WeakObjRefValue default="1" value="adea5cca-3410-7e47-b3a1-d4a2984fd3a9" name="foundry.source.umid"/>
+      <IntegerValue default="1" value="2048" name="foundry.source.width"/>
+      <IntegerValue default="1" value="1556" name="foundry.source.height"/>
+      <IntegerValue default="1" value="32" name="foundry.source.duration"/>
+      <TimeBaseValue default="1" value="24/1" name="foundry.source.framerate"/>
+      <TimeBaseValue default="1" value="0/1" name="foundry.source.samplerate"/>
+      <IntegerValue default="1" value="433352" name="foundry.source.bytes"/>
+      <IntegerValue default="1" value="1" name="foundry.source.fragments"/>
+      <StringValue default="1" value="C:" name="foundry.source.volume"/>
+      <StringValue default="1" value="/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources" name="foundry.source.path"/>
+      <StringValue default="1" value="colour_bars" name="foundry.source.shortfilename"/>
+      <StringValue default="1" value="colour_bars.mov" name="foundry.source.filename"/>
+      <FloatValue default="1" value="1" name="foundry.source.pixelAspect"/>
+      <IntegerValue default="1" value="3413787412" name="foundry.source.shoottime"/>
+      <StringValue default="1" value="QuickTime H.264" name="foundry.source.type"/>
+     </values>
+    </Set>
+    <Set title="QuickTime" domainroot="com.apple.quicktime">
+     <values>
+      <StringValue default="1" value="H.264" name="com.apple.quicktime.codec"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="32" in="0" basen="2400" objName="v" based="100"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+  </Source>
+  <Source duration="20" objName="media" guid="{d8be8710-0000-0000-d8be-871000000000}" name="red_black_checkerboard" file="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/red_black_checkerboard.mov">
+   <sets>
+    <Set title="Media" domainroot="foundry.source">
+     <values>
+      <WeakObjRefValue default="1" value="6dd85221-8ef8-c64d-ad26-00a2a033a10e" name="foundry.source.umid"/>
+      <IntegerValue default="1" value="2048" name="foundry.source.width"/>
+      <IntegerValue default="1" value="1556" name="foundry.source.height"/>
+      <IntegerValue default="1" value="20" name="foundry.source.duration"/>
+      <TimeBaseValue default="1" value="24/1" name="foundry.source.framerate"/>
+      <TimeBaseValue default="1" value="0/1" name="foundry.source.samplerate"/>
+      <IntegerValue default="1" value="946489" name="foundry.source.bytes"/>
+      <IntegerValue default="1" value="1" name="foundry.source.fragments"/>
+      <StringValue default="1" value="C:" name="foundry.source.volume"/>
+      <StringValue default="1" value="/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources" name="foundry.source.path"/>
+      <StringValue default="1" value="red_black_checkerboard" name="foundry.source.shortfilename"/>
+      <StringValue default="1" value="red_black_checkerboard.mov" name="foundry.source.filename"/>
+      <FloatValue default="1" value="1" name="foundry.source.pixelAspect"/>
+      <IntegerValue default="1" value="3413787415" name="foundry.source.shoottime"/>
+      <StringValue default="1" value="QuickTime H.264" name="foundry.source.type"/>
+     </values>
+    </Set>
+    <Set title="QuickTime" domainroot="com.apple.quicktime">
+     <values>
+      <StringValue default="1" value="H.264" name="com.apple.quicktime.codec"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="20" in="0" basen="2400" objName="v" based="100"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+  </Source>
+  <Source duration="30" objName="media" guid="{d8c28710-0000-0000-d8c2-871000000000}" name="colour_wheel" file="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/colour_wheel.mov">
+   <sets>
+    <Set title="Media" domainroot="foundry.source">
+     <values>
+      <WeakObjRefValue default="1" value="f2920f9f-4a98-b649-b8e3-b834633c4ac7" name="foundry.source.umid"/>
+      <IntegerValue default="1" value="2048" name="foundry.source.width"/>
+      <IntegerValue default="1" value="1556" name="foundry.source.height"/>
+      <IntegerValue default="1" value="30" name="foundry.source.duration"/>
+      <TimeBaseValue default="1" value="24/1" name="foundry.source.framerate"/>
+      <TimeBaseValue default="1" value="0/1" name="foundry.source.samplerate"/>
+      <IntegerValue default="1" value="2606339" name="foundry.source.bytes"/>
+      <IntegerValue default="1" value="1" name="foundry.source.fragments"/>
+      <StringValue default="1" value="C:" name="foundry.source.volume"/>
+      <StringValue default="1" value="/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources" name="foundry.source.path"/>
+      <StringValue default="1" value="colour_wheel" name="foundry.source.shortfilename"/>
+      <StringValue default="1" value="colour_wheel.mov" name="foundry.source.filename"/>
+      <FloatValue default="1" value="1" name="foundry.source.pixelAspect"/>
+      <IntegerValue default="1" value="3413787414" name="foundry.source.shoottime"/>
+      <StringValue default="1" value="QuickTime H.264" name="foundry.source.type"/>
+     </values>
+    </Set>
+    <Set title="QuickTime" domainroot="com.apple.quicktime">
+     <values>
+      <StringValue default="1" value="H.264" name="com.apple.quicktime.codec"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="30" in="0" basen="2400" objName="v" based="100"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+  </Source>
+  <Source duration="15" objName="media" guid="{d8c48710-0000-0000-d8c4-871000000000}" name="purple.000001" file="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/purple.%06d.dpx 1-15">
+   <sets>
+    <Set title="Media" domainroot="foundry.source">
+     <values>
+      <WeakObjRefValue default="1" value="f8eba048-8921-47c4-fd67-0a3eec70e885" name="foundry.source.umid"/>
+      <IntegerValue default="1" value="2048" name="foundry.source.width"/>
+      <IntegerValue default="1" value="1556" name="foundry.source.height"/>
+      <IntegerValue default="1" value="15" name="foundry.source.duration"/>
+      <TimeBaseValue default="1" value="25/1" name="foundry.source.framerate"/>
+      <TimeBaseValue default="1" value="0/1" name="foundry.source.samplerate"/>
+      <IntegerValue default="1" value="1" name="foundry.source.starttime"/>
+      <IntegerValue default="1" value="0" name="foundry.source.bitsperchannel"/>
+      <IntegerValue default="1" value="191232000" name="foundry.source.bytes"/>
+      <IntegerValue default="1" value="15" name="foundry.source.fragments"/>
+      <StringValue default="1" value="C:" name="foundry.source.volume"/>
+      <StringValue default="1" value="/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources" name="foundry.source.path"/>
+      <StringValue default="1" value="purple.000001" name="foundry.source.shortfilename"/>
+      <StringValue default="1" value="purple.%06d.dpx 1-15" name="foundry.source.filename"/>
+      <FloatValue default="1" value="1" name="foundry.source.pixelAspect"/>
+      <StringValue default="1" value="log" name="foundry.source.colourcurve"/>
+      <StringValue default="1" value="integer" name="foundry.source.channelformat"/>
+      <StringValue default="1" value="RGBA (Int16)  Open Color IO space: 3" name="foundry.source.pixelformat"/>
+      <IntegerValue default="1" value="0" name="foundry.source.bitmapsize"/>
+      <IntegerValue default="1" value="1" name="foundry.source.timecode"/>
+     </values>
+    </Set>
+    <Set title="media.dpx" domainroot="media.dpx">
+     <values>
+      <IntegerValue default="1" value="255" name="media.dpx.field_number"/>
+      <IntegerValue default="1" value="0" name="media.dpx.frame_position"/>
+      <IntegerValue default="1" value="255" name="media.dpx.interlace"/>
+      <StringValue default="1" value="log" name="media.dpx.transfer"/>
+      <IntegerValue default="1" value="-1" name="media.dpx.user_bits"/>
+      <IntegerValue default="1" value="255" name="media.dpx.video_signal"/>
+     </values>
+    </Set>
+    <Set title="media.input" domainroot="media.input">
+     <values>
+      <StringValue default="1" value="10-bit fixed" name="media.input.bitsperchannel"/>
+      <StringValue default="1" value="Nuke" name="media.input.creator"/>
+      <StringValue default="1" value="2012-03-05 11:42:48" name="media.input.ctime"/>
+      <StringValue default="1" value="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/purple.000001.dpx" name="media.input.filename"/>
+      <StringValue default="1" value="dpx" name="media.input.filereader"/>
+      <IntegerValue default="1" value="12748800" name="media.input.filesize"/>
+      <StringValue default="1" value="" name="media.input.header_ctime"/>
+      <IntegerValue default="1" value="1556" name="media.input.height"/>
+      <StringValue default="1" value="2012-03-05 10:24:23" name="media.input.mtime"/>
+      <FloatValue default="1" value="0" name="media.input.shutterangle"/>
+      <IntegerValue default="1" value="2048" name="media.input.width"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="15" in="1" basen="25" objName="v" based="1"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+  </Source>
+  <Source duration="40" objName="media" guid="{d8ba8710-0000-0000-d8ba-871000000000}" name="blue_green_checkerboard" file="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/blue_green_checkerboard.mov">
+   <sets>
+    <Set title="Media" domainroot="foundry.source">
+     <values>
+      <WeakObjRefValue default="1" value="a747ebf6-ee82-7c40-86dd-5e36273694f0" name="foundry.source.umid"/>
+      <IntegerValue default="1" value="2048" name="foundry.source.width"/>
+      <IntegerValue default="1" value="1556" name="foundry.source.height"/>
+      <IntegerValue default="1" value="40" name="foundry.source.duration"/>
+      <TimeBaseValue default="1" value="24/1" name="foundry.source.framerate"/>
+      <TimeBaseValue default="1" value="0/1" name="foundry.source.samplerate"/>
+      <IntegerValue default="1" value="2299186" name="foundry.source.bytes"/>
+      <IntegerValue default="1" value="1" name="foundry.source.fragments"/>
+      <StringValue default="1" value="C:" name="foundry.source.volume"/>
+      <StringValue default="1" value="/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources" name="foundry.source.path"/>
+      <StringValue default="1" value="blue_green_checkerboard" name="foundry.source.shortfilename"/>
+      <StringValue default="1" value="blue_green_checkerboard.mov" name="foundry.source.filename"/>
+      <FloatValue default="1" value="1" name="foundry.source.pixelAspect"/>
+      <IntegerValue default="1" value="3413787416" name="foundry.source.shoottime"/>
+      <StringValue default="1" value="QuickTime H.264" name="foundry.source.type"/>
+     </values>
+    </Set>
+    <Set title="QuickTime" domainroot="com.apple.quicktime">
+     <values>
+      <StringValue default="1" value="H.264" name="com.apple.quicktime.codec"/>
+     </values>
+    </Set>
+   </sets>
+   <times>
+    <MediaDesc_TimeInfo_MapItem>
+     <MediaDesc objName="k" channelIndex="0">
+      <MediaFlags allone="1" objName="flags"/>
+      <MediaType objName="type" type="0"/>
+     </MediaDesc>
+     <TimeInfo duration="40" in="0" basen="2400" objName="v" based="100"/>
+    </MediaDesc_TimeInfo_MapItem>
+   </times>
+  </Source>
+ </Media>
+ <Project editable="1" samplerate="48000/1" sixteenBitLut="sRGB" guid="{80432010-0000-0000-8043-201000000000}" logLut="Cineon" floatLut="linear" framerate="25/1" redVideoDecodeMode="0" timestamp="1330951523" name="core_bin_example" thumbnailLut="sRGB" viewerLut="sRGB" eightBitLut="sRGB">
+  <items>
+   <RootBinProjectItem editable="1" guid="{708aaa0a-0000-0000-708a-aa0a00000000}" timestamp="1330951523" name="Sequences">
+    <items>
+     <BinProjectItem editable="1" guid="{202d6b10-0000-0000-202d-6b1000000000}" timestamp="1330951523" name="Bin 1">
+      <items>
+       <BinProjectItem editable="1" guid="{402a6b10-0000-0000-402a-6b1000000000}" timestamp="1330951523" name="Bin 2">
+        <items>
+         <SequenceProjectItemRoot editable="1" MasterVersion="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/colour_bars.mov" guid="{e03d5c10-0000-0000-e03d-5c1000000000}" timestamp="1330951523" name="colour_bars">
+          <items>
+           <SequenceProjectItemVersion editable="1" guid="{e0326b10-0000-0000-e032-6b1000000000}" timestamp="1330951523" name="colour_bars">
+            <Sequence timeOffset="0" timecodeStart="0" objName="sequence" guid="{78a6900a-0000-0000-78a6-900a00000000}" isclip="1" timeDisplayFormat="0" name="colour_bars" useSoftTrims="0">
+             <videotracks>
+              <VideoTrack name="Video 1">
+               <trackItems>
+                <TrackItem guid="{18482010-0000-0000-1848-201000000000}" link="internal"/>
+               </trackItems>
+               <sets>
+                <Set title="Track" domainroot="foundry.track">
+                 <values>
+                  <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+                 </values>
+                </Set>
+               </sets>
+              </VideoTrack>
+             </videotracks>
+             <sets>
+              <Set title="Timeline" domainroot="foundry.timeline">
+               <values>
+                <TimeBaseValue default="1" value="24/1" name="foundry.timeline.framerate"/>
+                <IntegerValue default="0" value="32" name="foundry.timeline.duration"/>
+                <MediaFormatValue default="1" value="1,[ 0, 0, 2048, 1556],[ 0, 0, 2048, 1556]," name="foundry.timeline.overrideoutputformat"/>
+               </values>
+              </Set>
+             </sets>
+            </Sequence>
+           </SequenceProjectItemVersion>
+          </items>
+          <ActiveItemIndex>0</ActiveItemIndex>
+          <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+         </SequenceProjectItemRoot>
+        </items>
+        <BinViewType>2</BinViewType>
+        <BinViewZoom>70</BinViewZoom>
+       </BinProjectItem>
+       <SequenceProjectItemRoot editable="1" MasterVersion="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/red_black_checkerboard.mov" guid="{103c5c10-0000-0000-103c-5c1000000000}" timestamp="1330951523" name="red_black_checkerboard">
+        <items>
+         <SequenceProjectItemVersion editable="1" guid="{d0286b10-0000-0000-d028-6b1000000000}" timestamp="1330951523" name="red_black_checkerboard">
+          <Sequence timeOffset="0" timecodeStart="0" objName="sequence" guid="{98a1900a-0000-0000-98a1-900a00000000}" isclip="1" timeDisplayFormat="0" name="red_black_checkerboard" useSoftTrims="0">
+           <videotracks>
+            <VideoTrack name="Video 1">
+             <trackItems>
+              <TrackItem guid="{f83e2010-0000-0000-f83e-201000000000}" link="internal"/>
+             </trackItems>
+             <sets>
+              <Set title="Track" domainroot="foundry.track">
+               <values>
+                <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+               </values>
+              </Set>
+             </sets>
+            </VideoTrack>
+           </videotracks>
+           <sets>
+            <Set title="Timeline" domainroot="foundry.timeline">
+             <values>
+              <TimeBaseValue default="1" value="24/1" name="foundry.timeline.framerate"/>
+              <IntegerValue default="0" value="20" name="foundry.timeline.duration"/>
+              <MediaFormatValue default="1" value="1,[ 0, 0, 2048, 1556],[ 0, 0, 2048, 1556]," name="foundry.timeline.overrideoutputformat"/>
+             </values>
+            </Set>
+           </sets>
+          </Sequence>
+         </SequenceProjectItemVersion>
+        </items>
+        <ActiveItemIndex>0</ActiveItemIndex>
+        <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+       </SequenceProjectItemRoot>
+      </items>
+      <BinViewType>2</BinViewType>
+      <BinViewZoom>70</BinViewZoom>
+     </BinProjectItem>
+     <BinProjectItem editable="1" guid="{b02b6b10-0000-0000-b02b-6b1000000000}" timestamp="1330951523" name="Bin 3">
+      <items>
+       <SequenceProjectItemRoot editable="1" MasterVersion="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/colour_wheel.mov" guid="{b03f5c10-0000-0000-b03f-5c1000000000}" timestamp="1330951523" name="colour_wheel">
+        <items>
+         <SequenceProjectItemVersion editable="1" guid="{c0356b10-0000-0000-c035-6b1000000000}" timestamp="1330951523" name="colour_wheel">
+          <Sequence timeOffset="0" timecodeStart="0" objName="sequence" guid="{e8a8900a-0000-0000-e8a8-900a00000000}" isclip="1" timeDisplayFormat="0" name="colour_wheel" useSoftTrims="0">
+           <videotracks>
+            <VideoTrack name="Video 1">
+             <trackItems>
+              <TrackItem guid="{a84c2010-0000-0000-a84c-201000000000}" link="internal"/>
+             </trackItems>
+             <sets>
+              <Set title="Track" domainroot="foundry.track">
+               <values>
+                <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+               </values>
+              </Set>
+             </sets>
+            </VideoTrack>
+           </videotracks>
+           <sets>
+            <Set title="Timeline" domainroot="foundry.timeline">
+             <values>
+              <TimeBaseValue default="1" value="24/1" name="foundry.timeline.framerate"/>
+              <IntegerValue default="0" value="30" name="foundry.timeline.duration"/>
+              <MediaFormatValue default="1" value="1,[ 0, 0, 2048, 1556],[ 0, 0, 2048, 1556]," name="foundry.timeline.overrideoutputformat"/>
+             </values>
+            </Set>
+           </sets>
+          </Sequence>
+         </SequenceProjectItemVersion>
+        </items>
+        <ActiveItemIndex>0</ActiveItemIndex>
+        <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+       </SequenceProjectItemRoot>
+       <SequenceProjectItemRoot editable="1" MasterVersion="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/purple.%06d.dpx 1-15" guid="{30901b11-0000-0000-3090-1b1100000000}" timestamp="1330951523" name="purple">
+        <items>
+         <SequenceProjectItemVersion editable="1" guid="{008a910a-0000-0000-008a-910a00000000}" timestamp="1330951523" name="purple">
+          <Sequence timeOffset="1" timecodeStart="1" objName="sequence" guid="{58ab900a-0000-0000-58ab-900a00000000}" isclip="1" timeDisplayFormat="0" name="purple" useSoftTrims="0">
+           <videotracks>
+            <VideoTrack name="Video 1">
+             <trackItems>
+              <TrackItem guid="{38512010-0000-0000-3851-201000000000}" link="internal"/>
+             </trackItems>
+             <sets>
+              <Set title="Track" domainroot="foundry.track">
+               <values>
+                <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+               </values>
+              </Set>
+             </sets>
+            </VideoTrack>
+           </videotracks>
+           <sets>
+            <Set title="Timeline" domainroot="foundry.timeline">
+             <values>
+              <TimeBaseValue default="1" value="25/1" name="foundry.timeline.framerate"/>
+              <IntegerValue default="0" value="15" name="foundry.timeline.duration"/>
+              <MediaFormatValue default="1" value="1,[ 0, 0, 2048, 1556],[ 0, 0, 2048, 1556]," name="foundry.timeline.overrideoutputformat"/>
+             </values>
+            </Set>
+           </sets>
+          </Sequence>
+         </SequenceProjectItemVersion>
+        </items>
+        <ActiveItemIndex>0</ActiveItemIndex>
+        <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+       </SequenceProjectItemRoot>
+      </items>
+      <BinViewType>2</BinViewType>
+      <BinViewZoom>70</BinViewZoom>
+     </BinProjectItem>
+     <SequenceProjectItemRoot editable="1" MasterVersion="C:/workspace/michael/Hiero1.0/Apps/Storm/Bundle/objects/win-64-x86-debug-10.0.30319-dynamic/Bundle/Windows/Documentation/Python/Resources/blue_green_checkerboard.mov" guid="{403a5c10-0000-0000-403a-5c1000000000}" timestamp="1330951523" name="blue_green_checkerboard">
+      <items>
+       <SequenceProjectItemVersion editable="1" guid="{f0256b10-0000-0000-f025-6b1000000000}" timestamp="1330951523" name="blue_green_checkerboard">
+        <Sequence timeOffset="0" timecodeStart="0" objName="sequence" guid="{08a4900a-0000-0000-08a4-900a00000000}" isclip="1" timeDisplayFormat="0" name="blue_green_checkerboard" useSoftTrims="0">
+         <videotracks>
+          <VideoTrack name="Video 1">
+           <trackItems>
+            <TrackItem guid="{683a2010-0000-0000-683a-201000000000}" link="internal"/>
+           </trackItems>
+           <sets>
+            <Set title="Track" domainroot="foundry.track">
+             <values>
+              <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+             </values>
+            </Set>
+           </sets>
+          </VideoTrack>
+         </videotracks>
+         <sets>
+          <Set title="Timeline" domainroot="foundry.timeline">
+           <values>
+            <TimeBaseValue default="1" value="24/1" name="foundry.timeline.framerate"/>
+            <IntegerValue default="0" value="40" name="foundry.timeline.duration"/>
+            <MediaFormatValue default="1" value="1,[ 0, 0, 2048, 1556],[ 0, 0, 2048, 1556]," name="foundry.timeline.overrideoutputformat"/>
+           </values>
+          </Set>
+         </sets>
+        </Sequence>
+       </SequenceProjectItemVersion>
+      </items>
+      <ActiveItemIndex>0</ActiveItemIndex>
+      <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+     </SequenceProjectItemRoot>
+     <SequenceProjectItemRoot editable="1" MasterVersion="" guid="{00921b11-0000-0000-0092-1b1100000000}" timestamp="1330951523" name="NewSequence">
+      <items>
+       <SequenceProjectItemVersion editable="1" guid="{708b910a-0000-0000-708b-910a00000000}" timestamp="1330951523" name="NewSequence">
+        <Sequence timeOffset="0" timecodeStart="86400" objName="sequence" guid="{c8ad900a-0000-0000-c8ad-900a00000000}" isclip="0" timeDisplayFormat="0" name="NewSequence" useSoftTrims="0">
+         <videotracks>
+          <VideoTrack name="VideoTrack">
+           <trackItems>
+            <TrackItem guid="{c8552010-0000-0000-c855-201000000000}" link="internal"/>
+            <TrackItem guid="{98232010-0000-0000-9823-201000000000}" link="internal"/>
+            <TrackItem guid="{28282010-0000-0000-2828-201000000000}" link="internal"/>
+            <TrackItem guid="{b82c2010-0000-0000-b82c-201000000000}" link="internal"/>
+            <TrackItem guid="{48312010-0000-0000-4831-201000000000}" link="internal"/>
+           </trackItems>
+           <sets>
+            <Set title="Track" domainroot="foundry.track">
+             <values>
+              <BooleanValue default="1" value="Yes" name="foundry.track.enabled"/>
+             </values>
+            </Set>
+           </sets>
+          </VideoTrack>
+         </videotracks>
+         <sets>
+          <Set title="Timeline" domainroot="foundry.timeline">
+           <values>
+            <TimeBaseValue default="1" value="24/1" name="foundry.timeline.framerate"/>
+            <MediaFormatValue default="1" value="1,[ 0, 0, 1920, 1080],[ 0, 0, 1920, 1080],HD 1080" name="foundry.timeline.overrideoutputformat"/>
+           </values>
+          </Set>
+         </sets>
+        </Sequence>
+       </SequenceProjectItemVersion>
+      </items>
+      <ActiveItemIndex>0</ActiveItemIndex>
+      <TimelineProjectItem editable="1" objName="Snapshots" timestamp="1330951523" name=""/>
+     </SequenceProjectItemRoot>
+    </items>
+    <BinViewType>2</BinViewType>
+    <BinViewZoom>70</BinViewZoom>
+    <AllowedItems>13</AllowedItems>
+   </RootBinProjectItem>
+   <RootBinProjectItem editable="1" guid="{e08baa0a-0000-0000-e08b-aa0a00000000}" timestamp="1330951523" name="Tags">
+    <BinViewType>2</BinViewType>
+    <BinViewZoom>70</BinViewZoom>
+    <AllowedItems>17</AllowedItems>
+   </RootBinProjectItem>
+  </items>
+  <BinViewType>2</BinViewType>
+  <BinViewZoom>70</BinViewZoom>
+  <AllowedItems>2</AllowedItems>
+  <RootBinProjectItem objName="sequencesBin" guid="{708aaa0a-0000-0000-708a-aa0a00000000}" link="internal"/>
+  <RootBinProjectItem objName="tagsBin" guid="{e08baa0a-0000-0000-e08b-aa0a00000000}" link="internal"/>
+  <ExportStructure isFile="0" isHidden="0" path="{shotname}" objName="exportstructure" exportrootpath="" preset=""/>
+ </Project>
+ <UIState/>
+ <TrackItemLinkGroups>
+  <TrackItemLinkGroup objName="links" guid="{9015a010-0000-0000-9015-a01000000000}">
+   <trackItems>
+    <TrackItem guid="{18482010-0000-0000-1848-201000000000}" link="internal"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup objName="links" guid="{c012a010-0000-0000-c012-a01000000000}">
+   <trackItems>
+    <TrackItem guid="{f83e2010-0000-0000-f83e-201000000000}" link="internal"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup objName="links" guid="{f00fa010-0000-0000-f00f-a01000000000}">
+   <trackItems>
+    <TrackItem guid="{a84c2010-0000-0000-a84c-201000000000}" link="internal"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup objName="links" guid="{8016a010-0000-0000-8016-a01000000000}">
+   <trackItems>
+    <TrackItem guid="{38512010-0000-0000-3851-201000000000}" link="internal"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+  <TrackItemLinkGroup objName="links" guid="{5028a010-0000-0000-5028-a01000000000}">
+   <trackItems>
+    <TrackItem guid="{683a2010-0000-0000-683a-201000000000}" link="internal"/>
+   </trackItems>
+  </TrackItemLinkGroup>
+ </TrackItemLinkGroups>
+ <trackItemCollection>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="32" timelineIn="0" guid="{18482010-0000-0000-1848-201000000000}" sourceDuration="32" reelName="" channelIndex="0" name="colour_bars" conformScore="0">
+   <TrackItemLinkGroup objName="links" guid="{9015a010-0000-0000-9015-a01000000000}" link="internal"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Source objName="media" guid="{d8c08710-0000-0000-d8c0-871000000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Source objName="media" guid="{d8c08710-0000-0000-d8c0-871000000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="20" timelineIn="0" guid="{f83e2010-0000-0000-f83e-201000000000}" sourceDuration="20" reelName="" channelIndex="0" name="red_black_checkerboard" conformScore="0">
+   <TrackItemLinkGroup objName="links" guid="{c012a010-0000-0000-c012-a01000000000}" link="internal"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Source objName="media" guid="{d8be8710-0000-0000-d8be-871000000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Source objName="media" guid="{d8be8710-0000-0000-d8be-871000000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="30" timelineIn="0" guid="{a84c2010-0000-0000-a84c-201000000000}" sourceDuration="30" reelName="" channelIndex="0" name="colour_wheel" conformScore="0">
+   <TrackItemLinkGroup objName="links" guid="{f00fa010-0000-0000-f00f-a01000000000}" link="internal"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Source objName="media" guid="{d8c28710-0000-0000-d8c2-871000000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Source objName="media" guid="{d8c28710-0000-0000-d8c2-871000000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="1" enabled="1" timelineDuration="15" timelineIn="0" guid="{38512010-0000-0000-3851-201000000000}" sourceDuration="15" reelName="" channelIndex="0" name="purple" conformScore="0">
+   <TrackItemLinkGroup objName="links" guid="{8016a010-0000-0000-8016-a01000000000}" link="internal"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Source objName="media" guid="{d8c48710-0000-0000-d8c4-871000000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Source objName="media" guid="{d8c48710-0000-0000-d8c4-871000000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="40" timelineIn="0" guid="{683a2010-0000-0000-683a-201000000000}" sourceDuration="40" reelName="" channelIndex="0" name="blue_green_checkerboard" conformScore="0">
+   <TrackItemLinkGroup objName="links" guid="{5028a010-0000-0000-5028-a01000000000}" link="internal"/>
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Source objName="media" guid="{d8ba8710-0000-0000-d8ba-871000000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Source objName="media" guid="{d8ba8710-0000-0000-d8ba-871000000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="41" timelineIn="0" guid="{c8552010-0000-0000-c855-201000000000}" sourceDuration="40" reelName="" channelIndex="0" name="TrackItem1" conformScore="0">
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Sequence objName="media" guid="{08a4900a-0000-0000-08a4-900a00000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Sequence objName="media" guid="{08a4900a-0000-0000-08a4-900a00000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="41" timelineIn="41" guid="{98232010-0000-0000-9823-201000000000}" sourceDuration="20" reelName="" channelIndex="0" name="TrackItem2" conformScore="0">
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Sequence objName="media" guid="{98a1900a-0000-0000-98a1-900a00000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Sequence objName="media" guid="{98a1900a-0000-0000-98a1-900a00000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="21" timelineIn="82" guid="{28282010-0000-0000-2828-201000000000}" sourceDuration="32" reelName="" channelIndex="0" name="TrackItem3" conformScore="0">
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Sequence objName="media" guid="{78a6900a-0000-0000-78a6-900a00000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Sequence objName="media" guid="{78a6900a-0000-0000-78a6-900a00000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="33" timelineIn="103" guid="{b82c2010-0000-0000-b82c-201000000000}" sourceDuration="30" reelName="" channelIndex="0" name="TrackItem4" conformScore="0">
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Sequence objName="media" guid="{e8a8900a-0000-0000-e8a8-900a00000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Sequence objName="media" guid="{e8a8900a-0000-0000-e8a8-900a00000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+  <TrackItem offset="0" matchdescription="" sourceIn="0" enabled="1" timelineDuration="31" timelineIn="136" guid="{48312010-0000-0000-4831-201000000000}" sourceDuration="15" reelName="" channelIndex="0" name="TrackItem5" conformScore="0">
+   <MediaFlags allone="1" objName="flags"/>
+   <MediaType objName="type" type="0"/>
+   <groupdata>
+    <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+     <Sequence objName="media" guid="{58ab900a-0000-0000-58ab-900a00000000}" link="internal"/>
+    </MediaInstance_Vector>
+   </groupdata>
+   <Look objName="look">
+    <CompositeEffect objName="effects"/>
+   </Look>
+   <MediaDesc objName="mediatype" channelIndex="0">
+    <MediaFlags allone="1" objName="flags"/>
+    <MediaType objName="type" type="0"/>
+   </MediaDesc>
+   <MediaGroup offset="0" objName="media">
+    <groupdata>
+     <MediaInstance_Vector offset="0" quality="0" bakedeffects="0">
+      <Sequence objName="media" guid="{58ab900a-0000-0000-58ab-900a00000000}" link="internal"/>
+     </MediaInstance_Vector>
+    </groupdata>
+   </MediaGroup>
+  </TrackItem>
+ </trackItemCollection>
+</hieroXML>

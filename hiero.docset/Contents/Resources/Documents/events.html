@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Events &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Export System" href="export.html" />
+    <link rel="prev" title="Undo &amp; Redo" href="undoredo.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="export.html" title="Export System"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="undoredo.html" title="Undo &amp; Redo"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="events">
+<h1>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h1>
+<p>The hiero.core.events module allows you to register method callbacks to respond to events sent by Hiero.
+Hiero uses this for the callback mechanism to allow Python scripts to get notifications when interesting things happen.
+It also allows for the creation of custom event types and for sending custom events.</p>
+<p>An <strong>event</strong> is an object which is passed to registered callbacks.</p>
+<p>If the event comes from Hiero itself (and is not a custom user registered event), it contains three attributes:</p>
+<ol class="arabic simple">
+<li><strong>type</strong> - indicates the type of the EventType (e.g. kShowContextMenu)</li>
+<li><strong>subtype</strong> - indicates the subtype of the EventType (e.g. kTimeline)</li>
+<li><strong>sender</strong> (generally a view, or action which triggered the event)</li>
+</ol>
+<p>The <strong>type</strong> and <strong>subtype</strong> attributes indicate the type and subtype of the event, respectively.
+The <strong>sender</strong> is the object that sent the event, and varies by event type (and sometimes by subtype event).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The subtype attribute can be None. This is the case if an event is sent without a subtype.
+Generally, the type and subtype are strings, usually from the EventType enumeration.</p>
+</div>
+<p>The most basic event callback takes the following form:</p>
+<div class="highlight-cpp"><pre>def eventCallback(event):
+  print "Event fired with type %s, subtype %s and sender %s" % (event.type, event.subtype, str(event.sender))</pre>
+</div>
+<div class="section" id="event-types">
+<h2>Event types<a class="headerlink" href="#event-types" title="Permalink to this headline">¶</a></h2>
+<p>Hiero registers a number of standard Event types:</p>
+<p><strong>Application event types</strong></p>
+<div class="highlight-cpp"><pre>kStartup - triggered when Hiero starts up
+kShutdown - triggered when Hiero shuts down</pre>
+</div>
+<p><strong>Project event types</strong></p>
+<div class="highlight-cpp"><pre>kBeforeNewProjectCreated - triggered before a new Project is created
+kAfterNewProjectCreated - triggered after a new Project is created
+kBeforeProjectLoad - triggered before a Project starts loading
+kAfterProjectLoad - triggered after a Project has finished loading
+kBeforeProjectSave - triggered before a Project is saved
+kAfterProjectSave - triggered after a Project has been saved
+kBeforeProjectClose - triggered before a Project has closed
+kAfterProjectClose - triggered after a Project has closed</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These Project events have a &#8216;project&#8217; property, which allows you to work with the Project that triggered the event.
+See <cite>project_events.py &lt;examples/projecT_events.py&gt;</cite> for example usage.</p>
+</div>
+<p><strong>Playback event types</strong></p>
+<div class="highlight-cpp"><pre>kPlaybackStarted - triggered when a playback starts
+kPlaybackStopped - triggered when a playback stops
+kPlaybackClipChanged - triggered when the current Clip in the Viewer changes</pre>
+</div>
+<p><strong>Dialog event types</strong></p>
+<div class="highlight-cpp"><pre>kExportDialog - triggered when the Export Dialog is opened</pre>
+</div>
+<p><strong>View event types</strong></p>
+<div class="highlight-cpp"><pre>kShowContextualMenu - triggered when a right-click context menu is shown in a view
+kSelectionChanged -  triggered when a selection of items (e.g. Shots, Clips) in the view changes
+kDrop - triggered when something is dropped into the view</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">View EventTypes (and other custom EventTypes) can be used in conjunction with the <strong>subtypes</strong> below.</p>
+</div>
+</div>
+<div class="section" id="event-subtypes">
+<h2>Event subtypes<a class="headerlink" href="#event-subtypes" title="Permalink to this headline">¶</a></h2>
+<p>The following event subtypes can be used to register events which only trigger in particular view:</p>
+<div class="highlight-cpp"><pre>kTimeline - for events which occur in the TimelineEditor View
+kViewer - for events which occur in the Viewer
+kBin - for events which occur in the Bin View
+kSpreadsheet - for events which occur in the Spreadsheet View</pre>
+</div>
+</div>
+<div class="section" id="registering-interest-in-an-event">
+<h2>Registering Interest in an Event<a class="headerlink" href="#registering-interest-in-an-event" title="Permalink to this headline">¶</a></h2>
+<p>To register interest in an event of a given type, use the registerInterest method, passing callable and optional arguments and keyword arguments.</p>
+<div class="highlight-cpp"><pre>events.registerInterest(eventType, callback, *args, **kwargs)</pre>
+</div>
+<p>When an event of eventType is fired, the callback is called, passed the event object first, then the args and finally the kwargs.</p>
+<p>To unregister interest in an event, use:</p>
+<div class="highlight-cpp"><pre>events.unregisterInterest( eventType, callback )</pre>
+</div>
+<p>eventType can be a string or an EventType member, such as in the following example:</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+def eventCallback(event):
+  print "fired"
+
+events.registerInterest(events.EventType.kShowContextMenu, eventCallback)
+# or:
+events.registerInterest("kShowContextMenu", eventCallback)</pre>
+</div>
+<p>Events can also be registered for a specific subtype (kTimeline/kViewer/kBin/kSpreadsheet). These describe specific types of similar events.
+For example, kShowContextMenu fires when the user right-clicks on certain views in Hiero, and the subtype can filter out events for particular views.</p>
+<p>To register for a particular subtype of an event, you can either use a string with the event type and subtype separated by a forward slash, or you can use a tuple, as in the following lines:</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+events.registerInterest((events.EventType.kShowContextMenu, events.EventType.kBin), eventCallback)
+# or:
+events.registerInterest("kShowContextMenu/kBin", eventCallback)</pre>
+</div>
+<p>The following are examples of different callbacks and scenarios:</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+def callbackNoSpecialArgs(event):
+  print "callback1"
+  print "" # add some white space
+
+def callbackWithArgs(event, customMessage="No Message", title=""):
+  print "callback2"
+  print "title=" + title
+  print "customMessage=" + customMessage
+  print "" # add some white space
+
+# register interest in any context menu event
+events.registerInterest(events.EventType.kShowContextMenu, callbackNoSpecialArgs)
+
+# register interest in any context menu event with args by call order
+events.registerInterest(events.EventType.kShowContextMenu, callbackWithArgs, "Hello World", "Callback With Args")
+
+# register interest in any context menu event with args that uses keywords
+events.registerInterest(events.EventType.kShowContextMenu, callbackWithArgs, title="Callback With keyword Args")
+
+# register interest in context menu events for the bin view
+events.registerInterest("kShowContextMenu/kBin", callbackWithArgs, title="Callback for bin view sub event type")</pre>
+</div>
+<p>With the above, if a user right-clicks in the Bin View, the following prints in the terminal and the Script Editor:</p>
+<div class="highlight-cpp"><pre>callback2
+title=Callback for bin view sub event type
+customMessage=No Message
+
+callback1
+
+callback2
+title=Callback With Args
+customMessage=Hello World
+
+callback2
+title=Callback With keyword Args
+customMessage=No Message</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Callbacks registered for events with a subtype specified are called first, then callbacks registered for the event type (with a subtype <em>not</em> specified) are called.</p>
+</div>
+</div>
+<div class="section" id="custom-event-types">
+<h2>Custom Event Types<a class="headerlink" href="#custom-event-types" title="Permalink to this headline">¶</a></h2>
+<p>Users of the event system can register and unregister their own custom event types, using the following two methods:</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+events.registerEventType( "kNewEventName" )
+events.unregisterEventType( "kNewEventName" )</pre>
+</div>
+<div class="section" id="triggering-custom-events">
+<h3>Triggering Custom Events<a class="headerlink" href="#triggering-custom-events" title="Permalink to this headline">¶</a></h3>
+<p>There are two ways to trigger custom (or even Hiero registered) events. The first way is to trigger an event directly and immediately, using sendEvent. This blocks execution of the running script until all of the callbacks registered to listen for the event are processed.</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+events.sendEvent( "kNewEventName", None )
+# or, to use EventType...
+events.sendEvent( EventType.kNewEventName, None )</pre>
+</div>
+<p>In the above code, the second argument to sendEvent is the subtype, which is set to None in this example.</p>
+<p>The second way to trigger an event is to add it to the event queue. Hiero maintains an event queue which is dispatched on the main thread during idle time. To queue an event, call postEvent:</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+events.postEvent( EventType.kNewEventName, None )</pre>
+</div>
+<p>Both the sendEvent and the postEvent method take the same arguments: the event type, the subtype, and keyword arguments that become members of the event that can be accessed in callbacks that have registered an interest in events.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The event queue is only available in GUI mode.</p>
+</div>
+</div>
+<div class="section" id="putting-it-all-together">
+<h3>Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<p>Below is an example of using a custom event type and subtype.</p>
+<div class="highlight-cpp"><pre>from hiero.core import events
+
+# custom event handler that catches all custom events
+def customEventHandler(event):
+  # note that we use the message member of the event
+  print "Custom Event Fired: " + event.message
+
+# custom event handler that only handles custom events that are for a subtype
+def customEventHandlerOnlySubType(event):
+  # note that we use the message member of the event
+  print "Custom Event Subtype Fired: " + event.message
+
+# register the new event type and its subtype; both currently registered the same way
+events.registerEventType("kMyEvent")
+events.registerEventType("kMySubType")
+
+# register interest in any variants of the custom event
+events.registerInterest(events.EventType.kMyEvent, customEventHandler)
+
+# register interest in only custom events that are subtyped
+events.registerInterest((events.EventType.kMyEvent, events.EventType.kMySubType), customEventHandlerOnlySubType)
+
+# fire a general event
+print "Firing general event:"
+events.sendEvent(events.EventType.kMyEvent, None, message="General Event")
+
+# fire an event specifying the subtype
+print ""
+print "Firing event with subtype"
+events.sendEvent(events.EventType.kMyEvent,events.EventType.kMySubType, message="With Subtype")</pre>
+</div>
+<p>The above example prints out the following:</p>
+<div class="highlight-cpp"><pre>Firing general event:
+Custom Event Fired: General Event
+
+Firing event with subtype
+Custom Event Subtype Fired: With Subtype
+Custom Event Fired: With Subtype</pre>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>See the <a class="reference external" href="examples/bin_drop.py">bin_drop.py</a> and <a class="reference external" href="examples/project_events.py">project_events.py</a> examples which show how to register and respond to events.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Events</a><ul>
+<li><a class="reference internal" href="#event-types">Event types</a></li>
+<li><a class="reference internal" href="#event-subtypes">Event subtypes</a></li>
+<li><a class="reference internal" href="#registering-interest-in-an-event">Registering Interest in an Event</a></li>
+<li><a class="reference internal" href="#custom-event-types">Custom Event Types</a><ul>
+<li><a class="reference internal" href="#triggering-custom-events">Triggering Custom Events</a></li>
+<li><a class="reference internal" href="#putting-it-all-together">Putting It All Together</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="undoredo.html"
+                        title="previous chapter">Undo &amp; Redo</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="export.html"
+                        title="next chapter">Export System</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="export.html" title="Export System"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="undoredo.html" title="Undo &amp; Redo"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

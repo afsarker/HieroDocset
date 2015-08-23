@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Export System &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Conforming Rules" href="conformingrules.html" />
+    <link rel="prev" title="Events" href="events.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conformingrules.html" title="Conforming Rules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="events.html" title="Events"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="export-system">
+<h1>Export System<a class="headerlink" href="#export-system" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/export_classdiagram.png" src="_images/export_classdiagram.png" />
+</div>
+<div class="section" id="tasks-and-processors">
+<h2>Tasks and Processors<a class="headerlink" href="#tasks-and-processors" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">Task</span></tt> is the object which actually generates an output.</p>
+<p>The <tt class="docutils literal"><span class="pre">Processor</span></tt> is responsible for taking selected items and spawning Tasks based on the export structure defined.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Process as Sequence</strong> spawns tasks which generate output for a whole sequence.</li>
+<li><strong>Process as Shot</strong> spawns tasks which generate output for each shot within a sequence.</li>
+<li><strong>Process as Clips</strong> spawns tasks for each clip selected within the bin.</li>
+</ul>
+</div></blockquote>
+<p>Each of these processors contains an Export Template which defines which tasks to spawn, their output path and any parameters required.</p>
+</div>
+<div class="section" id="interface-classes">
+<h2>Interface Classes<a class="headerlink" href="#interface-classes" title="Permalink to this headline">¶</a></h2>
+<p>In order for the hiero C++ application to interact with the python objects within the export system, we define a set of C++ interface classes.</p>
+<p>These C++ classes are reflected into Python using <tt class="docutils literal"><span class="pre">Shiboken</span></tt> (Shiboken is the name of the PySide Binding Generator) and inherited by various parts of the export system.</p>
+<p><tt class="docutils literal"><span class="pre">ITask</span></tt>, <tt class="docutils literal"><span class="pre">ITaskPreset</span></tt>, <tt class="docutils literal"><span class="pre">ITaskUI</span></tt>, <tt class="docutils literal"><span class="pre">IProcessor</span></tt>, <tt class="docutils literal"><span class="pre">IProcessorUI</span></tt>, <tt class="docutils literal"><span class="pre">IExportRegistry</span></tt>, <tt class="docutils literal"><span class="pre">IExportUIRegistry</span></tt>, <tt class="docutils literal"><span class="pre">IExportStructure</span></tt> and <tt class="docutils literal"><span class="pre">IExportStructureElement</span></tt>.</p>
+<p>It should never be necessary for users to interact with these classes in python, because in every case all functionality is implemented in the derived python classes.</p>
+</div>
+<div class="section" id="exporter-classes">
+<h2>Exporter Classes<a class="headerlink" href="#exporter-classes" title="Permalink to this headline">¶</a></h2>
+<p>There are three objects you need to create for your custom task. <tt class="docutils literal"><span class="pre">Task</span></tt>, <tt class="docutils literal"><span class="pre">TaskPreset</span></tt> and <tt class="docutils literal"><span class="pre">TaskUI</span></tt>.</p>
+<p>The separation between <tt class="docutils literal"><span class="pre">Task</span></tt> and <tt class="docutils literal"><span class="pre">TaskUI</span></tt> is to ensure that in the future if/when its possible to run hiero without UI, that none of the exporters have a dependency on ui code. This is also a logical separation, because its necessary to create many instances of the <tt class="docutils literal"><span class="pre">Task</span></tt>, but only ever one instance of the <tt class="docutils literal"><span class="pre">TaskUI</span></tt>.</p>
+<p>The <tt class="docutils literal"><span class="pre">TaskPreset</span></tt> contains any parameters which need to be shared between the <tt class="docutils literal"><span class="pre">Task</span></tt> and the <tt class="docutils literal"><span class="pre">TaskUI</span></tt>. The <tt class="docutils literal"><span class="pre">TaskPreset</span></tt> is used to link the <tt class="docutils literal"><span class="pre">Task</span></tt> and <tt class="docutils literal"><span class="pre">TaskUI</span></tt> within the registry and is automatically serialized to XML.</p>
+<img alt="_images/export_triplets.png" src="_images/export_triplets.png" />
+</div>
+<div class="section" id="export-tokens">
+<h2>Export Tokens<a class="headerlink" href="#export-tokens" title="Permalink to this headline">¶</a></h2>
+<p>addUserResolveEntries provides a hook for users to add custom export tokens.</p>
+<p>The function is passed a <tt class="docutils literal"><span class="pre">hiero.core.ResolveTable</span></tt> object to which custom tokens can be registered.</p>
+<p>Here is an example of adding a simple resolve token globally across all tasks and processors.
+Because it applies to all exports, we inject it into the TaskBase class.</p>
+<div class="highlight-python"><pre>import hiero.core
+
+def global_addUserResolveEntries(self, resolver):
+  resolver.addResolver("{proj}", "First four characters of the project.", lambda keyword, task: task.projectName()[:4])
+
+# This token can be applied to ANY export so add it to the base class
+hiero.core.TaskPresetBase.addUserResolveEntries = global_addUserResolveEntries</pre>
+</div>
+<p>Some tokens only relate to specific export processors. Here is an example of adding custom tokens to the ShotProcessor.</p>
+<p>Adds two tokens. <tt class="docutils literal"><span class="pre">{sh}</span></tt> which resolves to the first two characters of the shot name, and <tt class="docutils literal"><span class="pre">{dstin}</span></tt> which resolves to the sequence timecode of the shot.
+Because they both reference the shot, they can only work with the shot processor.</p>
+<div class="highlight-python"><pre>from hiero.exporters.FnShotProcessor import ShotProcessorPreset
+
+def shot_addUserResolveEntries(self, resolver):
+  resolver.addResolver("{sh}", "First two characters of the shot (trackitem) name.", lambda keyword, task: task.shotName()[:2])
+
+  def task_shot_timecode(task):
+    trackItem = task._item
+    sequence = task._sequence
+    dstin = trackItem.timelineIn()
+    # convert frame count to timecode string HMSF
+    timecode = hiero.core.Timecode.framesToHMSF(dstin, sequence.framerate(), sequence.dropFrame())
+    # Cast integers to string and concatenate with underscores
+    return "_".join([str(integer) for integer in timecode] )
+
+  resolver.addResolver("{dstin}", "Shot timecode separated by underscores", lambda keyword, task: task_shot_timecode(task) )
+
+# This token only applies to the Shot Processor as it references the shotname
+ShotProcessorPreset.addUserResolveEntries = shot_addUserResolveEntries</pre>
+</div>
+</div>
+<div class="section" id="export-structure">
+<h2>Export Structure<a class="headerlink" href="#export-structure" title="Permalink to this headline">¶</a></h2>
+<p>The ExportStructure, built by the Processors and serialized into the ProcessorPreset, contains a composite tree of ExportStructureElement objects. Each object represents a level in the tree. Leaf elements (no children) contain a <tt class="docutils literal"><span class="pre">TaskPreset</span></tt> object which represents the type of <tt class="docutils literal"><span class="pre">Task</span></tt> output for that path and any parameters specific to that <tt class="docutils literal"><span class="pre">Task</span></tt>.</p>
+<img alt="_images/export_structure.png" src="_images/export_structure.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Export System</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#tasks-and-processors">Tasks and Processors</a></li>
+<li><a class="reference internal" href="#interface-classes">Interface Classes</a></li>
+<li><a class="reference internal" href="#exporter-classes">Exporter Classes</a></li>
+<li><a class="reference internal" href="#export-tokens">Export Tokens</a></li>
+<li><a class="reference internal" href="#export-structure">Export Structure</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="events.html"
+                        title="previous chapter">Events</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="conformingrules.html"
+                        title="next chapter">Conforming Rules</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="conformingrules.html" title="Conforming Rules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="events.html" title="Events"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

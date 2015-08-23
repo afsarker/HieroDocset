@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Undo &amp; Redo &mdash; Hiero Python Developers Guide</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.9v1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="Hiero Python Developers Guide" href="index.html" />
+    <link rel="next" title="Events" href="events.html" />
+    <link rel="prev" title="Getting Started with hiero.core" href="corestartup.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="events.html" title="Events"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="corestartup.html" title="Getting Started with hiero.core"
+             accesskey="P">previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="undo-redo">
+<h1>Undo &amp; Redo<a class="headerlink" href="#undo-redo" title="Permalink to this headline">¶</a></h1>
+<p>Hiero supports undo/redo. Most Python commands which affect the underlying state of an object create an undo/redo action which can then be undone or redone through Python or through the Edit &gt; Undo and Redo menu items.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Python commands only add undo/redo actions when they are run on the main thread and when they apply to objects that are children of a project. As a result, if you create an object and set some properties on it <em>prior to adding it to a project</em> (through an addItem command), then the commands to set the properties on the object are not undoable. The same applies if changes are made to an object on a thread other than the main thread.</p>
+</div>
+<p>At any time you should be able to undo/redo last command using:</p>
+<div class="highlight-cpp"><pre>myProject.undo()
+myProject.redo()</pre>
+</div>
+<p>If you want to group lots of commands into one undo operation, you must do it explicitly:</p>
+<div class="highlight-cpp"><pre>myProject.beginUndo("Some description")
+..
+..
+binObject.addItem(myItem1)
+binObject.addItem(myItem2)
+binObject.addItem(myItem3)
+..
+..
+myProject.endUndo()</pre>
+</div>
+<p>Once myProject.endUndo() is called, the Edit &gt; Undo menu is updated to say &#8220;Undo Some description&#8221;. If myProject.undo() were called at that point, all the commands inside the block beginUndo() through endUndo() would be reverted at the same time.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="corestartup.html"
+                        title="previous chapter">Getting Started with hiero.core</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="events.html"
+                        title="next chapter">Events</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="events.html" title="Events"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="corestartup.html" title="Getting Started with hiero.core"
+             >previous</a> |</li>
+<li>
+  <span><a href="index.html"><img class="logo" style="vertical-align: middle" width=30 height=30 src="_static/HieroIcon.png" alt="Logo"/>Python Dev Guide</a> &raquo;</span>
+</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2013, The Foundry. Python Dev Guide for Hiero 1.9v1.
+      Last updated on Sep 19, 2014.
+    </div>
+  </body>
+</html>

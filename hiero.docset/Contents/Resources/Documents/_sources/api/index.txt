@@ -1,0 +1,18 @@
+.. Hiero Python Dev Guide documentation master file, created by
+   sphinx-quickstart on Wed May  4 12:06:22 2011.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+API Reference
+=============
+
+Contents:
+
+.. toctree::
+  :maxdepth: 1
+
+  api_core
+  api_ui
+  api_foundry_rpc
+
+
